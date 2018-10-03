@@ -1,4 +1,4 @@
-package com.gamebuster19901.example.proxy;
+package com.gamebuster19901.halo.proxy;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

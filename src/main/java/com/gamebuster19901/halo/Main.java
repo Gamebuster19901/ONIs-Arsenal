@@ -1,9 +1,9 @@
-package com.gamebuster19901.example;
+package com.gamebuster19901.halo;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.gamebuster19901.example.proxy.Proxy;
+import com.gamebuster19901.halo.proxy.Proxy;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -14,12 +14,12 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Main.MODID, name = Main.MODNAME, version = Main.VERSION, canBeDeactivated = false, acceptableRemoteVersions = "*")
 public class Main {
-	public static final String MODID = "yourmodid";
-	public static final String MODNAME = "Your Mod Name";
-	public static final String VERSION = "Version - MCVersion";
+	public static final String MODID = "halo";
+	public static final String MODNAME = "Halo Mod";
+	public static final String VERSION = "0.0.0.0 - 1.12.2";
 	public static final Logger LOGGER = LogManager.getLogger(MODNAME);
 	
-	@SidedProxy(clientSide = "com.gamebuster19901.example.proxy.ClientProxy", serverSide = "com.gamebuster19901.example.proxy.ServerProxy")
+	@SidedProxy(clientSide = "com.gamebuster19901.halo.proxy.ClientProxy", serverSide = "com.gamebuster19901.halo.proxy.ServerProxy")
 	public static Proxy proxy;
 	private static Main instance;
 	
