@@ -18,4 +18,5 @@ public class ServerProxy extends Proxy{
 	public void postInit(FMLPostInitializationEvent e){
 		super.postInit(e);
 	}
+	
 }
