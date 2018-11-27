@@ -1,0 +1,12 @@
+{
+    "assault_rifle_bullet": { 
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "halo:assault_rifle/assault_rifle_shot",
+                "stream": true
+            }
+        ],
+        "subtitle": "halo.subtitle.assault_rifle.shoot"
+    }
+}

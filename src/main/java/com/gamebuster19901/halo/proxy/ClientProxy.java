@@ -26,6 +26,7 @@ public class ClientProxy extends Proxy{
 		super.postInit(e);
 	}
 	
+	@SuppressWarnings("unused")
 	@SubscribeEvent
 	public void modelRegistryEvent(ModelRegistryEvent e) {
 		ModelLoader.setCustomModelResourceLocation(AssaultRifle.INSTANCE, 0, new ModelResourceLocation(AssaultRifle.INSTANCE.getRegistryName().toString()));
