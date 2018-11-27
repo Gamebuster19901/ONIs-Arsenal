@@ -15,10 +15,10 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import net.minecraft.world.chunk.storage.AnvilChunkLoader;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 public final class Projectile implements IProjectile, EasyLocalization{
-	private static final Field RAND = ReflectionHelper.findField(Entity.class, "rand");
+	private static final Field RAND = ObfuscationReflectionHelper.findField(Entity.class, "field_70146_Z");
 	
 	protected final NBTTagCompound projectile;
 	
