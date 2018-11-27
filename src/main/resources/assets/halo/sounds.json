@@ -4,7 +4,7 @@
         "sounds": [
             {
                 "name": "halo:assault_rifle/assault_rifle_shot",
-                "stream": true
+                "stream": false
             }
         ],
         "subtitle": "halo.subtitle.assault_rifle.shoot"

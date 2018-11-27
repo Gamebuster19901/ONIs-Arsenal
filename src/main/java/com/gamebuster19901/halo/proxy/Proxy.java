@@ -80,7 +80,7 @@ public abstract class Proxy {
 			.id(EasyLocalization.getResourceLocation(entityClass), ++networkID)
 			.name(EasyLocalization.getEZTranslationKey(entityClass))
 			.entity(entityClass)
-			.tracker(32, 1, true);
+			.tracker(200, 1, true);
 	}
 	
 	private void registerAmmo(RegistryEvent.Register<Item> event) {
@@ -96,7 +96,7 @@ public abstract class Proxy {
 	@SubscribeEvent
 	public void soundRegistryEvent(RegistryEvent.Register<SoundEvent> e) {
 		e.getRegistry().registerAll(
-			new SoundEvent(EasyLocalization.getResourceLocation(AssaultRifleBullet.class)).setRegistryName(EasyLocalization.getResourceLocation(AssaultRifleBullet.class))
+			AssaultRifleBullet.sound = new SoundEvent(EasyLocalization.getResourceLocation(AssaultRifleBullet.class)).setRegistryName(EasyLocalization.getResourceLocation(AssaultRifleBullet.class))
 		);
 	}
 	
