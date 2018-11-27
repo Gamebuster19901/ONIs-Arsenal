@@ -9,12 +9,16 @@ public interface EasyLocalization<T extends Object> {
 		return new ResourceLocation(Main.MODID + ':' + toSnakeCase(this.getClass().getSimpleName()));
 	}
 	
-	public default String getEZUnlocalizedName() {
+	public default String getEZTranslationKey() {
 		return getResourceLocation().toString().replace(':', '.');
 	}
 	
 	public static ResourceLocation getResourceLocation(Class clazz) {
 		return new ResourceLocation(Main.MODID + ':' + toSnakeCase(clazz.getSimpleName()));
+	}
+	
+	public static String getEZTranslationKey(Class clazz) {
+		return getResourceLocation(clazz).toString().replace(':', '.');
 	}
 	
 	public static String toSnakeCase(String s) {

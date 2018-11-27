@@ -11,7 +11,7 @@ public abstract class Ammo extends Item implements EasyLocalization{
 	public Ammo(Projectile projectile, int maxStackSize) {
 		super();
 		this.setRegistryName(getResourceLocation());
-		this.setUnlocalizedName(getEZUnlocalizedName());
+		this.setTranslationKey(getEZTranslationKey());
 		this.projectile = projectile;
 		this.setMaxStackSize(maxStackSize);
 	}

@@ -11,7 +11,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 public abstract class HaloItem extends Item implements EasyLocalization{
 	public HaloItem() {
 		this.setRegistryName(getResourceLocation());
-		this.setUnlocalizedName(getEZUnlocalizedName());
+		this.setTranslationKey(getEZTranslationKey());
 	}
 	
     /**
