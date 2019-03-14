@@ -1,24 +1,31 @@
 package com.gamebuster19901.example.proxy;
 
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import java.util.function.Consumer;
 
-public abstract class Proxy {
+import com.gamebuster19901.example.Main;
+
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+public abstract class Proxy{
 	
-	@SuppressWarnings("unused")
-	public void preInit(FMLPreInitializationEvent e){
-		
-	}
-	
-	@SuppressWarnings("unused")
-	public void init(FMLInitializationEvent e){
-		
-	}
-	
-	@SuppressWarnings("unused")
-	public void postInit(FMLPostInitializationEvent e){
-		
+	public Proxy() {
+		addListener(this::setup);
 	}
 
+	@SuppressWarnings("unused")
+	private void setup(FMLCommonSetupEvent event) {
+		Main.LOGGER.info("COMMON SETUP");
+	}
+
+	protected static IEventBus getBus() {
+		return FMLJavaModLoadingContext.get().getModEventBus();
+	}
+	
+	protected static <T extends Event> void addListener(Consumer<T>consumer) {
+		getBus().addListener(consumer);
+	}
+	
 }

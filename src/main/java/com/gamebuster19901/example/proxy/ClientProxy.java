@@ -1,22 +1,19 @@
 package com.gamebuster19901.example.proxy;
 
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import com.gamebuster19901.example.Main;
+
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class ClientProxy extends Proxy{
-
-	public void preInit(FMLPreInitializationEvent e){
-		super.preInit(e);
+	
+	public ClientProxy() {
+		super();
+		addListener(this::clientSetup);
 	}
 	
-	
-	public void init(FMLInitializationEvent e){
-		super.init(e);
-	}
-	
-	public void postInit(FMLPostInitializationEvent e){
-		super.postInit(e);
+	@SuppressWarnings("unused")
+	private void clientSetup(FMLClientSetupEvent e) {
+		Main.LOGGER.info("CLIENT SETUP");
 	}
 	
 }
