@@ -74,7 +74,6 @@ public final class Projectile implements IProjectile, EasyLocalization{
 	 * @param pos the position to spawn the projectile at
 	 * @param vector the projectile's vector
 	 * @param gun the gun which shot the projectile
-	 * @param gunNBT the nbt of the gun
 	 */
 	public void shoot(World world, Vec3d pos, Vec3d vector, Shootable gun) {
 		if(gun == null) {
