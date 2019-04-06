@@ -2,11 +2,9 @@ package com.gamebuster19901.halo.common.entity;
 
 import com.gamebuster19901.halo.common.util.EasyLocalization;
 
-import net.minecraft.entity.MoverType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class AssaultRifleBullet extends ProjectileEntity implements EasyLocalization{
