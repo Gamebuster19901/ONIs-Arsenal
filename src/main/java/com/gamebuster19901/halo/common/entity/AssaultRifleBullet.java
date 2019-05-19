@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class AssaultRifleBullet extends ProjectileEntity implements EasyLocalization{
 	
-	public static SoundEvent sound;
+	public static SoundEvent shootingSound;
 	
 	public AssaultRifleBullet(World worldIn) {
 		super(worldIn);
