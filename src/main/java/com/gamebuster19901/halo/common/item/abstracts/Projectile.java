@@ -48,7 +48,7 @@ public final class Projectile implements IProjectile, EasyLocalization{
 	public void shoot(Entity shooter, Shootable gun) {
 		this.shooter = shooter;
 		Vec3d pos = shooter.getPositionEyes(3f).add(new Vec3d(0,-0.5,0));
-		Vec3d lookVec = shooter.getLookVec();
+		Vec3d lookVec = shooter.getLookVec().add(0,0.3d,0);
 		float distance = 1.5f;
 		
 		shoot(shooter.getEntityWorld(), VecMath.traverse(pos, lookVec, distance), shooter.getLookVec(), gun);
