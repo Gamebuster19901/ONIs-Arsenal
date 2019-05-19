@@ -4,10 +4,12 @@ import com.gamebuster19901.halo.common.util.EasyLocalization;
 import com.gamebuster19901.halo.common.util.Updateable;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.common.util.INBTSerializable;
 
-public interface Weapon extends Updateable{
+public interface Weapon extends Updateable, INBTSerializable<NBTTagCompound>{
 	double FPSToMPS = 0.3048d;
 	double TPS = 20;
 	

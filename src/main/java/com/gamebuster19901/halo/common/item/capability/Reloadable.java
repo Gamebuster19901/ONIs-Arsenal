@@ -5,10 +5,12 @@ import com.gamebuster19901.halo.common.util.EasyLocalization;
 import com.gamebuster19901.halo.common.util.Updateable;
 
 import net.minecraft.inventory.IInventory;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.common.util.INBTSerializable;
 
-public interface Reloadable extends Updateable{
+public interface Reloadable extends Updateable, INBTSerializable<NBTTagCompound>{
 	
 	public static interface Tag{}
 	

@@ -4,7 +4,9 @@ import com.gamebuster19901.halo.common.item.NullAmmo;
 import com.gamebuster19901.halo.common.item.abstracts.Ammo;
 
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 
@@ -126,5 +128,28 @@ public class ReloadableDefaultImpl implements Reloadable{
 		if(getReloadProgress() < getReloadTime()) {
 			reloadProgress++;
 		}
+	}
+
+	@Override
+	public NBTTagCompound serializeNBT() {
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setInteger("magSize", magSize);
+		nbt.setInteger("reloadTime", reloadTime);
+		nbt.setInteger("amountLoaded", amountLoaded);
+		nbt.setInteger("reloadProgress", reloadProgress);
+		nbt.setBoolean("isReloading", isReloading);
+		nbt.setString("ammoType", ammoType.getResourceLocation().toString());
+		return nbt;
+	}
+
+	@Override
+	public void deserializeNBT(NBTTagCompound tag) {
+		NBTTagCompound nbt = (NBTTagCompound) tag;
+		magSize = nbt.getInteger("magSize");
+		reloadTime = nbt.getInteger("reloadTime");
+		amountLoaded = nbt.getInteger("amountLoaded");
+		reloadProgress = nbt.getInteger("reloadProgress");
+		isReloading = nbt.getBoolean("isReloading");
+		ammoType = (Ammo) Item.getByNameOrId(nbt.getString("ammoType"));
 	}
 }

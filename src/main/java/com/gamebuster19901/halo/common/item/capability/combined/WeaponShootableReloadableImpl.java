@@ -296,4 +296,20 @@ public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloada
 	public void setIsReloading(boolean reloading) {
 		reloadable.setIsReloading(reloading);
 	}
+
+	@Override
+	public NBTTagCompound serializeNBT() {
+		NBTTagCompound nbt = (NBTTagCompound) weapon.serializeNBT();
+		nbt.merge((NBTTagCompound)shootable.serializeNBT());
+		nbt.merge((NBTTagCompound)reloadable.serializeNBT());
+		return nbt;
+	}
+
+	@Override
+	public void deserializeNBT(NBTTagCompound nbt) {
+		weapon.deserializeNBT(nbt);
+		shootable.deserializeNBT(nbt);
+		reloadable.deserializeNBT(nbt);
+	}
+
 }

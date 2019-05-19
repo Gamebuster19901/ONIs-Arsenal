@@ -111,5 +111,25 @@ public final class HandImpl implements Shootable{
 
 	@Override
 	public void setMaxHorizontalRecoil(float maxHorizontal) {
-	};
+	}
+
+	@Override
+	public NBTTagCompound serializeNBT() {
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setFloat("maxBloom", 0);
+		nbt.setFloat("bloomI", 0);
+		nbt.setFloat("bloomD", 0);
+		nbt.setFloat("muzzleVelocity", 0);
+		nbt.setFloat("minRecoilX", 0);
+		nbt.setFloat("minRecoilY", 0);
+		nbt.setFloat("maxRecoilX", 0);
+		nbt.setFloat("maxRecoilY", 0);
+		nbt.setTag("projectile", new NBTTagCompound());
+		nbt.setFloat("bloom", 0);
+		return nbt;
+	}
+
+
+	@Override
+	public void deserializeNBT(NBTTagCompound base) {}
 }

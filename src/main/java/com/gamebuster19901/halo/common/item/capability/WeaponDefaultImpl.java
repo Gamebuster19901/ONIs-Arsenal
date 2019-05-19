@@ -1,6 +1,7 @@
 package com.gamebuster19901.halo.common.item.capability;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -70,5 +71,22 @@ public class WeaponDefaultImpl implements Weapon{
 		if(nextFire > 0) {
 			nextFire--;
 		}
+	}
+
+	@Override
+	public NBTTagCompound serializeNBT() {
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setInteger("fireRate", fireRate);
+		nbt.setBoolean("isAutomatic", isAutomatic);
+		nbt.setByte("nextFire", nextFire);
+		return nbt;
+	}
+
+	@Override
+	public void deserializeNBT(NBTTagCompound tag) {
+		NBTTagCompound nbt = (NBTTagCompound) tag;
+		fireRate = nbt.getInteger("fireRate");
+		isAutomatic = nbt.getBoolean("isAutomatic");
+		nextFire = nbt.getByte("nextFire");
 	}
 }

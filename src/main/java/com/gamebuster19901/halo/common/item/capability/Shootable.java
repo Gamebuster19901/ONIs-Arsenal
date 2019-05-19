@@ -9,8 +9,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.INBTSerializable;
 
-public interface Shootable extends Updateable{
+public interface Shootable extends Updateable, INBTSerializable<NBTTagCompound>{
 	
 	public static interface Tag{}
 	
