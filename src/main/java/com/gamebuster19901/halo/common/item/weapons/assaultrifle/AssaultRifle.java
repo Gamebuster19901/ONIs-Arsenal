@@ -31,7 +31,6 @@ public class AssaultRifle extends GunReloadable{
 		if(stack.hasCapability(WeaponDefaultImpl.CAPABILITY, null)) {
 			AssaultRifleImpl impl = (AssaultRifleImpl) stack.getCapability(WeaponDefaultImpl.CAPABILITY, null);
 			if(impl.canFire(playerIn)) {
-				impl.setMuzzleVelocity(1f);
 				impl.fire(playerIn);
 			}
 			else {
@@ -85,7 +84,6 @@ public class AssaultRifle extends GunReloadable{
 				ShootableStorage.INSTANCE.readNBT(ShootableDefaultImpl.CAPABILITY, impl, null, shootable);
 				ReloadableStorage.INSTANCE.readNBT(ReloadableDefaultImpl.CAPABILITY, impl, null, reloadable);
 			}
-			
 		};
 	}
 }
