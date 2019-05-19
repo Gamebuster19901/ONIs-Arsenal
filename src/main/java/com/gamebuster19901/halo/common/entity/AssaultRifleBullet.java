@@ -14,9 +14,6 @@ public class AssaultRifleBullet extends ProjectileEntity implements EasyLocaliza
 	
 	public static SoundEvent shootingSound;
 	
-	public NBTTagCompound gun;
-	public UUID shooter;
-	
 	public AssaultRifleBullet(World worldIn) {
 		super(worldIn);
 		this.setSize(1f / 16, 1f / 16);
@@ -35,9 +32,7 @@ public class AssaultRifleBullet extends ProjectileEntity implements EasyLocaliza
 				this.setDead();
 				return;
 			}
-			this.posX += this.motionX;
-			this.posY += this.motionY;
-			this.posZ += this.motionZ;
+			this.setVelocity(this.motionX, this.motionY, this.motionZ);
 			this.markVelocityChanged();
 		}
 	}
@@ -46,38 +41,6 @@ public class AssaultRifleBullet extends ProjectileEntity implements EasyLocaliza
 	protected void entityInit() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	protected void readEntityFromNBT(NBTTagCompound compound) {
-		this.posX = compound.getDouble("posX");
-		this.posY = compound.getDouble("posY");
-		this.posZ = compound.getDouble("posZ");
-		this.motionX = compound.getDouble("motionX");
-		this.motionY = compound.getDouble("motionY");
-		this.motionZ = compound.getDouble("motionZ");
-		if(compound.hasKey("gun")) {
-			this.gun = compound.getCompoundTag("gun");
-		}
-		if(compound.hasKey("shooter")) {
-			this.shooter = UUID.fromString(compound.getString("shooter"));
-		}
-	}
-
-	@Override
-	protected void writeEntityToNBT(NBTTagCompound compound) {
-		compound.setDouble("posX", this.posX);
-		compound.setDouble("posY", this.posY);
-		compound.setDouble("posZ", this.posZ);
-		compound.setDouble("motionX", this.motionX);
-		compound.setDouble("motionY", this.motionY);
-		compound.setDouble("motionZ", this.motionZ);
-		if(gun != null) {
-			compound.setTag("gun", gun);
-		}
-		if(shooter != null) {
-			compound.setString("shooter", shooter.toString());
-		}
 	}
 
 	@Override
