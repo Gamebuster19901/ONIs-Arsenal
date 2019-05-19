@@ -3,6 +3,7 @@ package com.gamebuster19901.halo.common.item.abstracts;
 import java.lang.reflect.Field;
 import java.util.Random;
 
+import com.gamebuster19901.halo.common.entity.ProjectileEntity;
 import com.gamebuster19901.halo.common.item.capability.Shootable;
 import com.gamebuster19901.halo.common.util.EasyLocalization;
 import com.gamebuster19901.halo.common.util.VecMath;
@@ -28,7 +29,7 @@ public final class Projectile implements IProjectile, EasyLocalization{
 	
 	protected Entity shooter;
 	protected Shootable gun;
-	protected Entity projectileEntity;
+	protected ProjectileEntity projectileEntity;
 	
 	/**
 	 * @param projectile the nbt representing the projectile
@@ -82,7 +83,7 @@ public final class Projectile implements IProjectile, EasyLocalization{
 		this.gun = gun;
 		if(!world.isRemote && projectile != null) {
 			projectile.setString("ownerName", shooter.getName());
-			projectileEntity = AnvilChunkLoader.readWorldEntityPos(projectile, world, pos.x, pos.y, pos.z, false);
+			projectileEntity = (ProjectileEntity)AnvilChunkLoader.readWorldEntityPos(projectile, world, pos.x, pos.y, pos.z, false);
 			if(projectileEntity != null) {
 				try {
 					projectileEntity.setUniqueId(MathHelper.getRandomUUID((Random)RAND.get(projectileEntity)));
@@ -90,6 +91,8 @@ public final class Projectile implements IProjectile, EasyLocalization{
 					throw new AssertionError(e);
 				}
 				Vec3d lookVec = shooter.getLookVec();
+				projectileEntity.setShooter(shooter);
+				projectileEntity.setGun(gun);
 				shoot(lookVec.x, lookVec.y, lookVec.z, gun.getMuzzleVelocity(), gun.getBloom()); //Shoot before spawning entity so it has momentum when spawned!
 				world.spawnEntity(projectileEntity);
 				return;

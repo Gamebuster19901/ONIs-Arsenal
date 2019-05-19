@@ -9,7 +9,7 @@ public class ShooterOwnerFactory implements Callable<ShooterOwner>{
 	
 	@Override
 	public ShooterOwner call() throws Exception {
-		return new ShooterOwnerDefaultImpl((Entity)null);
+		return new ShooterOwnerDefaultImpl((Entity)null, ShootableFactory.INSTANCE.call());
 	}
 
 }

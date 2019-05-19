@@ -186,5 +186,38 @@ public class ShootableDefaultImpl implements Shootable{
 		Shootable.super.shoot(world, pos, vector);
 		bloom = MathHelper.clamp(bloom + bloomI, 0, getMaxBloom());
 	}
+
+
+	@Override
+	public NBTTagCompound serializeNBT() {
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setFloat("maxBloom", maxBloom);
+		nbt.setFloat("bloomI", bloomI);
+		nbt.setFloat("bloomD", bloomD);
+		nbt.setFloat("muzzleVelocity", muzzleVelocity);
+		nbt.setFloat("minRecoilX", minRecoilX);
+		nbt.setFloat("minRecoilY", minRecoilY);
+		nbt.setFloat("maxRecoilX", maxRecoilX);
+		nbt.setFloat("maxRecoilY", maxRecoilY);
+		nbt.setTag("projectile", projectile);
+		nbt.setFloat("bloom", bloom);
+		return nbt;
+	}
+
+
+	@Override
+	public void deserializeNBT(NBTTagCompound base) {
+		NBTTagCompound nbt = (NBTTagCompound) base;
+		maxBloom = nbt.getFloat("maxBloom");
+		bloomI = nbt.getFloat("bloomI");
+		bloomD = nbt.getFloat("bloomD");
+		muzzleVelocity = nbt.getFloat("muzzleVelocity");
+		minRecoilX = nbt.getFloat("minRecoilX");
+		minRecoilY = nbt.getFloat("minRecoilY");
+		maxRecoilX = nbt.getFloat("maxRecoilX");
+		maxRecoilY = nbt.getFloat("maxRecoilY");
+		projectile = nbt.getCompoundTag("projectile");
+		bloom = nbt.getFloat("bloom");
+	}
 	
 }
