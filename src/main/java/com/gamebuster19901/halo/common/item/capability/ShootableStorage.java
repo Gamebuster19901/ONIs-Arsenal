@@ -1,6 +1,6 @@
 package com.gamebuster19901.halo.common.item.capability;
 
-import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -21,24 +21,24 @@ public class ShootableStorage implements IStorage<Shootable>{
 	public static final String PROJECTILE = "projectile";
 	
 	@Override
-	public NBTBase writeNBT(Capability<Shootable> capability, Shootable instance, EnumFacing side) {
+	public INBTBase writeNBT(Capability<Shootable> capability, Shootable instance, EnumFacing side) {
 		NBTTagCompound nbt = new NBTTagCompound();
 		
-		nbt.setFloat(MAX_BLOOM, instance.getMaxBloom());
-		nbt.setFloat(BLOOM_I, instance.getBloomIncreasePerShot());
-		nbt.setFloat(BLOOM_D, instance.getBloomDecreasePerTick());
-		nbt.setFloat(VELOCITY, instance.getMuzzleVelocity());
-		nbt.setFloat(MIN_RECOIL_X, instance.getMinHorizontalRecoil());
-		nbt.setFloat(MAX_RECOIL_X, instance.getMaxHorizontalRecoil());
-		nbt.setFloat(MIN_RECOIL_Y, instance.getMinVerticalRecoil());
-		nbt.setFloat(MAX_RECOIL_Y, instance.getMaxVerticalRecoil());
-		nbt.setTag(PROJECTILE, instance.getProjectile());
+		nbt.putFloat(MAX_BLOOM, instance.getMaxBloom());
+		nbt.putFloat(BLOOM_I, instance.getBloomIncreasePerShot());
+		nbt.putFloat(BLOOM_D, instance.getBloomDecreasePerTick());
+		nbt.putFloat(VELOCITY, instance.getMuzzleVelocity());
+		nbt.putFloat(MIN_RECOIL_X, instance.getMinHorizontalRecoil());
+		nbt.putFloat(MAX_RECOIL_X, instance.getMaxHorizontalRecoil());
+		nbt.putFloat(MIN_RECOIL_Y, instance.getMinVerticalRecoil());
+		nbt.putFloat(MAX_RECOIL_Y, instance.getMaxVerticalRecoil());
+		nbt.put(PROJECTILE, instance.getProjectile());
 		
 		return nbt;
 	}
 
 	@Override
-	public void readNBT(Capability<Shootable> capability, Shootable shootable, EnumFacing side, NBTBase tag) {
+	public void readNBT(Capability<Shootable> capability, Shootable shootable, EnumFacing side, INBTBase tag) {
 		NBTTagCompound nbt = (NBTTagCompound) tag;
 		
 		shootable.setMaxBloom(nbt.getFloat(MAX_BLOOM));
@@ -49,7 +49,7 @@ public class ShootableStorage implements IStorage<Shootable>{
 		shootable.setMaxHorizontalRecoil(nbt.getFloat(MAX_RECOIL_X));
 		shootable.setMinVerticalRecoil(nbt.getFloat(MIN_RECOIL_Y));
 		shootable.setMaxVerticalRecoil(nbt.getFloat(MAX_RECOIL_Y));
-		shootable.setProjectile(nbt.getCompoundTag(PROJECTILE));
+		shootable.setProjectile(nbt.getCompound(PROJECTILE));
 	}
 
 }

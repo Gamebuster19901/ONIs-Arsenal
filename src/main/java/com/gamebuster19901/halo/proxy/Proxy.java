@@ -1,6 +1,7 @@
 package com.gamebuster19901.halo.proxy;
 
 import java.util.HashSet;
+import java.util.function.Consumer;
 
 import com.gamebuster19901.halo.common.entity.AssaultRifleBullet;
 import com.gamebuster19901.halo.common.item.NullAmmo;
@@ -23,25 +24,30 @@ import com.gamebuster19901.halo.common.item.weapons.assaultrifle.AssaultRifle;
 import com.gamebuster19901.halo.common.util.EasyLocalization;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public abstract class Proxy {
 	
 	HashSet<Ammo> registeredAmmo = new HashSet<Ammo>();
 	HashSet<Class<? extends Entity>> registeredProjectile = new HashSet<Class<? extends Entity>>();
 	
+	public Proxy() {
+		getBus().register(this);
+	}
+	
+	@SubscribeEvent
 	@SuppressWarnings("unused")
-	public void preInit(FMLPreInitializationEvent e){
+	public void setup(FMLCommonSetupEvent e) {
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(Projectile.class);
 		CapabilityManager.INSTANCE.register(Weapon.class, new WeaponStorage(), new WeaponFactory());
@@ -50,15 +56,12 @@ public abstract class Proxy {
 		CapabilityManager.INSTANCE.register(ShooterOwner.class, new ShooterOwnerStorage(), new ShooterOwnerFactory());
 	}
 	
-	
-	@SuppressWarnings("unused")
-	public void init(FMLInitializationEvent e){
-		
+	protected static IEventBus getBus() {
+		return FMLJavaModLoadingContext.get().getModEventBus();
 	}
 	
-	@SuppressWarnings("unused")
-	public void postInit(FMLPostInitializationEvent e){
-		
+	protected <T extends Event> void addListener(Consumer<T> consumer) {
+		getBus().addListener(consumer);
 	}
 	
 	@SubscribeEvent
@@ -68,19 +71,14 @@ public abstract class Proxy {
 	}
 	
 	@SubscribeEvent
-	public void registerEntities(RegistryEvent.Register<EntityEntry> event) {
-		event.getRegistry().registerAll(
-			registerEntity(AssaultRifleBullet.class).build()
-		);
+	@SuppressWarnings("unused")
+	public void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
+		AssaultRifleBullet.TYPE = registerEntity(AssaultRifleBullet.class);
 	}
 	
 	private int networkID = 0;
-	private EntityEntryBuilder registerEntity(Class<? extends Entity> entityClass) {
-		return EntityEntryBuilder.create()
-			.id(EasyLocalization.getResourceLocation(entityClass), ++networkID)
-			.name(EasyLocalization.getEZTranslationKey(entityClass))
-			.entity(entityClass)
-			.tracker(200, 1, true);
+	private EntityType<Entity> registerEntity(Class<? extends Entity> entityClass) {
+		return EntityType.register(EasyLocalization.getEZTranslationKey(entityClass), EntityType.Builder.create(entityClass, AssaultRifleBullet::new).tracker(200, networkID++, true));
 	}
 	
 	private void registerAmmo(RegistryEvent.Register<Item> event) {
@@ -94,7 +92,7 @@ public abstract class Proxy {
 	}
 	
 	@SubscribeEvent
-	public void soundRegistryEvent(RegistryEvent.Register<SoundEvent> e) {
+	public void registerSounds(RegistryEvent.Register<SoundEvent> e) {
 		e.getRegistry().registerAll(
 			AssaultRifleBullet.shootingSound = new SoundEvent(EasyLocalization.getResourceLocation(AssaultRifleBullet.class)).setRegistryName(EasyLocalization.getResourceLocation(AssaultRifleBullet.class))
 		);

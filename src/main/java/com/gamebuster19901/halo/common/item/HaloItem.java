@@ -10,8 +10,16 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public abstract class HaloItem extends Item implements EasyLocalization{
 	public HaloItem() {
+		this(1);
+	}
+	
+	public HaloItem(int stackSize) {
+		super(new Item.Properties().maxStackSize(stackSize));
 		this.setRegistryName(getResourceLocation());
-		this.setTranslationKey(getEZTranslationKey());
+	}
+	
+	public HaloItem(Item.Properties properties) {
+		super(properties);
 	}
 	
     /**

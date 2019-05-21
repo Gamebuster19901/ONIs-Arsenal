@@ -1,6 +1,6 @@
 package com.gamebuster19901.halo.common.item.capability;
 
-import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -14,21 +14,21 @@ public class WeaponStorage implements Capability.IStorage<Weapon>{
 	public static final String NEXT_FIRE = "nextFire";
 	
 	@Override
-	public NBTBase writeNBT(Capability<Weapon> capability, Weapon instance, EnumFacing side) {
+	public INBTBase writeNBT(Capability<Weapon> capability, Weapon instance, EnumFacing side) {
 		NBTTagCompound nbt = new NBTTagCompound();
 		
-		nbt.setInteger(FIRE_RATE, instance.getFireRate());
-		nbt.setBoolean(AUTOMATIC, instance.isAutomatic());
-		nbt.setByte(NEXT_FIRE, instance.getTimeUntilNextFire());
+		nbt.putInt(FIRE_RATE, instance.getFireRate());
+		nbt.putBoolean(AUTOMATIC, instance.isAutomatic());
+		nbt.putByte(NEXT_FIRE, instance.getTimeUntilNextFire());
 		
 		return nbt;
 	}
 
 	@Override
-	public void readNBT(Capability<Weapon> capability, Weapon instance, EnumFacing side, NBTBase tag) {
+	public void readNBT(Capability<Weapon> capability, Weapon instance, EnumFacing side, INBTBase tag) {
 		NBTTagCompound nbt = (NBTTagCompound) tag;
 		
-		instance.setFireRate(nbt.getInteger(FIRE_RATE));
+		instance.setFireRate(nbt.getInt(FIRE_RATE));
 		instance.setAutomatic(nbt.getBoolean(AUTOMATIC));
 		instance.setTimeUntilNextFire(nbt.getByte(NEXT_FIRE));
 	}

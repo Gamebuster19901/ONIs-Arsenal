@@ -6,6 +6,7 @@ import java.util.Random;
 import com.gamebuster19901.halo.common.entity.ProjectileEntity;
 import com.gamebuster19901.halo.common.item.capability.Shootable;
 import com.gamebuster19901.halo.common.util.EasyLocalization;
+import com.gamebuster19901.halo.common.util.ForgeReflectionHelper;
 import com.gamebuster19901.halo.common.util.VecMath;
 
 import net.minecraft.entity.Entity;
@@ -16,10 +17,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import net.minecraft.world.chunk.storage.AnvilChunkLoader;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 public final class Projectile implements IProjectile, EasyLocalization{
-	private static final Field RAND = ObfuscationReflectionHelper.findField(Entity.class, "field_70146_Z");
+	private static final Field RAND = ForgeReflectionHelper.findField(Entity.class, "rand");
 	
 	protected final NBTTagCompound projectile;
 	
@@ -47,7 +47,7 @@ public final class Projectile implements IProjectile, EasyLocalization{
 	 */
 	public void shoot(Entity shooter, Shootable gun) {
 		this.shooter = shooter;
-		Vec3d pos = shooter.getPositionEyes(3f).add(new Vec3d(0,-0.5,0));
+		Vec3d pos = shooter.getEyePosition(1).add(new Vec3d(0,-0.5,0));
 		Vec3d lookVec = shooter.getLookVec().add(0,0.3d,0);
 		float distance = 1.5f;
 		
@@ -82,7 +82,7 @@ public final class Projectile implements IProjectile, EasyLocalization{
 		}
 		this.gun = gun;
 		if(!world.isRemote && projectile != null) {
-			projectile.setString("ownerName", shooter.getName());
+			projectile.putString("ownerName", shooter.getName().getString());
 			projectileEntity = (ProjectileEntity)AnvilChunkLoader.readWorldEntityPos(projectile, world, pos.x, pos.y, pos.z, false);
 			if(projectileEntity != null) {
 				try {

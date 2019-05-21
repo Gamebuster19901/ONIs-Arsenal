@@ -3,13 +3,13 @@ package com.gamebuster19901.halo.common.item.capability;
 import com.gamebuster19901.halo.common.item.NullAmmo;
 import com.gamebuster19901.halo.common.item.abstracts.Ammo;
 
-import net.minecraft.item.Item;
-import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ReloadableStorage implements IStorage<Reloadable>{
 
@@ -24,33 +24,33 @@ public class ReloadableStorage implements IStorage<Reloadable>{
 	public static final String AMMO = "ammoType";
 	
 	@Override
-	public NBTBase writeNBT(Capability<Reloadable> capability, Reloadable instance, EnumFacing side) {
+	public INBTBase writeNBT(Capability<Reloadable> capability, Reloadable instance, EnumFacing side) {
 		NBTTagCompound nbt = new NBTTagCompound();
 		
-		nbt.setInteger(MAG_SIZE, instance.getMagazineSize());
-		nbt.setInteger(RELOAD_TIME, instance.getReloadTime());
+		nbt.putInt(MAG_SIZE, instance.getMagazineSize());
+		nbt.putInt(RELOAD_TIME, instance.getReloadTime());
 		
-		nbt.setInteger(AMOUNT_LOADED, instance.getAmountInMagazine());
-		nbt.setInteger(RELOAD_PROGRESS, instance.getReloadProgress());
-		nbt.setBoolean(RELOADING, instance.isReloading());
-		nbt.setString(AMMO, instance.getAmmoType().getRegistryName().toString());
+		nbt.putInt(AMOUNT_LOADED, instance.getAmountInMagazine());
+		nbt.putInt(RELOAD_PROGRESS, instance.getReloadProgress());
+		nbt.putBoolean(RELOADING, instance.isReloading());
+		nbt.putString(AMMO, instance.getAmmoType().getRegistryName().toString());
 		
 		return nbt;
 	}
 
 	@Override
-	public void readNBT(Capability<Reloadable> capability, Reloadable reloadable, EnumFacing side, NBTBase tag) {
+	public void readNBT(Capability<Reloadable> capability, Reloadable reloadable, EnumFacing side, INBTBase tag) {
 		NBTTagCompound nbt = (NBTTagCompound) tag;
 
-		reloadable.setMagazineSize(nbt.getInteger(MAG_SIZE));
-		reloadable.setReloadTime(nbt.getInteger(RELOAD_TIME));
+		reloadable.setMagazineSize(nbt.getInt(MAG_SIZE));
+		reloadable.setReloadTime(nbt.getInt(RELOAD_TIME));
 		
-		reloadable.setAmountInMagazine(nbt.getInteger(AMOUNT_LOADED));
-		reloadable.setReloadProgress(nbt.getInteger(RELOAD_PROGRESS));
+		reloadable.setAmountInMagazine(nbt.getInt(AMOUNT_LOADED));
+		reloadable.setReloadProgress(nbt.getInt(RELOAD_PROGRESS));
 		reloadable.setIsReloading(nbt.getBoolean(RELOADING));
 		ResourceLocation ammo = new ResourceLocation(nbt.getString(AMMO));
-		if(Item.REGISTRY.containsKey(ammo)) {
-			reloadable.setAmmoType((Ammo) Item.REGISTRY.getObject(ammo));
+		if(ForgeRegistries.ITEMS.containsKey(ammo)) {
+			reloadable.setAmmoType((Ammo) ForgeRegistries.ITEMS.getValue(ammo));
 		}
 		else {
 			reloadable.setAmmoType(NullAmmo.INSTANCE);

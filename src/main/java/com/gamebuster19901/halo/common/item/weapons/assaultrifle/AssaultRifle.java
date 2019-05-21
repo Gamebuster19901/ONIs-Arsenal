@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.LazyOptional;
 
 public class AssaultRifle extends GunReloadable{
 
@@ -28,8 +29,8 @@ public class AssaultRifle extends GunReloadable{
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn){
 		ItemStack stack = playerIn.getHeldItem(handIn);
-		if(stack.hasCapability(WeaponDefaultImpl.CAPABILITY, null)) {
-			AssaultRifleImpl impl = (AssaultRifleImpl) stack.getCapability(WeaponDefaultImpl.CAPABILITY, null);
+		if(stack.getCapability(WeaponDefaultImpl.CAPABILITY, null).isPresent()) {
+			AssaultRifleImpl impl = (AssaultRifleImpl) stack.getCapability(WeaponDefaultImpl.CAPABILITY, null).orElseThrow(AssertionError::new);
 			if(impl.canFire(playerIn)) {
 				impl.fire(playerIn);
 			}
@@ -44,42 +45,34 @@ public class AssaultRifle extends GunReloadable{
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
 		
-		ICapabilityProvider sup = super.initCapabilities(stack, nbt);
+		super.initCapabilities(stack, nbt);
 		
 		return new ICapabilityProviderSerializeable<NBTTagCompound>(){
 			
-			public final AssaultRifleImpl impl = new AssaultRifleImpl();
-			
-			@Override
-			public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-				if (capability == WeaponDefaultImpl.CAPABILITY || capability == ShootableDefaultImpl.CAPABILITY || capability == ReloadableDefaultImpl.CAPABILITY) {
-					return true;
-				}
-				return sup.hasCapability(capability, facing);
-			}
+			public final AssaultRifleImpl impl = (AssaultRifleImpl) getCapability(WeaponDefaultImpl.CAPABILITY).orElseThrow(AssertionError::new);
 
 			@Override
-			public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+			public <T> LazyOptional<T> getCapability(Capability<T> capability, EnumFacing facing) {
 				if(capability == WeaponDefaultImpl.CAPABILITY || capability == ShootableDefaultImpl.CAPABILITY || capability == ReloadableDefaultImpl.CAPABILITY) {
-					return (T) impl;
+					return (LazyOptional<T>) LazyOptional.of(AssaultRifleImpl::new);
 				}
-				return sup.getCapability(capability, facing);
+				return LazyOptional.empty();
 			}
 
 			@Override
 			public NBTTagCompound serializeNBT() {
 				NBTTagCompound nbt = new NBTTagCompound();
-				nbt.setTag("weapon", WeaponStorage.INSTANCE.writeNBT(WeaponDefaultImpl.CAPABILITY, impl, null));
-				nbt.setTag("shootable", ShootableStorage.INSTANCE.writeNBT(ShootableDefaultImpl.CAPABILITY, impl, null));
-				nbt.setTag("reloadable", ReloadableStorage.INSTANCE.writeNBT(ReloadableDefaultImpl.CAPABILITY, impl, null));
+				nbt.put("weapon", WeaponStorage.INSTANCE.writeNBT(WeaponDefaultImpl.CAPABILITY, impl, null));
+				nbt.put("shootable", ShootableStorage.INSTANCE.writeNBT(ShootableDefaultImpl.CAPABILITY, impl, null));
+				nbt.put("reloadable", ReloadableStorage.INSTANCE.writeNBT(ReloadableDefaultImpl.CAPABILITY, impl, null));
 				return nbt;
 			}
 
 			@Override
 			public void deserializeNBT(NBTTagCompound nbt) {
-				NBTTagCompound weapon = nbt.getCompoundTag("weapon");
-				NBTTagCompound shootable = nbt.getCompoundTag("shootable");
-				NBTTagCompound reloadable = nbt.getCompoundTag("reloadable");
+				NBTTagCompound weapon = nbt.getCompound("weapon");
+				NBTTagCompound shootable = nbt.getCompound("shootable");
+				NBTTagCompound reloadable = nbt.getCompound("reloadable");
 				WeaponStorage.INSTANCE.readNBT(WeaponDefaultImpl.CAPABILITY, impl, null, weapon);
 				ShootableStorage.INSTANCE.readNBT(ShootableDefaultImpl.CAPABILITY, impl, null, shootable);
 				ReloadableStorage.INSTANCE.readNBT(ReloadableDefaultImpl.CAPABILITY, impl, null, reloadable);

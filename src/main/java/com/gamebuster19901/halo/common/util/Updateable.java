@@ -1,7 +1,6 @@
 package com.gamebuster19901.halo.common.util;
 
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
-import net.minecraftforge.fml.relauncher.Side;
 
 public interface Updateable {
 	
@@ -12,7 +11,7 @@ public interface Updateable {
 	}
 	
 	public default boolean canUpdate(WorldTickEvent e) {
-		return e.world.provider.getDimension() == 0 || e.side == Side.CLIENT;
+		return true;
 	}
 	
 	public void update();

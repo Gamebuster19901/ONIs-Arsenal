@@ -116,16 +116,16 @@ public final class HandImpl implements Shootable{
 	@Override
 	public NBTTagCompound serializeNBT() {
 		NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setFloat("maxBloom", 0);
-		nbt.setFloat("bloomI", 0);
-		nbt.setFloat("bloomD", 0);
-		nbt.setFloat("muzzleVelocity", 0);
-		nbt.setFloat("minRecoilX", 0);
-		nbt.setFloat("minRecoilY", 0);
-		nbt.setFloat("maxRecoilX", 0);
-		nbt.setFloat("maxRecoilY", 0);
-		nbt.setTag("projectile", new NBTTagCompound());
-		nbt.setFloat("bloom", 0);
+		nbt.putFloat("maxBloom", 0);
+		nbt.putFloat("bloomI", 0);
+		nbt.putFloat("bloomD", 0);
+		nbt.putFloat("muzzleVelocity", 0);
+		nbt.putFloat("minRecoilX", 0);
+		nbt.putFloat("minRecoilY", 0);
+		nbt.putFloat("maxRecoilX", 0);
+		nbt.putFloat("maxRecoilY", 0);
+		nbt.put("projectile", new NBTTagCompound());
+		nbt.putFloat("bloom", 0);
 		return nbt;
 	}
 

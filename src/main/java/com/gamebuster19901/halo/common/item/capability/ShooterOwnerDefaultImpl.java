@@ -58,17 +58,17 @@ public class ShooterOwnerDefaultImpl implements ShooterOwner, INBTSerializable<N
 	@Override
 	public NBTTagCompound serializeNBT() {
 		NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setTag("gun", gun);
+		nbt.put("gun", gun);
 		if(shooter != null) {
-			nbt.setString("shooter", shooter.toString());
+			nbt.putString("shooter", shooter.toString());
 		}
 		return nbt;
 	}
 
 	@Override
 	public void deserializeNBT(NBTTagCompound nbt) {
-		this.gun = nbt.getCompoundTag("gun");
-		if(nbt.hasKey("shooter")) {
+		this.gun = nbt.getCompound("gun");
+		if(nbt.contains("shooter")) {
 			this.shooter = UUID.fromString("shooter");
 		}
 	}

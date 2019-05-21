@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.LazyOptional;
 
 public abstract class GunReloadable extends Gun implements Reloadable.Tag{
 	
@@ -17,25 +18,17 @@ public abstract class GunReloadable extends Gun implements Reloadable.Tag{
 		
 		return new ICapabilityProvider() {
 			Reloadable reloadable = ReloadableDefaultImpl.CAPABILITY.getDefaultInstance();
-			
-			@Override
-			public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-				if(prevProvider.hasCapability(capability, facing)) {
-					return true;
-				}
-				return capability == ReloadableDefaultImpl.CAPABILITY;
-			}
 
 			@Override
-			public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-				T prev = prevProvider.getCapability(capability, facing);
+			public <T> LazyOptional<T> getCapability(Capability<T> capability, EnumFacing facing) {
+				LazyOptional<T> prev = prevProvider.getCapability(capability, facing);
 				
 				if(prev != null) {
 					return prev;
 				}
 				
 				if(capability == ReloadableDefaultImpl.CAPABILITY) {
-					return (T) reloadable;
+					return (LazyOptional<T>) LazyOptional.of(() -> new ReloadableDefaultImpl(1, 1));
 				}
 				return null;
 			}

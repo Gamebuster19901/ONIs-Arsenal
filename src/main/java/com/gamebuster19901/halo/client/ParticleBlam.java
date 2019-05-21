@@ -31,7 +31,7 @@ public class ParticleBlam extends Particle{
 	public ParticleBlam(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn,
 			double ySpeedIn, double zSpeedIn) {
 		super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
-		this.particleMaxAge = 2;
+		this.maxAge = 2;
 	}
 	
 	public ParticleBlam(EntityPlayer player, float redInside, float greenInside, float blueInside, float redOutside, float greenOutside, float blueOutside) {
@@ -51,11 +51,11 @@ public class ParticleBlam extends Particle{
 		GlStateManager.disableLighting();
 		RenderHelper.disableStandardItemLighting();
 		
-		Minecraft.getMinecraft().getTextureManager().bindTexture(PARTICLE_TEXTURE);
+		Minecraft.getInstance().getTextureManager().bindTexture(PARTICLE_TEXTURE);
 	}
 	
 	private static Vec3d getParticleLocation(EntityPlayer player) {
-		return VecMath.traverse(player.getPositionEyes(1f), player.getLook(1f), 1.5f);
+		return VecMath.traverse(player.getEyePosition(1f), player.getLook(1f), 1.5f);
 	}
 
 }

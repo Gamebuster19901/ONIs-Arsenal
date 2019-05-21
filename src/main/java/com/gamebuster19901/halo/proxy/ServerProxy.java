@@ -1,22 +1,21 @@
 package com.gamebuster19901.halo.proxy;
 
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import com.gamebuster19901.halo.Main;
+
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
 public class ServerProxy extends Proxy{
 	
-	public void preInit(FMLPreInitializationEvent e){
-		super.preInit(e);
+	public ServerProxy() {
+		super();
+		addListener(this::serverSetup);
 	}
 	
-	
-	public void init(FMLInitializationEvent e){
-		super.init(e);
-	}
-	
-	public void postInit(FMLPostInitializationEvent e){
-		super.postInit(e);
+	@SubscribeEvent
+	@SuppressWarnings("unused")
+	public void serverSetup(FMLServerStartingEvent e) {
+		Main.LOGGER.info("SERVER SETUP");
 	}
 	
 }

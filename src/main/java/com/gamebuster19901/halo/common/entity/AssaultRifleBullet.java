@@ -5,31 +5,33 @@ import java.util.UUID;
 import com.gamebuster19901.halo.common.item.capability.Shootable;
 import com.gamebuster19901.halo.common.util.EasyLocalization;
 
+import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public class AssaultRifleBullet extends ProjectileEntity implements EasyLocalization{
+	public static EntityType TYPE;
 	
 	public static SoundEvent shootingSound;
 	
 	public AssaultRifleBullet(World worldIn) {
-		super(worldIn);
+		super(TYPE, worldIn);
 		this.setSize(1f / 16, 1f / 16);
 	}
 	
 	@Override
-	public void onUpdate() {
-		super.onUpdate();
-		if(this.world != null && !this.isDead) {
+	public void tick() {
+		super.tick();
+		if(this.world != null && !this.removed) {
 			if(this.ticksExisted == 1) {
 				float pitch = this.rand.nextFloat() * (1.5f - 1) + 1;
 				this.world.playSound(posX, posY, posZ, shootingSound, SoundCategory.NEUTRAL, 1f, pitch, false);
 				//this.world.spawnAlwaysVisibleParticle(p_190523_1_, p_190523_2_, p_190523_4_, p_190523_6_, p_190523_8_, p_190523_10_, p_190523_12_, p_190523_14_);
 			}
 			if(this.ticksExisted > 120 || this.ticksExisted < 1) {
-				this.setDead();
+				this.remove();;
 				return;
 			}
             this.posX += this.motionX;
@@ -37,12 +39,6 @@ public class AssaultRifleBullet extends ProjectileEntity implements EasyLocaliza
             this.posZ += this.motionZ;
             this.setPosition(posX, posY, posZ);
 		}
-	}
-
-	@Override
-	protected void entityInit() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -64,5 +60,8 @@ public class AssaultRifleBullet extends ProjectileEntity implements EasyLocaliza
 	public NBTTagCompound getGun() {
 		return gun;
 	}
+
+	@Override
+	protected void registerData() {}
 
 }

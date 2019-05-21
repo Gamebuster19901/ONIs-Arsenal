@@ -11,33 +11,24 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.LazyOptional;
 
 public abstract class HeldWeapon extends HaloItem implements Weapon.Tag{
 	
-	public static final EnumFacing F = EnumFacing.DOWN;
-	
 	public HeldWeapon() {
-		this.setMaxStackSize(1);
+		super(1);
 	}
 
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
-		return new ICapabilityProvider() {
-			Weapon weapon = WeaponDefaultImpl.CAPABILITY.getDefaultInstance();
-			
+		return new ICapabilityProvider() {			
 			@Override
-			public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-				return capability == WeaponDefaultImpl.CAPABILITY;
-			}
-			
-			@Override
-			public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+			public <T> LazyOptional<T> getCapability(Capability<T> capability, EnumFacing facing) {
 				if(capability == WeaponDefaultImpl.CAPABILITY) {
-					return (T) weapon;
+					return (LazyOptional<T>) LazyOptional.of(() -> new WeaponDefaultImpl(1,false));
 				}
-				return null;
+				return LazyOptional.empty();
 			}
-			
 		};
 	}
 	
@@ -46,11 +37,11 @@ public abstract class HeldWeapon extends HaloItem implements Weapon.Tag{
      * update it's contents.
      */
 	@Override
-	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+	public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		Capability<Weapon> weapon = WeaponDefaultImpl.CAPABILITY;
 		if(isSelected) {
-			if(stack.hasCapability(weapon, EnumFacing.DOWN)) {
-				stack.getCapability(weapon, EnumFacing.DOWN).update();
+			if(stack.getCapability(weapon).isPresent()) {
+				stack.getCapability(weapon).orElseThrow(AssertionError::new).update();
 			}
 		}
 	}

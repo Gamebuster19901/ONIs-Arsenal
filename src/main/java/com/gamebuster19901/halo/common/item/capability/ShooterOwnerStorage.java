@@ -2,7 +2,7 @@ package com.gamebuster19901.halo.common.item.capability;
 
 import java.util.UUID;
 
-import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -11,7 +11,7 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 public class ShooterOwnerStorage implements IStorage<ShooterOwner>{
 
 	@Override
-	public NBTBase writeNBT(Capability<ShooterOwner> capability, ShooterOwner instance, EnumFacing side) {
+	public INBTBase writeNBT(Capability<ShooterOwner> capability, ShooterOwner instance, EnumFacing side) {
 		if(instance.getShooter() != null) {
 			return new NBTTagString(instance.getShooter().toString());
 		}
@@ -19,7 +19,7 @@ public class ShooterOwnerStorage implements IStorage<ShooterOwner>{
 	}
 
 	@Override
-	public void readNBT(Capability<ShooterOwner> capability, ShooterOwner instance, EnumFacing side, NBTBase nbt) {
+	public void readNBT(Capability<ShooterOwner> capability, ShooterOwner instance, EnumFacing side, INBTBase nbt) {
 		NBTTagString uuidTag = (NBTTagString) nbt;
 		String uuid = uuidTag.getString();
 		if(!uuid.equals("")) {

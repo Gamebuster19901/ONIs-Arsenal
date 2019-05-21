@@ -12,7 +12,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
-import net.minecraftforge.fml.relauncher.Side;
 
 public class ShootableDefaultImpl implements Shootable{
 	@CapabilityInject(Shootable.class)
@@ -153,9 +152,7 @@ public class ShootableDefaultImpl implements Shootable{
 	
 	@Override
 	public void onTick(WorldTickEvent e) {
-		if(e.world.provider.getDimension() == 0 || e.side == Side.CLIENT) {
-			update();
-		}
+		update();
 	}
 
 	@Override
@@ -191,16 +188,16 @@ public class ShootableDefaultImpl implements Shootable{
 	@Override
 	public NBTTagCompound serializeNBT() {
 		NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setFloat("maxBloom", maxBloom);
-		nbt.setFloat("bloomI", bloomI);
-		nbt.setFloat("bloomD", bloomD);
-		nbt.setFloat("muzzleVelocity", muzzleVelocity);
-		nbt.setFloat("minRecoilX", minRecoilX);
-		nbt.setFloat("minRecoilY", minRecoilY);
-		nbt.setFloat("maxRecoilX", maxRecoilX);
-		nbt.setFloat("maxRecoilY", maxRecoilY);
-		nbt.setTag("projectile", projectile);
-		nbt.setFloat("bloom", bloom);
+		nbt.putFloat("maxBloom", maxBloom);
+		nbt.putFloat("bloomI", bloomI);
+		nbt.putFloat("bloomD", bloomD);
+		nbt.putFloat("muzzleVelocity", muzzleVelocity);
+		nbt.putFloat("minRecoilX", minRecoilX);
+		nbt.putFloat("minRecoilY", minRecoilY);
+		nbt.putFloat("maxRecoilX", maxRecoilX);
+		nbt.putFloat("maxRecoilY", maxRecoilY);
+		nbt.put("projectile", projectile);
+		nbt.putFloat("bloom", bloom);
 		return nbt;
 	}
 
@@ -216,7 +213,7 @@ public class ShootableDefaultImpl implements Shootable{
 		minRecoilY = nbt.getFloat("minRecoilY");
 		maxRecoilX = nbt.getFloat("maxRecoilX");
 		maxRecoilY = nbt.getFloat("maxRecoilY");
-		projectile = nbt.getCompoundTag("projectile");
+		projectile = nbt.getCompound("projectile");
 		bloom = nbt.getFloat("bloom");
 	}
 	

@@ -9,11 +9,9 @@ public abstract class Ammo extends Item implements EasyLocalization{
 	private final Projectile projectile;
 	
 	public Ammo(Projectile projectile, int maxStackSize) {
-		super();
+		super(new Item.Properties().maxStackSize(maxStackSize));
 		this.setRegistryName(getResourceLocation());
-		this.setTranslationKey(getEZTranslationKey());
 		this.projectile = projectile;
-		this.setMaxStackSize(maxStackSize);
 	}
 	
 	public final NBTTagCompound getProjectile() {

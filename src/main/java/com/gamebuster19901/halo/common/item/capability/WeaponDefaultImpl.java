@@ -4,9 +4,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
-import net.minecraftforge.fml.relauncher.Side;
 
 public class WeaponDefaultImpl implements Weapon{
 	@CapabilityInject(Weapon.class)
@@ -61,9 +60,7 @@ public class WeaponDefaultImpl implements Weapon{
 	@Deprecated
 	@Override
 	public void onTick(WorldTickEvent e) {
-		if(e.world.provider.getDimension() == 0 || e.side == Side.CLIENT) {
-			update();
-		}
+		update();
 	}
 
 	@Override
@@ -76,16 +73,16 @@ public class WeaponDefaultImpl implements Weapon{
 	@Override
 	public NBTTagCompound serializeNBT() {
 		NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setInteger("fireRate", fireRate);
-		nbt.setBoolean("isAutomatic", isAutomatic);
-		nbt.setByte("nextFire", nextFire);
+		nbt.putInt("fireRate", fireRate);
+		nbt.putBoolean("isAutomatic", isAutomatic);
+		nbt.putByte("nextFire", nextFire);
 		return nbt;
 	}
 
 	@Override
 	public void deserializeNBT(NBTTagCompound tag) {
 		NBTTagCompound nbt = (NBTTagCompound) tag;
-		fireRate = nbt.getInteger("fireRate");
+		fireRate = nbt.getInt("fireRate");
 		isAutomatic = nbt.getBoolean("isAutomatic");
 		nextFire = nbt.getByte("nextFire");
 	}
