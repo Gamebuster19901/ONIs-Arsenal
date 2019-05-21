@@ -32,10 +32,10 @@ public abstract class HeldWeapon extends HaloItem implements Weapon.Tag{
 		};
 	}
 	
-    /**
-     * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and
-     * update it's contents.
-     */
+	/**
+	 * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and
+	 * update it's contents.
+	 */
 	@Override
 	public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		Capability<Weapon> weapon = WeaponDefaultImpl.CAPABILITY;

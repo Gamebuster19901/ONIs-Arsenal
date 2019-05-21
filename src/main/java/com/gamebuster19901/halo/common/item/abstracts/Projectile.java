@@ -118,24 +118,24 @@ public final class Projectile implements IProjectile, EasyLocalization{
 				throw new AssertionError(e);
 			}
 			
-	        float f = MathHelper.sqrt(vx * vx + vy * vy + vz * vz);
-	        vx = vx / (double)f;
-	        vy = vy / (double)f;
-	        vz = vz / (double)f;
-	        vx = vx + rand.nextGaussian() * 0.007499999832361937D * (double)inaccuracy;
-	        vy = vy + rand.nextGaussian() * 0.007499999832361937D * (double)inaccuracy;
-	        vz = vz + rand.nextGaussian() * 0.007499999832361937D * (double)inaccuracy;
-	        vx = vx * (double)velocity;
-	        vy = vy * (double)velocity;
-	        vz = vz * (double)velocity;
-	        projectileEntity.motionX = vx;
-	        projectileEntity.motionY = vy;
-	        projectileEntity.motionZ = vz;
-	        float f1 = MathHelper.sqrt(vx * vx + vz * vz);
-	        projectileEntity.rotationYaw = -(float)(MathHelper.atan2(vx, vz) * (180D / Math.PI));
-	        projectileEntity.rotationPitch = -(float)(MathHelper.atan2(vy, (double)f1) * (180D / Math.PI));
-	        projectileEntity.prevRotationYaw = -projectileEntity.rotationYaw;
-	        projectileEntity.prevRotationPitch = -projectileEntity.rotationPitch;
+			float f = MathHelper.sqrt(vx * vx + vy * vy + vz * vz);
+			vx = vx / (double)f;
+			vy = vy / (double)f;
+			vz = vz / (double)f;
+			vx = vx + rand.nextGaussian() * 0.007499999832361937D * (double)inaccuracy;
+			vy = vy + rand.nextGaussian() * 0.007499999832361937D * (double)inaccuracy;
+			vz = vz + rand.nextGaussian() * 0.007499999832361937D * (double)inaccuracy;
+			vx = vx * (double)velocity;
+			vy = vy * (double)velocity;
+			vz = vz * (double)velocity;
+			projectileEntity.motionX = vx;
+			projectileEntity.motionY = vy;
+			projectileEntity.motionZ = vz;
+			float f1 = MathHelper.sqrt(vx * vx + vz * vz);
+			projectileEntity.rotationYaw = -(float)(MathHelper.atan2(vx, vz) * (180D / Math.PI));
+			projectileEntity.rotationPitch = -(float)(MathHelper.atan2(vy, (double)f1) * (180D / Math.PI));
+			projectileEntity.prevRotationYaw = -projectileEntity.rotationYaw;
+			projectileEntity.prevRotationPitch = -projectileEntity.rotationPitch;
 		}
 	}
 	

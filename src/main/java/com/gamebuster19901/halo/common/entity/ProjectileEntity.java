@@ -20,11 +20,11 @@ public abstract class ProjectileEntity extends HaloEntity implements ShooterOwne
 	
 	@Override
 	public NBTTagCompound serializeNBT() {
-        NBTTagCompound ret = new NBTTagCompound();
-        ret.putString("id", EasyLocalization.getResourceLocation(getClass()).toString());
-        ret.putInt("ticksExisted", this.ticksExisted);
-        this.writeUnlessRemoved(ret);
-        return ret;
+		NBTTagCompound ret = new NBTTagCompound();
+		ret.putString("id", EasyLocalization.getResourceLocation(getClass()).toString());
+		ret.putInt("ticksExisted", this.ticksExisted);
+		this.writeUnlessRemoved(ret);
+		return ret;
 	}
 	
 	@Override

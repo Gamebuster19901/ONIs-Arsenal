@@ -34,10 +34,10 @@ public class AssaultRifleBullet extends ProjectileEntity implements EasyLocaliza
 				this.remove();;
 				return;
 			}
-            this.posX += this.motionX;
-            this.posY += this.motionY;
-            this.posZ += this.motionZ;
-            this.setPosition(posX, posY, posZ);
+			this.posX += this.motionX;
+			this.posY += this.motionY;
+			this.posZ += this.motionZ;
+			this.setPosition(posX, posY, posZ);
 		}
 	}
 
