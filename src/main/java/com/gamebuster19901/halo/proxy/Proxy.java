@@ -2,6 +2,7 @@ package com.gamebuster19901.halo.proxy;
 
 import java.util.HashSet;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import com.gamebuster19901.halo.common.entity.AssaultRifleBullet;
 import com.gamebuster19901.halo.common.item.NullAmmo;
@@ -26,7 +27,9 @@ import com.gamebuster19901.halo.common.util.EasyLocalization;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.RegistryEvent;
@@ -73,11 +76,12 @@ public abstract class Proxy {
 	@SubscribeEvent
 	@SuppressWarnings("unused")
 	public void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
-		AssaultRifleBullet.TYPE = registerEntity(AssaultRifleBullet.class);
+		event.getRegistry().register(AssaultRifleBullet.TYPE = registerEntity(AssaultRifleBullet.class, AssaultRifleBullet::new));
 	}
 	
-	private EntityType<Entity> registerEntity(Class<? extends Entity> entityClass) {
-		return EntityType.register(EasyLocalization.getEZTranslationKey(entityClass), EntityType.Builder.create(entityClass, AssaultRifleBullet::new).tracker(20, 1, true));
+	private EntityType<Entity> registerEntity(Class<? extends Entity> entityClass, Function<? super World, ? extends Entity> constructor) {
+		ResourceLocation location = EasyLocalization.getResourceLocation(entityClass);
+		return (EntityType<Entity>) EntityType.Builder.create(entityClass, constructor).tracker(200, 1, false).build(location.toString()).setRegistryName(location);
 	}
 	
 	private void registerAmmo(RegistryEvent.Register<Item> event) {
