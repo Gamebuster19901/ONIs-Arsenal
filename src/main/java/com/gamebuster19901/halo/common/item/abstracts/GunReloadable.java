@@ -14,23 +14,15 @@ public abstract class GunReloadable extends Gun implements Reloadable.Tag{
 	
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
-		ICapabilityProvider prevProvider = super.initCapabilities(stack, nbt);
-		
 		return new ICapabilityProvider() {
 			Reloadable reloadable = ReloadableDefaultImpl.CAPABILITY.getDefaultInstance();
 
 			@Override
 			public <T> LazyOptional<T> getCapability(Capability<T> capability, EnumFacing facing) {
-				LazyOptional<T> prev = prevProvider.getCapability(capability, facing);
-				
-				if(prev != null) {
-					return prev;
-				}
-				
 				if(capability == ReloadableDefaultImpl.CAPABILITY) {
 					return (LazyOptional<T>) LazyOptional.of(() -> new ReloadableDefaultImpl(1, 1));
 				}
-				return null;
+				return LazyOptional.empty();
 			}
 			
 		};

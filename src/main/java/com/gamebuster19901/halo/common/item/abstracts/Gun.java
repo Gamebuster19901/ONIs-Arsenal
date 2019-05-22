@@ -13,21 +13,15 @@ import net.minecraftforge.common.util.LazyOptional;
 public abstract class Gun extends HeldWeapon implements Shootable.Tag{
 	
 	@Override
-	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
-		ICapabilityProvider prevProvider = super.initCapabilities(stack, nbt);
-		
+	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {	
 		return new ICapabilityProvider() {
 
 			@Override
 			public <T> LazyOptional<T> getCapability(Capability<T> capability, EnumFacing facing) {
-				LazyOptional<T> prev = prevProvider.getCapability(capability, facing);
-				if(prev != null){
-					return prev;
-				}
 				if(capability == ShootableDefaultImpl.CAPABILITY) {
 					return (LazyOptional<T>) LazyOptional.of(() -> new ShootableDefaultImpl(0,0,0,0,0,0,0,0,new NBTTagCompound()));
 				}
-				return null;
+				return LazyOptional.empty();
 			}
 			
 		};

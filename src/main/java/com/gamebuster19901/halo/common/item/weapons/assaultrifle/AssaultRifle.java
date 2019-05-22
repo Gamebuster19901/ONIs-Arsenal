@@ -44,9 +44,6 @@ public class AssaultRifle extends GunReloadable{
 	
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
-		
-		super.initCapabilities(stack, nbt);
-		
 		return new ICapabilityProviderSerializeable<NBTTagCompound>(){
 			
 			public final AssaultRifleImpl impl = (AssaultRifleImpl) getCapability(WeaponDefaultImpl.CAPABILITY).orElseThrow(AssertionError::new);
