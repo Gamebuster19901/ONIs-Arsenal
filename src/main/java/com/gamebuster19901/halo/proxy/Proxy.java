@@ -76,9 +76,8 @@ public abstract class Proxy {
 		AssaultRifleBullet.TYPE = registerEntity(AssaultRifleBullet.class);
 	}
 	
-	private int networkID = 0;
 	private EntityType<Entity> registerEntity(Class<? extends Entity> entityClass) {
-		return EntityType.register(EasyLocalization.getEZTranslationKey(entityClass), EntityType.Builder.create(entityClass, AssaultRifleBullet::new).tracker(200, networkID++, true));
+		return EntityType.register(EasyLocalization.getEZTranslationKey(entityClass), EntityType.Builder.create(entityClass, AssaultRifleBullet::new).tracker(20, 1, true));
 	}
 	
 	private void registerAmmo(RegistryEvent.Register<Item> event) {
