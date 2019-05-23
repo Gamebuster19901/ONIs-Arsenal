@@ -2,7 +2,7 @@ package com.gamebuster19901.halo.common.item.abstracts;
 
 import java.util.Random;
 
-import com.gamebuster19901.halo.common.item.capability.Shootable;
+import com.gamebuster19901.halo.common.item.capability.shootable.Shootable;
 
 import net.minecraft.nbt.NBTTagCompound;
 

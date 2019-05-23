@@ -1,4 +1,4 @@
-package com.gamebuster19901.halo.common.item.capability;
+package com.gamebuster19901.halo.common.item.capability.reloadable;
 
 import com.gamebuster19901.halo.common.item.NullAmmo;
 import com.gamebuster19901.halo.common.item.abstracts.Ammo;

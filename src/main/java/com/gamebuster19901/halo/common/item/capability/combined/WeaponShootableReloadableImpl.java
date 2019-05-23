@@ -4,9 +4,9 @@ import java.util.Random;
 
 import com.gamebuster19901.halo.common.item.NullAmmo;
 import com.gamebuster19901.halo.common.item.abstracts.Ammo;
-import com.gamebuster19901.halo.common.item.capability.Reloadable;
-import com.gamebuster19901.halo.common.item.capability.Shootable;
-import com.gamebuster19901.halo.common.item.capability.Weapon;
+import com.gamebuster19901.halo.common.item.capability.reloadable.Reloadable;
+import com.gamebuster19901.halo.common.item.capability.shootable.Shootable;
+import com.gamebuster19901.halo.common.item.capability.weapon.Weapon;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

@@ -2,11 +2,14 @@ package com.gamebuster19901.halo.common.entity;
 
 import java.util.UUID;
 
-import com.gamebuster19901.halo.common.item.capability.ShooterOwner;
+import javax.annotation.Nullable;
+
+import com.gamebuster19901.halo.common.item.capability.shooterOwner.ShooterOwner;
 import com.gamebuster19901.halo.common.util.EasyLocalization;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public abstract class ProjectileEntity extends HaloEntity implements ShooterOwner{
@@ -49,4 +52,11 @@ public abstract class ProjectileEntity extends HaloEntity implements ShooterOwne
 		}
 	}
 
+	@Nullable
+	public abstract SoundEvent getShootingSound();
+
+	
+	@Nullable
+	public abstract SoundEvent getImpactSound();
+	
 }

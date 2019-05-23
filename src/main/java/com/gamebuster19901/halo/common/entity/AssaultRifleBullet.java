@@ -2,7 +2,7 @@ package com.gamebuster19901.halo.common.entity;
 
 import java.util.UUID;
 
-import com.gamebuster19901.halo.common.item.capability.Shootable;
+import com.gamebuster19901.halo.common.item.capability.shootable.Shootable;
 import com.gamebuster19901.halo.common.util.EasyLocalization;
 
 import net.minecraft.entity.EntityType;
@@ -27,7 +27,7 @@ public class AssaultRifleBullet extends ProjectileEntity implements EasyLocaliza
 		if(this.world != null && !this.removed) {
 			if(this.ticksExisted == 1) {
 				float pitch = this.rand.nextFloat() * (1.5f - 1) + 1;
-				this.world.playSound(posX, posY, posZ, shootingSound, SoundCategory.NEUTRAL, 1f, pitch, false);
+				this.world.playSound(posX, posY, posZ, getShootingSound(), SoundCategory.NEUTRAL, 1f, pitch, false);
 				//this.world.spawnAlwaysVisibleParticle(p_190523_1_, p_190523_2_, p_190523_4_, p_190523_6_, p_190523_8_, p_190523_10_, p_190523_12_, p_190523_14_);
 			}
 			if(this.ticksExisted > 120 || this.ticksExisted < 1) {
@@ -63,5 +63,15 @@ public class AssaultRifleBullet extends ProjectileEntity implements EasyLocaliza
 
 	@Override
 	protected void registerData() {}
+
+	@Override
+	public SoundEvent getShootingSound() {
+		return shootingSound;
+	}
+
+	@Override
+	public SoundEvent getImpactSound() {
+		return null;
+	}
 
 }

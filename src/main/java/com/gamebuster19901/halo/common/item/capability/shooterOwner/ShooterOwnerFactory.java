@@ -1,6 +1,9 @@
-package com.gamebuster19901.halo.common.item.capability;
+package com.gamebuster19901.halo.common.item.capability.shooterOwner;
 
 import java.util.concurrent.Callable;
+
+import com.gamebuster19901.halo.common.item.capability.shootable.ShootableFactory;
+
 import net.minecraft.entity.Entity;
 
 public class ShooterOwnerFactory implements Callable<ShooterOwner>{

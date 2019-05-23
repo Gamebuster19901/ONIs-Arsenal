@@ -1,7 +1,7 @@
 package com.gamebuster19901.halo.common.item.abstracts;
 
-import com.gamebuster19901.halo.common.item.capability.Reloadable;
-import com.gamebuster19901.halo.common.item.capability.ReloadableDefaultImpl;
+import com.gamebuster19901.halo.common.item.capability.reloadable.Reloadable;
+import com.gamebuster19901.halo.common.item.capability.reloadable.ReloadableDefaultImpl;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

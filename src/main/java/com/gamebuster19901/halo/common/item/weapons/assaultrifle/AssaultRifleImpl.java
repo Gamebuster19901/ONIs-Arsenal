@@ -1,11 +1,11 @@
 package com.gamebuster19901.halo.common.item.weapons.assaultrifle;
 
 import com.gamebuster19901.halo.common.item.NullAmmo;
-import com.gamebuster19901.halo.common.item.capability.ReloadableDefaultImpl;
-import com.gamebuster19901.halo.common.item.capability.ShootableDefaultImpl;
-import com.gamebuster19901.halo.common.item.capability.Weapon;
-import com.gamebuster19901.halo.common.item.capability.WeaponDefaultImpl;
 import com.gamebuster19901.halo.common.item.capability.combined.WeaponShootableReloadableImpl;
+import com.gamebuster19901.halo.common.item.capability.reloadable.ReloadableDefaultImpl;
+import com.gamebuster19901.halo.common.item.capability.shootable.ShootableDefaultImpl;
+import com.gamebuster19901.halo.common.item.capability.weapon.Weapon;
+import com.gamebuster19901.halo.common.item.capability.weapon.WeaponDefaultImpl;
 
 public class AssaultRifleImpl extends WeaponShootableReloadableImpl{
 

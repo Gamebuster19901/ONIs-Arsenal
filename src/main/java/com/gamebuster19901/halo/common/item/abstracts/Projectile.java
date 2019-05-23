@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.Random;
 
 import com.gamebuster19901.halo.common.entity.ProjectileEntity;
-import com.gamebuster19901.halo.common.item.capability.Shootable;
+import com.gamebuster19901.halo.common.item.capability.shootable.Shootable;
 import com.gamebuster19901.halo.common.util.EasyLocalization;
 import com.gamebuster19901.halo.common.util.ForgeReflectionHelper;
 import com.gamebuster19901.halo.common.util.VecMath;

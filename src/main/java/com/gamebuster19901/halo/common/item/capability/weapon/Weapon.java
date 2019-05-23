@@ -1,4 +1,4 @@
-package com.gamebuster19901.halo.common.item.capability;
+package com.gamebuster19901.halo.common.item.capability.weapon;
 
 import com.gamebuster19901.halo.common.util.EasyLocalization;
 import com.gamebuster19901.halo.common.util.Updateable;

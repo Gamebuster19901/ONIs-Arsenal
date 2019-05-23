@@ -1,6 +1,8 @@
-package com.gamebuster19901.halo.common.item.capability;
+package com.gamebuster19901.halo.common.item.capability.shooterOwner;
 
 import java.util.UUID;
+
+import com.gamebuster19901.halo.common.item.capability.shootable.Shootable;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;

@@ -1,4 +1,4 @@
-package com.gamebuster19901.halo.common.item.capability;
+package com.gamebuster19901.halo.common.item.capability.shootable;
 
 import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;

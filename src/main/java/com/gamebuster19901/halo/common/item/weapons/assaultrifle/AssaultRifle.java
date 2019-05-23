@@ -2,12 +2,12 @@ package com.gamebuster19901.halo.common.item.weapons.assaultrifle;
 
 import com.gamebuster19901.halo.common.item.abstracts.GunReloadable;
 import com.gamebuster19901.halo.common.item.capability.ICapabilityProviderSerializeable;
-import com.gamebuster19901.halo.common.item.capability.ReloadableDefaultImpl;
-import com.gamebuster19901.halo.common.item.capability.ReloadableStorage;
-import com.gamebuster19901.halo.common.item.capability.ShootableDefaultImpl;
-import com.gamebuster19901.halo.common.item.capability.ShootableStorage;
-import com.gamebuster19901.halo.common.item.capability.WeaponDefaultImpl;
-import com.gamebuster19901.halo.common.item.capability.WeaponStorage;
+import com.gamebuster19901.halo.common.item.capability.reloadable.ReloadableDefaultImpl;
+import com.gamebuster19901.halo.common.item.capability.reloadable.ReloadableStorage;
+import com.gamebuster19901.halo.common.item.capability.shootable.ShootableDefaultImpl;
+import com.gamebuster19901.halo.common.item.capability.shootable.ShootableStorage;
+import com.gamebuster19901.halo.common.item.capability.weapon.WeaponDefaultImpl;
+import com.gamebuster19901.halo.common.item.capability.weapon.WeaponStorage;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

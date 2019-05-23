@@ -1,4 +1,4 @@
-package com.gamebuster19901.halo.common.item.capability;
+package com.gamebuster19901.halo.common.item.capability.shootable;
 
 import java.util.concurrent.Callable;
 
