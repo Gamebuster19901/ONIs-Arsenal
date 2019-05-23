@@ -19,7 +19,7 @@ public class NullAmmo extends Ammo {
 	public static final NullAmmo INSTANCE = new NullAmmo();
 	
 	public NullAmmo() {
-		super(snowball, 0);
+		super(snowball, 1);
 	}
 
 }
