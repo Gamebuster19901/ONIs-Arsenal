@@ -46,14 +46,21 @@ public class AssaultRifle extends GunReloadable{
 	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
 		return new ICapabilityProviderSerializeable<NBTTagCompound>(){
 			
-			public final AssaultRifleImpl impl = (AssaultRifleImpl) getCapability(WeaponDefaultImpl.CAPABILITY).orElseThrow(AssertionError::new);
+			public final AssaultRifleImpl impl = (AssaultRifleImpl) getCapability(WeaponDefaultImpl.CAPABILITY, null).orElseThrow(AssertionError::new);
 
 			@Override
 			public <T> LazyOptional<T> getCapability(Capability<T> capability, EnumFacing facing) {
 				if(capability == WeaponDefaultImpl.CAPABILITY || capability == ShootableDefaultImpl.CAPABILITY || capability == ReloadableDefaultImpl.CAPABILITY) {
-					return (LazyOptional<T>) LazyOptional.of(AssaultRifleImpl::new);
+					return (LazyOptional<T>) LazyOptional.of(this::getImpl);
 				}
 				return LazyOptional.empty();
+			}
+			
+			private AssaultRifleImpl getImpl() {
+				if(impl != null) {
+					return impl;
+				}
+				return new AssaultRifleImpl();
 			}
 
 			@Override

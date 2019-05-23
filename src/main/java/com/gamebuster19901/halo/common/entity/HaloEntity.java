@@ -19,7 +19,7 @@ public abstract class HaloEntity extends Entity{
 	
 	@Override
 	public boolean writeUnlessRemoved(NBTTagCompound compound) {
-		String s = EasyLocalization.getEZTranslationKey(getClass());
+		String s = EasyLocalization.getResourceLocation(getClass()).toString();
 		if (!this.removed && s != null) {
 			compound.putString("id", s);
 			this.writeWithoutTypeId(compound);
