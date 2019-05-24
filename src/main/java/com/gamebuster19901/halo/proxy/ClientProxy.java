@@ -1,5 +1,6 @@
 package com.gamebuster19901.halo.proxy;
 
+import com.gamebuster19901.halo.client.render.RenderHelper;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,6 +16,7 @@ public class ClientProxy extends Proxy{
 	@SubscribeEvent
 	public void clientSetup(FMLClientSetupEvent e){
 		MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(RenderHelper.class);
 	}
 	
 	@SuppressWarnings("unused")

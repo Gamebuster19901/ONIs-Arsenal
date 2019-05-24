@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import com.gamebuster19901.halo.client.item.capability.reticle.Reticle;
+import com.gamebuster19901.halo.client.item.capability.reticle.ReticleFactory;
+import com.gamebuster19901.halo.client.item.capability.reticle.ReticleStorage;
 import com.gamebuster19901.halo.common.entity.AssaultRifleBullet;
 import com.gamebuster19901.halo.common.item.NullAmmo;
 import com.gamebuster19901.halo.common.item.abstracts.Ammo;
@@ -57,6 +60,7 @@ public abstract class Proxy {
 		CapabilityManager.INSTANCE.register(Shootable.class, new ShootableStorage(), new ShootableFactory());
 		CapabilityManager.INSTANCE.register(Reloadable.class,  new ReloadableStorage(),  new ReloadableFactory());
 		CapabilityManager.INSTANCE.register(ShooterOwner.class, new ShooterOwnerStorage(), new ShooterOwnerFactory());
+		CapabilityManager.INSTANCE.register(Reticle.class, new ReticleStorage(), new ReticleFactory());
 	}
 	
 	protected static IEventBus getBus() {
