@@ -11,8 +11,8 @@ public class AssaultRifleImpl extends WeaponShootableReloadableImpl{
 
 	private static final int firingRate = 10;
 	private static final float maxBloom = 4f;
-	private static final float bloomIncrease = 0.1f;
-	private static final float bloomDecrease = 0.02f;
+	private static final float bloomIncrease = 1.2f;
+	private static final float bloomDecrease = 0.12f;
 	private static final float muzzleVelocity = (float) Weapon.FPSToMPT(20);
 	private static final boolean isAutomatic = true;
 	private static final float minVerticalRecoil = 1f;

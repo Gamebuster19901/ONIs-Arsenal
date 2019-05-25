@@ -1,5 +1,6 @@
 package com.gamebuster19901.halo.common.item.weapons.assaultrifle;
 
+import com.gamebuster19901.halo.client.item.capability.reticle.ReticleDefaultImpl;
 import com.gamebuster19901.halo.common.item.abstracts.GunReloadable;
 import com.gamebuster19901.halo.common.item.capability.ICapabilityProviderSerializeable;
 import com.gamebuster19901.halo.common.item.capability.reloadable.ReloadableDefaultImpl;
@@ -50,7 +51,7 @@ public class AssaultRifle extends GunReloadable{
 
 			@Override
 			public <T> LazyOptional<T> getCapability(Capability<T> capability, EnumFacing facing) {
-				if(capability == WeaponDefaultImpl.CAPABILITY || capability == ShootableDefaultImpl.CAPABILITY || capability == ReloadableDefaultImpl.CAPABILITY) {
+				if(capability == WeaponDefaultImpl.CAPABILITY || capability == ShootableDefaultImpl.CAPABILITY || capability == ReloadableDefaultImpl.CAPABILITY || capability == ReticleDefaultImpl.CAPABILITY) {
 					return (LazyOptional<T>) LazyOptional.of(this::getImpl);
 				}
 				return LazyOptional.empty();

@@ -4,6 +4,7 @@ import com.gamebuster19901.halo.client.item.capability.reticle.Reticle;
 import com.gamebuster19901.halo.client.item.capability.reticle.ReticleDefaultImpl;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,9 +15,10 @@ public class RenderHelper{
 	@SubscribeEvent
 	public static void onRender(RenderGameOverlayEvent.Pre e) {
 		if(e.getType() == RenderGameOverlayEvent.ElementType.CROSSHAIRS) {
-			LazyOptional<Reticle> reticleCapability = mc.player.getHeldItemMainhand().getCapability(ReticleDefaultImpl.CAPABILITY);
+			ItemStack stack = mc.player.getHeldItemMainhand();
+			LazyOptional<Reticle> reticleCapability = stack.getCapability(ReticleDefaultImpl.CAPABILITY);
 			if(reticleCapability.isPresent()) {
-				reticleCapability.orElseThrow(AssertionError::new).render(e.getPartialTicks(), mc.mainWindow.getScaledWidth(), mc.mainWindow.getScaledHeight());
+				reticleCapability.orElseThrow(AssertionError::new).render(stack, e.getPartialTicks(), mc.mainWindow.getScaledWidth(), mc.mainWindow.getScaledHeight());
 				e.setCanceled(true);
 			}
 			return;

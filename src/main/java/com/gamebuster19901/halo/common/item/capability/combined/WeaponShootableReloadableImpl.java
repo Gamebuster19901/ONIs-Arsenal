@@ -2,6 +2,8 @@ package com.gamebuster19901.halo.common.item.capability.combined;
 
 import java.util.Random;
 
+import com.gamebuster19901.halo.client.item.capability.reticle.Reticle;
+import com.gamebuster19901.halo.client.item.capability.reticle.ReticleDefaultImpl;
 import com.gamebuster19901.halo.common.item.NullAmmo;
 import com.gamebuster19901.halo.common.item.abstracts.Ammo;
 import com.gamebuster19901.halo.common.item.capability.reloadable.Reloadable;
@@ -11,16 +13,22 @@ import com.gamebuster19901.halo.common.item.capability.weapon.Weapon;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 
-public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloadable{
+public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloadable, Reticle{
 	
 	private Weapon weapon = null;
 	private Shootable shootable = null;
 	private Reloadable reloadable = null;
+	private Reticle reticle = new ReticleDefaultImpl();
 	
 	public WeaponShootableReloadableImpl(Object... capabilityImplementations) {
 		for(Object o : capabilityImplementations) {
+			if(o == null) {
+				throw new NullPointerException();
+			}
 			if(o instanceof Weapon) {
 				if(weapon == null) {
 					weapon = (Weapon) o;
@@ -45,6 +53,13 @@ public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloada
 					throw new IllegalArgumentException("Reloadable instance specified twice!");
 				}
 			}
+			if(o instanceof Reticle) {
+				reticle = (Reticle) o;
+			}
+		}
+		
+		if(reticle == null) {
+			
 		}
 		
 		if(weapon == null || shootable == null || reloadable == null) {
@@ -310,6 +325,37 @@ public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloada
 		weapon.deserializeNBT(nbt);
 		shootable.deserializeNBT(nbt);
 		reloadable.deserializeNBT(nbt);
+	}
+
+	@Override
+	public void render(float partialTicks, int scaledWidth, int scaledHeight) {
+		reticle.render(partialTicks, scaledWidth, scaledHeight);
+	}
+	
+
+	@Override
+	public void render(ItemStack stack, float partialTicks, int scaledWidth, int scaledHeight) {
+		reticle.render(stack, partialTicks, scaledWidth, scaledHeight);
+	}
+
+	@Override
+	public void unbind() {
+		reticle.unbind();
+	}
+
+	@Override
+	public int width() {
+		return reticle.width();
+	}
+
+	@Override
+	public int height() {
+		return reticle.height();
+	}
+
+	@Override
+	public ResourceLocation getImage() {
+		return reticle.getImage();
 	}
 
 }
