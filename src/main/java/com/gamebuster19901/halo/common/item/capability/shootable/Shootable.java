@@ -15,6 +15,10 @@ public interface Shootable extends Updateable, INBTSerializable<NBTTagCompound>{
 	
 	public static interface Tag{}
 	
+	public void setBloom(float bloom);
+	
+	public void addBloom(float bloom);
+	
 	/**
 	 * @return Return the amount of bloom that this shootable has. Generally a shootable becomes less accurate if spammed
 	 */

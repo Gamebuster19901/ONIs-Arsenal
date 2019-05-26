@@ -46,12 +46,20 @@ public class ShootableDefaultImpl implements Shootable{
 		}
 	}
 
-
+	@Override
+	public void addBloom(float bloom) {
+		setBloom(this.getBloom() + bloom);
+	}
+	
+	@Override
+	public void setBloom(float bloom) {
+		this.bloom = MathHelper.clamp(bloom, 0, maxBloom);
+	}
+	
 	@Override
 	public float getBloom() {
 		return bloom;
 	}
-
 
 	@Override
 	public float getMaxBloom() {

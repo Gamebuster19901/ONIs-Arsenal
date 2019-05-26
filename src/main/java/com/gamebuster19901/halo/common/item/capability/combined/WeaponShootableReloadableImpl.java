@@ -136,6 +136,16 @@ public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloada
 	}
 
 	@Override
+	public void addBloom(float bloom) {
+		shootable.addBloom(bloom);
+	}
+	
+	@Override
+	public void setBloom(float bloom) {
+		shootable.setBloom(bloom);
+	}
+	
+	@Override
 	public float getBloom() {
 		return shootable.getBloom();
 	}
@@ -202,7 +212,7 @@ public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloada
 
 	@Override
 	public boolean canFire(Entity shooter) {
-		return this.getAmountInMagazine() > 0 && !this.isReloading() && this.getTimeUntilNextFire() <= 0 && this.getAmmoType() != NullAmmo.INSTANCE;
+		return this.getAmountInMagazine() > 0 && !this.isReloading() && this.getTimeUntilNextFire() <= 0 && this.getAmmoType() != NullAmmo.INSTANCE && !shooter.isSprinting();
 	}
 	
 	@Override

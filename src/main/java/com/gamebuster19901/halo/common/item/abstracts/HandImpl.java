@@ -15,6 +15,13 @@ public final class HandImpl implements Shootable{
 	private HandImpl() {}
 
 	@Override
+	public void setBloom(float bloom) {
+	}
+	
+	public void addBloom(float bloom) {
+	}
+	
+	@Override
 	public float getBloom() {
 		return 0;
 	}
