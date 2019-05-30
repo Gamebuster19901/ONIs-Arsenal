@@ -2,7 +2,6 @@ package com.gamebuster19901.halo.common.item.weapons.assaultrifle;
 
 import com.gamebuster19901.halo.client.item.capability.reticle.ReticleDefaultImpl;
 import com.gamebuster19901.halo.common.item.abstracts.GunReloadable;
-import com.gamebuster19901.halo.common.item.capability.ICapabilityProviderSerializeable;
 import com.gamebuster19901.halo.common.item.capability.reloadable.ReloadableDefaultImpl;
 import com.gamebuster19901.halo.common.item.capability.reloadable.ReloadableStorage;
 import com.gamebuster19901.halo.common.item.capability.shootable.ShootableDefaultImpl;
@@ -24,6 +23,7 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
 public class AssaultRifle extends GunReloadable{
@@ -65,7 +65,7 @@ public class AssaultRifle extends GunReloadable{
 	
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
-		return new ICapabilityProviderSerializeable<NBTTagCompound>(){
+		return new ICapabilitySerializable<NBTTagCompound>(){
 			
 			public final AssaultRifleImpl impl = (AssaultRifleImpl) getCapability(WeaponDefaultImpl.CAPABILITY, null).orElseThrow(AssertionError::new);
 
