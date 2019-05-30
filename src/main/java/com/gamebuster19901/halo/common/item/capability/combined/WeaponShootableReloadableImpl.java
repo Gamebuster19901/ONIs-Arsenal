@@ -212,7 +212,7 @@ public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloada
 
 	@Override
 	public boolean canFire(Entity shooter) {
-		return this.getAmountInMagazine() > 0 && !this.isReloading() && this.getTimeUntilNextFire() <= 0 && this.getAmmoType() != NullAmmo.INSTANCE && !shooter.isSprinting();
+		return weapon.canFire(shooter) && this.getAmountInMagazine() > 0 && !this.isReloading() && this.getAmmoType() != NullAmmo.INSTANCE;
 	}
 	
 	@Override

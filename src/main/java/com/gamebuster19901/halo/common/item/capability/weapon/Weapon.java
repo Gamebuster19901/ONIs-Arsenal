@@ -18,9 +18,7 @@ public interface Weapon extends Updateable, INBTSerializable<NBTTagCompound>{
 	/**
 	 * @return if this weapon can be used.
 	 */
-	public default boolean canFire(Entity shooter) {
-		return this.getTimeUntilNextFire() <= 0;
-	}
+	public boolean canFire(Entity shooter);
 	
 	/**
 	 * Attempt to fire this weapon. Checks if the weapon can fire, and then fires if it can.

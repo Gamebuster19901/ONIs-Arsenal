@@ -22,6 +22,11 @@ public class WeaponDefaultImpl implements Weapon{
 	}
 	
 	@Override
+	public boolean canFire(Entity shooter) {
+		return this.getTimeUntilNextFire() <= 0 && !shooter.isSprinting();
+	}
+	
+	@Override
 	public void fire(Entity shooter) {
 		nextFire = getTimeUntilNextFire();
 	}

@@ -3,6 +3,8 @@ package com.gamebuster19901.halo.client.render;
 import com.gamebuster19901.halo.client.item.capability.reticle.Reticle;
 import com.gamebuster19901.halo.client.item.capability.reticle.ReticleDefaultImpl;
 import com.gamebuster19901.halo.common.item.abstracts.HeldWeapon;
+import com.gamebuster19901.halo.common.item.capability.weapon.Weapon;
+import com.gamebuster19901.halo.common.item.capability.weapon.WeaponDefaultImpl;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
@@ -19,8 +21,13 @@ public class RenderHelper{
 	public static void onRender(RenderGameOverlayEvent.Pre e) {
 		if(e.getType() == RenderGameOverlayEvent.ElementType.CROSSHAIRS) {
 			ItemStack stack = mc.player.getHeldItemMainhand();
+			LazyOptional<Weapon> weaponCapability = stack.getCapability(WeaponDefaultImpl.CAPABILITY);
 			LazyOptional<Reticle> reticleCapability = stack.getCapability(ReticleDefaultImpl.CAPABILITY);
-			if(reticleCapability.isPresent()) {
+			if(weaponCapability.isPresent() && (mc.player.isSprinting() && !weaponCapability.orElseThrow(AssertionError::new).canFire(mc.player))) {
+				//render sprinting reticle
+				e.setCanceled(true);
+			}
+			else if(reticleCapability.isPresent()) {
 				reticleCapability.orElseThrow(AssertionError::new).render(stack, e.getPartialTicks(), mc.mainWindow.getScaledWidth(), mc.mainWindow.getScaledHeight());
 				e.setCanceled(true);
 			}
