@@ -56,7 +56,7 @@ public class AssaultRifle extends GunReloadable{
 				impl.fire(playerIn);
 			}
 			else {
-				impl.reload(playerIn.inventory);
+				impl.attemptReload(playerIn.inventory);
 			}
 			return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
 		}

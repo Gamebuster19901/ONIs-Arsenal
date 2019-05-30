@@ -74,6 +74,4 @@ public class ShooterOwnerDefaultImpl implements ShooterOwner, INBTSerializable<N
 			this.shooter = UUID.fromString("shooter");
 		}
 	}
-
-	
 }

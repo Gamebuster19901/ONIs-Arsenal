@@ -91,8 +91,7 @@ public final class Projectile implements IProjectile, EasyLocalization{
 					throw new AssertionError(e);
 				}
 				Vec3d lookVec = shooter.getLookVec();
-				projectileEntity.setShooter(shooter);
-				projectileEntity.setGun(gun);
+				projectileEntity.shoot(gun, shooter);
 				shoot(lookVec.x, lookVec.y, lookVec.z, gun.getMuzzleVelocity(), gun.getBloom()); //Shoot before spawning entity so it has momentum when spawned!
 				world.spawnEntity(projectileEntity);
 				return;

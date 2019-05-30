@@ -45,5 +45,4 @@ public abstract class HeldWeapon extends HaloItem implements Weapon.Tag{
 			}
 		}
 	}
-	
 }
