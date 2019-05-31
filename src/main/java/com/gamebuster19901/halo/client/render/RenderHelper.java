@@ -1,8 +1,12 @@
 package com.gamebuster19901.halo.client.render;
 
+import com.gamebuster19901.halo.client.item.capability.overlay.Overlay;
+import com.gamebuster19901.halo.client.item.capability.overlay.OverlayDefaultImpl;
 import com.gamebuster19901.halo.client.item.capability.reticle.Reticle;
 import com.gamebuster19901.halo.client.item.capability.reticle.ReticleDefaultImpl;
 import com.gamebuster19901.halo.common.item.abstracts.HeldWeapon;
+import com.gamebuster19901.halo.common.item.capability.reloadable.Reloadable;
+import com.gamebuster19901.halo.common.item.capability.reloadable.ReloadableDefaultImpl;
 import com.gamebuster19901.halo.common.item.capability.weapon.Weapon;
 import com.gamebuster19901.halo.common.item.capability.weapon.WeaponDefaultImpl;
 
@@ -24,14 +28,22 @@ public class RenderHelper{
 			LazyOptional<Weapon> weaponCapability = stack.getCapability(WeaponDefaultImpl.CAPABILITY);
 			LazyOptional<Reticle> reticleCapability = stack.getCapability(ReticleDefaultImpl.CAPABILITY);
 			if(weaponCapability.isPresent() && (mc.player.isSprinting() && !weaponCapability.orElseThrow(AssertionError::new).canFire(mc.player))) {
-				//render sprinting reticle
+				//TODO: render sprinting reticle
 				e.setCanceled(true);
 			}
 			else if(reticleCapability.isPresent()) {
-				reticleCapability.orElseThrow(AssertionError::new).render(stack, e.getPartialTicks(), mc.mainWindow.getScaledWidth(), mc.mainWindow.getScaledHeight());
+				reticleCapability.orElseThrow(AssertionError::new).render(e, stack, e.getPartialTicks(), mc.mainWindow.getScaledWidth(), mc.mainWindow.getScaledHeight());
 				e.setCanceled(true);
 			}
 			return;
+		}
+		else if (e.getType() == RenderGameOverlayEvent.ElementType.CHAT) {
+			ItemStack stack = mc.player.getHeldItemMainhand();
+			LazyOptional<Reloadable> reloadableCapability = stack.getCapability(ReloadableDefaultImpl.CAPABILITY);
+			LazyOptional<Overlay> overlayCapability = stack.getCapability(OverlayDefaultImpl.CAPABILITY);
+			if(reloadableCapability.isPresent() && overlayCapability.isPresent()) {
+				overlayCapability.orElseThrow(AssertionError::new).render(e, stack, e.getPartialTicks(), mc.mainWindow.getScaledWidth(), mc.mainWindow.getScaledHeight());
+			}
 		}
 	}
 	

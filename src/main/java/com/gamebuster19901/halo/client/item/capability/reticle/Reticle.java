@@ -1,7 +1,5 @@
 package com.gamebuster19901.halo.client.item.capability.reticle;
 
-import org.lwjgl.opengl.GL11;
-
 import com.gamebuster19901.halo.client.render.Renderer;
 
 import net.minecraft.client.renderer.GlStateManager;
@@ -17,7 +15,7 @@ public interface Reticle extends Renderer{
 	
 	@Override
 	public default void bind() {
-		GL11.glPushMatrix();
+		GlStateManager.pushMatrix();
 		mc.textureManager.bindTexture(getImage());
 		GlStateManager.enableBlend();
 		GlStateManager.enableAlphaTest();
@@ -26,7 +24,9 @@ public interface Reticle extends Renderer{
 	
 	@Override
 	public default void unbind() {
-		GL11.glPopMatrix();
+		GlStateManager.disableBlend();
+		GlStateManager.disableAlphaTest();
+		GlStateManager.popMatrix();
 	}
 	
 }

@@ -2,6 +2,8 @@ package com.gamebuster19901.halo.common.item.capability.combined;
 
 import java.util.Random;
 
+import com.gamebuster19901.halo.client.item.capability.overlay.Overlay;
+import com.gamebuster19901.halo.client.item.capability.overlay.OverlayDefaultImpl;
 import com.gamebuster19901.halo.client.item.capability.reticle.Reticle;
 import com.gamebuster19901.halo.client.item.capability.reticle.ReticleDefaultImpl;
 import com.gamebuster19901.halo.common.item.NullAmmo;
@@ -16,13 +18,16 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.client.event.RenderGameOverlayEvent.Pre;
 
-public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloadable, Reticle{
+public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloadable, Reticle, Overlay{
 	
 	private Weapon weapon = null;
 	private Shootable shootable = null;
 	private Reloadable reloadable = null;
 	private Reticle reticle = new ReticleDefaultImpl();
+	private Overlay overlay = new OverlayDefaultImpl();
 	
 	public WeaponShootableReloadableImpl(Object... capabilityImplementations) {
 		for(Object o : capabilityImplementations) {
@@ -56,10 +61,9 @@ public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloada
 			if(o instanceof Reticle) {
 				reticle = (Reticle) o;
 			}
-		}
-		
-		if(reticle == null) {
-			
+			if(o instanceof Overlay) {
+				overlay = (Overlay) o;
+			}
 		}
 		
 		if(weapon == null || shootable == null || reloadable == null) {
@@ -336,36 +340,57 @@ public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloada
 		shootable.deserializeNBT(nbt);
 		reloadable.deserializeNBT(nbt);
 	}
+	
+	@Override
+	public void render(Pre e, ItemStack stack, float partialTicks, int scaledWidth, int scaledHeight) {
+		if(e.getType() == ElementType.CHAT) {
+			overlay.render(stack, partialTicks, scaledWidth, scaledHeight);
+		}
+		if(e.getType() == ElementType.CROSSHAIRS) {
+			reticle.render(stack, partialTicks, scaledWidth, scaledHeight);
+		}
+	}
 
 	@Override
+	@Deprecated
+	public void render(ItemStack stack, float partialTicks, int scaledWidth, int scaledHeight) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	@Deprecated
 	public void render(float partialTicks, int scaledWidth, int scaledHeight) {
-		reticle.render(partialTicks, scaledWidth, scaledHeight);
+		throw new UnsupportedOperationException();
 	}
 	
-
 	@Override
-	public void render(ItemStack stack, float partialTicks, int scaledWidth, int scaledHeight) {
-		reticle.render(stack, partialTicks, scaledWidth, scaledHeight);
+	@Deprecated
+	public void bind() {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
+	@Deprecated
 	public void unbind() {
-		reticle.unbind();
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
+	@Deprecated
 	public int width() {
-		return reticle.width();
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
+	@Deprecated
 	public int height() {
-		return reticle.height();
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
+	@Deprecated
 	public ResourceLocation getImage() {
-		return reticle.getImage();
+		throw new UnsupportedOperationException();
 	}
 
 }
