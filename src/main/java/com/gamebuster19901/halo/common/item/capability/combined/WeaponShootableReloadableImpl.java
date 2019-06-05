@@ -2,6 +2,7 @@ package com.gamebuster19901.halo.common.item.capability.combined;
 
 import java.util.Random;
 
+import com.gamebuster19901.halo.Main;
 import com.gamebuster19901.halo.client.item.capability.overlay.Overlay;
 import com.gamebuster19901.halo.client.item.capability.overlay.OverlayDefaultImpl;
 import com.gamebuster19901.halo.client.item.capability.reticle.Reticle;
@@ -11,6 +12,7 @@ import com.gamebuster19901.halo.common.item.abstracts.Ammo;
 import com.gamebuster19901.halo.common.item.capability.reloadable.Reloadable;
 import com.gamebuster19901.halo.common.item.capability.shootable.Shootable;
 import com.gamebuster19901.halo.common.item.capability.weapon.Weapon;
+import com.gamebuster19901.halo.proxy.ClientProxy;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,8 +28,15 @@ public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloada
 	private Weapon weapon = null;
 	private Shootable shootable = null;
 	private Reloadable reloadable = null;
-	private Reticle reticle = new ReticleDefaultImpl();
-	private Overlay overlay = new OverlayDefaultImpl();
+	private Reticle reticle;
+	private Overlay overlay;
+	
+	{
+		if(Main.proxy instanceof ClientProxy) {
+			reticle = new ReticleDefaultImpl();
+			overlay = new OverlayDefaultImpl();
+		}
+	}
 	
 	public WeaponShootableReloadableImpl(Object... capabilityImplementations) {
 		for(Object o : capabilityImplementations) {
