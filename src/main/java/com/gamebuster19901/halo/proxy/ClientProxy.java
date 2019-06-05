@@ -14,6 +14,7 @@ public class ClientProxy extends Proxy{
 	}
 	
 	@SubscribeEvent
+	@SuppressWarnings("unused")
 	public void clientSetup(FMLClientSetupEvent e){
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(RenderHelper.class);

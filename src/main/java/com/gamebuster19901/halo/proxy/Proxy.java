@@ -82,7 +82,6 @@ public abstract class Proxy {
 	}
 	
 	@SubscribeEvent
-	@SuppressWarnings("unused")
 	public void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
 		event.getRegistry().register(AssaultRifleBullet.TYPE = registerEntity(AssaultRifleBullet.class, AssaultRifleBullet::new));
 	}
