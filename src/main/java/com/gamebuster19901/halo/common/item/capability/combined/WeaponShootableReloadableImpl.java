@@ -352,10 +352,10 @@ public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloada
 	
 	@Override
 	public void render(Pre e, ItemStack stack, float partialTicks, int scaledWidth, int scaledHeight) {
-		if(e.getType() == ElementType.CHAT) {
+		if(overlay != null && e.getType() == ElementType.CHAT) {
 			overlay.render(stack, partialTicks, scaledWidth, scaledHeight);
 		}
-		if(e.getType() == ElementType.CROSSHAIRS) {
+		if(reticle != null && e.getType() == ElementType.CROSSHAIRS) {
 			reticle.render(stack, partialTicks, scaledWidth, scaledHeight);
 		}
 	}
