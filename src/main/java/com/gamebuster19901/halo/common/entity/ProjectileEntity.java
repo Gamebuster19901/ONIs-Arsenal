@@ -6,8 +6,8 @@ import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
+import com.gamebuster19901.halo.common.entity.capability.shooterOwner.ShooterOwner;
 import com.gamebuster19901.halo.common.item.capability.shootable.Shootable;
-import com.gamebuster19901.halo.common.item.capability.shooterOwner.ShooterOwner;
 import com.gamebuster19901.halo.common.util.EasyLocalization;
 import com.gamebuster19901.halo.common.util.HaloDamageSource;
 

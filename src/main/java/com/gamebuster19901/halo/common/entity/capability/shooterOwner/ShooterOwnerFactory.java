@@ -1,4 +1,4 @@
-package com.gamebuster19901.halo.common.item.capability.shooterOwner;
+package com.gamebuster19901.halo.common.entity.capability.shooterOwner;
 
 import java.util.concurrent.Callable;
 
