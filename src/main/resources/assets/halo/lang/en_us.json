@@ -6,5 +6,7 @@
 	"item.halo.null_ammo": "Null Ammo (You should never see this...)",
 	"item.halo.unknown": "Unknown Item",
 	"item.halo.unknown.icon": "?",
-	"subtitle.halo.assault_rifle.shoot": "Assault Rifle fires"
+	"subtitle.halo.assault_rifle.shoot": "Assault Rifle fires",
+	
+	"item.halo.assault_rifle.icon": "[AR]"
 }
