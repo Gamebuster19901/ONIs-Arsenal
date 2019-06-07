@@ -22,6 +22,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.Pre;
+import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 
 public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloadable, Reticle, Overlay{
 	
@@ -254,10 +255,10 @@ public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloada
 	}
 
 	@Override
-	public void update() {
-		weapon.update();
-		shootable.update();
-		reloadable.update();
+	public void update(WorldTickEvent e) {
+		weapon.update(e);
+		shootable.update(e);
+		reloadable.update(e);
 	}
 
 	@Override

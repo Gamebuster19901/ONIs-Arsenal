@@ -65,11 +65,11 @@ public class WeaponDefaultImpl implements Weapon{
 	@Deprecated
 	@Override
 	public void onTick(WorldTickEvent e) {
-		update();
+		update(e);
 	}
 
 	@Override
-	public void update() {
+	public void update(WorldTickEvent e) {
 		if(nextFire > 0) {
 			nextFire--;
 		}

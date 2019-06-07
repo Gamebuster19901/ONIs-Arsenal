@@ -5,6 +5,7 @@ import java.util.Random;
 import com.gamebuster19901.halo.common.item.capability.shootable.Shootable;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 
 public final class HandImpl implements Shootable{
 
@@ -72,7 +73,7 @@ public final class HandImpl implements Shootable{
 	}
 
 	@Override
-	public void update() {
+	public void update(WorldTickEvent e) {
 	}
 
 	@Override

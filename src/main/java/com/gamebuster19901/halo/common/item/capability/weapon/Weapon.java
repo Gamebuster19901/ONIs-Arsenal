@@ -84,11 +84,6 @@ public interface Weapon extends Updateable, INBTSerializable<NBTTagCompound>{
 	}
 	
 	/**
-	 * Update the weapon, called every tick.
-	 */
-	public void update();
-	
-	/**
 	 * Convert Feet per second to meters per tick
 	 * @param fps feet per second
 	 * @return meters per tick

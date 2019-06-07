@@ -41,7 +41,7 @@ public abstract class HeldWeapon extends HaloItem implements Weapon.Tag{
 		Capability<Weapon> weapon = WeaponDefaultImpl.CAPABILITY;
 		if(isSelected) {
 			if(stack.getCapability(weapon).isPresent()) {
-				stack.getCapability(weapon).orElseThrow(AssertionError::new).update();
+				stack.getCapability(weapon).orElseThrow(AssertionError::new).update(null);
 			}
 		}
 	}

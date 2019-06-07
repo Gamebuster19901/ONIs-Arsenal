@@ -114,11 +114,6 @@ public interface Shootable extends Updateable, INBTSerializable<NBTTagCompound>{
 	 */
 	public NBTTagCompound getProjectile();
 	
-	/**
-	 * Update the shootable, called every tick.
-	 */
-	public void update();
-	
 	public Random getRandom();
 	
 	public void setRandom(Random random);

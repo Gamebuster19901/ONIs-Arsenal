@@ -159,12 +159,13 @@ public class ShootableDefaultImpl implements Shootable{
 	}
 	
 	@Override
+	@Deprecated
 	public void onTick(WorldTickEvent e) {
-		update();
+		update(e);
 	}
 
 	@Override
-	public void update() {
+	public void update(WorldTickEvent e) {
 		if(bloom > 0) {
 			bloom = MathHelper.clamp(bloom - bloomD, 0, getMaxBloom());
 		}
