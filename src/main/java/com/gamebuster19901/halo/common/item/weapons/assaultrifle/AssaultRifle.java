@@ -1,5 +1,8 @@
 package com.gamebuster19901.halo.common.item.weapons.assaultrifle;
 
+import org.apache.logging.log4j.Level;
+
+import com.gamebuster19901.halo.Main;
 import com.gamebuster19901.halo.client.item.capability.overlay.OverlayDefaultImpl;
 import com.gamebuster19901.halo.client.item.capability.reticle.ReticleDefaultImpl;
 import com.gamebuster19901.halo.common.item.abstracts.GunReloadable;
@@ -104,5 +107,22 @@ public class AssaultRifle extends GunReloadable{
 				ReloadableStorage.INSTANCE.readNBT(ReloadableDefaultImpl.CAPABILITY, impl, null, reloadable);
 			}
 		};
+	}
+
+	@Override
+	public boolean shouldSyncTag() {
+		return true;
+	}
+
+	@Override
+	public NBTTagCompound getShareTag(ItemStack stack) {
+		NBTTagCompound nbt = stack.getCapability(WeaponDefaultImpl.CAPABILITY).orElseThrow(AssertionError::new).serializeNBT();
+		Main.LOGGER.log(Level.FATAL, nbt.getString());
+		return nbt;
+	}
+
+	@Override
+	public void readShareTag(ItemStack stack, NBTTagCompound nbt) {
+		stack.getCapability(WeaponDefaultImpl.CAPABILITY).orElseThrow(AssertionError::new).deserializeNBT(nbt);
 	}
 }

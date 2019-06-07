@@ -1,11 +1,12 @@
 package com.gamebuster19901.halo.common.item;
 
+import javax.annotation.Nullable;
+
 import com.gamebuster19901.halo.common.util.EasyLocalization;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public abstract class HaloItem extends Item implements EasyLocalization{
@@ -38,4 +39,12 @@ public abstract class HaloItem extends Item implements EasyLocalization{
 	@Override
 	public abstract ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt);
 	
+	@Override
+	public abstract boolean shouldSyncTag();
+
+	@Override
+	public abstract NBTTagCompound getShareTag(ItemStack stack);
+	
+	@Override
+	public abstract void readShareTag(ItemStack stack, @Nullable NBTTagCompound nbt);
 }
