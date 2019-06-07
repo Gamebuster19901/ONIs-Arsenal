@@ -1,8 +1,5 @@
 package com.gamebuster19901.halo.common.item.weapons.assaultrifle;
 
-import org.apache.logging.log4j.Level;
-
-import com.gamebuster19901.halo.Main;
 import com.gamebuster19901.halo.client.item.capability.overlay.OverlayDefaultImpl;
 import com.gamebuster19901.halo.client.item.capability.reticle.ReticleDefaultImpl;
 import com.gamebuster19901.halo.common.item.abstracts.GunReloadable;
