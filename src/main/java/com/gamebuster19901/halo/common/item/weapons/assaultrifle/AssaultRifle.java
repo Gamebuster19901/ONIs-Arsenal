@@ -108,21 +108,4 @@ public class AssaultRifle extends GunReloadable{
 			}
 		};
 	}
-
-	@Override
-	public boolean shouldSyncTag() {
-		return true;
-	}
-
-	@Override
-	public NBTTagCompound getShareTag(ItemStack stack) {
-		NBTTagCompound nbt = stack.getCapability(WeaponDefaultImpl.CAPABILITY).orElseThrow(AssertionError::new).serializeNBT();
-		Main.LOGGER.log(Level.FATAL, nbt.getString());
-		return nbt;
-	}
-
-	@Override
-	public void readShareTag(ItemStack stack, NBTTagCompound nbt) {
-		stack.getCapability(WeaponDefaultImpl.CAPABILITY).orElseThrow(AssertionError::new).deserializeNBT(nbt);
-	}
 }
