@@ -1,8 +1,5 @@
 package com.gamebuster19901.halo.common.item.abstracts;
 
-import org.apache.logging.log4j.Level;
-
-import com.gamebuster19901.halo.Main;
 import com.gamebuster19901.halo.common.item.HaloItem;
 import com.gamebuster19901.halo.common.item.capability.weapon.Weapon;
 import com.gamebuster19901.halo.common.item.capability.weapon.WeaponDefaultImpl;
@@ -57,7 +54,6 @@ public abstract class HeldWeapon extends HaloItem implements Weapon.Tag{
 	@Override
 	public NBTTagCompound getShareTag(ItemStack stack) {
 		NBTTagCompound nbt = stack.getCapability(WeaponDefaultImpl.CAPABILITY).orElseThrow(AssertionError::new).serializeNBT();
-		Main.LOGGER.log(Level.FATAL, nbt.getString());
 		return nbt;
 	}
 
