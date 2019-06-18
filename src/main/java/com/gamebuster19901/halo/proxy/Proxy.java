@@ -17,6 +17,9 @@ import com.gamebuster19901.halo.common.entity.capability.shooterOwner.ShooterOwn
 import com.gamebuster19901.halo.common.item.NullAmmo;
 import com.gamebuster19901.halo.common.item.abstracts.Ammo;
 import com.gamebuster19901.halo.common.item.abstracts.Projectile;
+import com.gamebuster19901.halo.common.item.capability.energy.Energy;
+import com.gamebuster19901.halo.common.item.capability.energy.EnergyFactory;
+import com.gamebuster19901.halo.common.item.capability.energy.EnergyStorage;
 import com.gamebuster19901.halo.common.item.capability.reloadable.Reloadable;
 import com.gamebuster19901.halo.common.item.capability.reloadable.ReloadableFactory;
 import com.gamebuster19901.halo.common.item.capability.reloadable.ReloadableStorage;
@@ -65,6 +68,7 @@ public abstract class Proxy {
 		CapabilityManager.INSTANCE.register(ShooterOwner.class, new ShooterOwnerStorage(), new ShooterOwnerFactory());
 		CapabilityManager.INSTANCE.register(Reticle.class, new ReticleStorage(), new ReticleFactory());
 		CapabilityManager.INSTANCE.register(Overlay.class, new OverlayStorage(), new OverlayFactory());
+		CapabilityManager.INSTANCE.register(Energy.class, new EnergyStorage(), new EnergyFactory());
 	}
 	
 	protected static IEventBus getBus() {
