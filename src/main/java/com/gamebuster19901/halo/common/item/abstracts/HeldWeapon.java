@@ -13,7 +13,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 
-public abstract class HeldWeapon extends HaloItem implements Weapon.Tag{
+public abstract class HeldWeapon extends HaloItem{
 	
 	public HeldWeapon() {
 		super(1);

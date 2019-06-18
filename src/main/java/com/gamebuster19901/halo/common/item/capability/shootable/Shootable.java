@@ -13,8 +13,6 @@ import net.minecraftforge.common.util.INBTSerializable;
 
 public interface Shootable extends Updateable, INBTSerializable<NBTTagCompound>{
 	
-	public static interface Tag{}
-	
 	public void setBloom(float bloom);
 	
 	public void addBloom(float bloom);

@@ -1,6 +1,5 @@
 package com.gamebuster19901.halo.common.item.abstracts;
 
-import com.gamebuster19901.halo.common.item.capability.shootable.Shootable;
 import com.gamebuster19901.halo.common.item.capability.shootable.ShootableDefaultImpl;
 
 import net.minecraft.item.ItemStack;
@@ -10,7 +9,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 
-public abstract class Gun extends HeldWeapon implements Shootable.Tag{
+public abstract class Gun extends HeldWeapon{
 	
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {	

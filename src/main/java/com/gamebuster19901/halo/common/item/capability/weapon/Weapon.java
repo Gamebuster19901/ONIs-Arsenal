@@ -13,8 +13,6 @@ public interface Weapon extends Updateable, INBTSerializable<NBTTagCompound>{
 	double FPSToMPS = 0.3048d;
 	double TPS = 20;
 	
-	public static interface Tag{}
-	
 	/**
 	 * @return if this weapon can be used.
 	 */

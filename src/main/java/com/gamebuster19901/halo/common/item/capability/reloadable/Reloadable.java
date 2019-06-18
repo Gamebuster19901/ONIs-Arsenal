@@ -13,8 +13,6 @@ import net.minecraftforge.common.util.INBTSerializable;
 
 public interface Reloadable extends Updateable, INBTSerializable<NBTTagCompound>{
 	
-	public static interface Tag{}
-	
 	/**
 	 * @return the magazine size
 	 */
