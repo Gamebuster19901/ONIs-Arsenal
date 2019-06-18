@@ -4,6 +4,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 
 public class EnergyDefaultImpl implements Energy{
 
@@ -139,6 +140,11 @@ public class EnergyDefaultImpl implements Energy{
 	@Override
 	public void deserializeNBT(NBTTagCompound nbt) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(WorldTickEvent e) {
 		
 	}
 
