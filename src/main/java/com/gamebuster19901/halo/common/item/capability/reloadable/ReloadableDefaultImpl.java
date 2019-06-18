@@ -152,6 +152,12 @@ public class ReloadableDefaultImpl implements Reloadable{
 		amountLoaded = nbt.getInt("amountLoaded");
 		reloadProgress = nbt.getInt("reloadProgress");
 		isReloading = nbt.getBoolean("isReloading");
-		ammoType = (Ammo) ForgeRegistries.ITEMS.getValue(new ResourceLocation(nbt.getString("ammoType")));
+		ResourceLocation ammo = new ResourceLocation(nbt.getString("ammoType"));
+		if(ForgeRegistries.ITEMS.containsKey(ammo)) {
+			ammoType = (Ammo) ForgeRegistries.ITEMS.getValue(ammo);
+		}
+		else {
+			ammoType = NullAmmo.INSTANCE;
+		}
 	}
 }

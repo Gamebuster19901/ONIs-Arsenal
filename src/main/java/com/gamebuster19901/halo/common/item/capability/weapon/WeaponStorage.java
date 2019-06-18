@@ -15,22 +15,12 @@ public class WeaponStorage implements Capability.IStorage<Weapon>{
 	
 	@Override
 	public INBTBase writeNBT(Capability<Weapon> capability, Weapon instance, EnumFacing side) {
-		NBTTagCompound nbt = new NBTTagCompound();
-		
-		nbt.putInt(FIRE_RATE, instance.getFireRate());
-		nbt.putBoolean(AUTOMATIC, instance.isAutomatic());
-		nbt.putByte(NEXT_FIRE, instance.getTimeUntilNextFire());
-		
-		return nbt;
+		return instance.serializeNBT();
 	}
 
 	@Override
 	public void readNBT(Capability<Weapon> capability, Weapon instance, EnumFacing side, INBTBase tag) {
-		NBTTagCompound nbt = (NBTTagCompound) tag;
-		
-		instance.setFireRate(nbt.getInt(FIRE_RATE));
-		instance.setAutomatic(nbt.getBoolean(AUTOMATIC));
-		instance.setTimeUntilNextFire(nbt.getByte(NEXT_FIRE));
+		instance.deserializeNBT((NBTTagCompound) tag);
 	}
 
 }
