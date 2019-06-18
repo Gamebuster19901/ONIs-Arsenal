@@ -1,14 +1,14 @@
 package com.gamebuster19901.halo.common.item.weapons.assaultrifle;
 
-import com.gamebuster19901.halo.client.item.capability.overlay.OverlayDefaultImpl;
-import com.gamebuster19901.halo.client.item.capability.reticle.ReticleDefaultImpl;
+import com.gamebuster19901.halo.capability.client.item.overlay.OverlayDefaultImpl;
+import com.gamebuster19901.halo.capability.client.item.reticle.ReticleDefaultImpl;
+import com.gamebuster19901.halo.capability.common.item.reloadable.ReloadableDefaultImpl;
+import com.gamebuster19901.halo.capability.common.item.reloadable.ReloadableStorage;
+import com.gamebuster19901.halo.capability.common.item.shootable.ShootableDefaultImpl;
+import com.gamebuster19901.halo.capability.common.item.shootable.ShootableStorage;
+import com.gamebuster19901.halo.capability.common.item.weapon.WeaponDefaultImpl;
+import com.gamebuster19901.halo.capability.common.item.weapon.WeaponStorage;
 import com.gamebuster19901.halo.common.item.abstracts.GunReloadable;
-import com.gamebuster19901.halo.common.item.capability.reloadable.ReloadableDefaultImpl;
-import com.gamebuster19901.halo.common.item.capability.reloadable.ReloadableStorage;
-import com.gamebuster19901.halo.common.item.capability.shootable.ShootableDefaultImpl;
-import com.gamebuster19901.halo.common.item.capability.shootable.ShootableStorage;
-import com.gamebuster19901.halo.common.item.capability.weapon.WeaponDefaultImpl;
-import com.gamebuster19901.halo.common.item.capability.weapon.WeaponStorage;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;

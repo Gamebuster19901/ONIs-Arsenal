@@ -1,6 +1,6 @@
 package com.gamebuster19901.halo.common.item.abstracts;
 
-import com.gamebuster19901.halo.common.item.capability.shootable.ShootableDefaultImpl;
+import com.gamebuster19901.halo.capability.common.item.shootable.ShootableDefaultImpl;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

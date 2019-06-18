@@ -2,7 +2,7 @@ package com.gamebuster19901.halo.common.entity;
 
 import java.util.UUID;
 
-import com.gamebuster19901.halo.common.item.capability.shootable.Shootable;
+import com.gamebuster19901.halo.capability.common.item.shootable.Shootable;
 import com.gamebuster19901.halo.common.util.EasyLocalization;
 
 import net.minecraft.entity.EntityType;

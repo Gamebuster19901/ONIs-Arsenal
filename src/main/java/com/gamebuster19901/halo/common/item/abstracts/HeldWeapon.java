@@ -1,8 +1,8 @@
 package com.gamebuster19901.halo.common.item.abstracts;
 
+import com.gamebuster19901.halo.capability.common.item.weapon.Weapon;
+import com.gamebuster19901.halo.capability.common.item.weapon.WeaponDefaultImpl;
 import com.gamebuster19901.halo.common.item.HaloItem;
-import com.gamebuster19901.halo.common.item.capability.weapon.Weapon;
-import com.gamebuster19901.halo.common.item.capability.weapon.WeaponDefaultImpl;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;

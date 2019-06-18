@@ -1,14 +1,14 @@
 package com.gamebuster19901.halo.client.render;
 
-import com.gamebuster19901.halo.client.item.capability.overlay.Overlay;
-import com.gamebuster19901.halo.client.item.capability.overlay.OverlayDefaultImpl;
-import com.gamebuster19901.halo.client.item.capability.reticle.Reticle;
-import com.gamebuster19901.halo.client.item.capability.reticle.ReticleDefaultImpl;
+import com.gamebuster19901.halo.capability.client.item.overlay.Overlay;
+import com.gamebuster19901.halo.capability.client.item.overlay.OverlayDefaultImpl;
+import com.gamebuster19901.halo.capability.client.item.reticle.Reticle;
+import com.gamebuster19901.halo.capability.client.item.reticle.ReticleDefaultImpl;
+import com.gamebuster19901.halo.capability.common.item.reloadable.Reloadable;
+import com.gamebuster19901.halo.capability.common.item.reloadable.ReloadableDefaultImpl;
+import com.gamebuster19901.halo.capability.common.item.weapon.Weapon;
+import com.gamebuster19901.halo.capability.common.item.weapon.WeaponDefaultImpl;
 import com.gamebuster19901.halo.common.item.abstracts.HeldWeapon;
-import com.gamebuster19901.halo.common.item.capability.reloadable.Reloadable;
-import com.gamebuster19901.halo.common.item.capability.reloadable.ReloadableDefaultImpl;
-import com.gamebuster19901.halo.common.item.capability.weapon.Weapon;
-import com.gamebuster19901.halo.common.item.capability.weapon.WeaponDefaultImpl;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;

@@ -2,7 +2,7 @@ package com.gamebuster19901.halo.common.item.abstracts;
 
 import java.util.Random;
 
-import com.gamebuster19901.halo.common.item.capability.shootable.Shootable;
+import com.gamebuster19901.halo.capability.common.item.shootable.Shootable;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
