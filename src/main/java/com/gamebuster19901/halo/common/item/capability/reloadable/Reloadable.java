@@ -4,6 +4,7 @@ import com.gamebuster19901.halo.common.item.abstracts.Ammo;
 import com.gamebuster19901.halo.common.util.EasyLocalization;
 import com.gamebuster19901.halo.common.util.Updateable;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -85,6 +86,15 @@ public interface Reloadable extends Updateable, INBTSerializable<NBTTagCompound>
 		if(reloadProgress >= reloadTime) {
 			reload(inventory);
 		}
+	}
+	
+	public default boolean canReload(EntityPlayer player) {
+		return !player.isSprinting() && player.isAlive() && !player.isPlayerSleeping();
+	}
+	
+	@SuppressWarnings("unused")
+	public default boolean canReload(Object o) {
+		return false;
 	}
 	
 	public default void cancelReload() {
