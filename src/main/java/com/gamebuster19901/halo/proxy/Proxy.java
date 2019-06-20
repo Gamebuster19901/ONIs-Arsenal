@@ -72,6 +72,7 @@ public abstract class Proxy {
 		CapabilityManager.INSTANCE.register(Reticle.class, new ReticleStorage(), new ReticleFactory());
 		CapabilityManager.INSTANCE.register(Overlay.class, new OverlayStorage(), new OverlayFactory());
 		CapabilityManager.INSTANCE.register(Energy.class, new EnergyStorage(), new EnergyFactory());
+		CapabilityManager.INSTANCE.register(Overheat.class, new OverheatStorage(), new OverheatFactory());
 	}
 	
 	protected static IEventBus getBus() {
