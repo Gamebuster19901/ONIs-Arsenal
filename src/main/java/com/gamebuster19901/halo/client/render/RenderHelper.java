@@ -4,6 +4,8 @@ import com.gamebuster19901.halo.capability.client.item.overlay.Overlay;
 import com.gamebuster19901.halo.capability.client.item.overlay.OverlayDefaultImpl;
 import com.gamebuster19901.halo.capability.client.item.reticle.Reticle;
 import com.gamebuster19901.halo.capability.client.item.reticle.ReticleDefaultImpl;
+import com.gamebuster19901.halo.capability.common.energy.Energy;
+import com.gamebuster19901.halo.capability.common.energy.EnergyDefaultImpl;
 import com.gamebuster19901.halo.capability.common.item.reloadable.Reloadable;
 import com.gamebuster19901.halo.capability.common.item.reloadable.ReloadableDefaultImpl;
 import com.gamebuster19901.halo.capability.common.item.weapon.Weapon;
@@ -40,9 +42,12 @@ public class RenderHelper{
 		else if (e.getType() == RenderGameOverlayEvent.ElementType.CHAT) {
 			ItemStack stack = mc.player.getHeldItemMainhand();
 			LazyOptional<Reloadable> reloadableCapability = stack.getCapability(ReloadableDefaultImpl.CAPABILITY);
+			LazyOptional<Energy> energyCapability = stack.getCapability(EnergyDefaultImpl.CAPABILITY);
 			LazyOptional<Overlay> overlayCapability = stack.getCapability(OverlayDefaultImpl.CAPABILITY);
-			if(reloadableCapability.isPresent() && overlayCapability.isPresent()) {
-				overlayCapability.orElseThrow(AssertionError::new).render(e, stack, e.getPartialTicks(), mc.mainWindow.getScaledWidth(), mc.mainWindow.getScaledHeight());
+			if(overlayCapability.isPresent()) {
+				if(reloadableCapability.isPresent() || energyCapability.isPresent()) {
+					overlayCapability.orElseThrow(AssertionError::new).render(e, stack, e.getPartialTicks(), mc.mainWindow.getScaledWidth(), mc.mainWindow.getScaledHeight());
+				}
 			}
 		}
 	}

@@ -29,11 +29,13 @@ import com.gamebuster19901.halo.capability.common.item.weapon.Weapon;
 import com.gamebuster19901.halo.capability.common.item.weapon.WeaponFactory;
 import com.gamebuster19901.halo.capability.common.item.weapon.WeaponStorage;
 import com.gamebuster19901.halo.common.entity.AssaultRifleBullet;
+import com.gamebuster19901.halo.common.entity.PlasmaPistolBullet;
 import com.gamebuster19901.halo.common.item.NullAmmo;
 import com.gamebuster19901.halo.common.item.abstracts.Ammo;
 import com.gamebuster19901.halo.common.item.abstracts.Projectile;
 import com.gamebuster19901.halo.common.item.weapons.ammo.AssaultRifleAmmo;
 import com.gamebuster19901.halo.common.item.weapons.assaultrifle.AssaultRifle;
+import com.gamebuster19901.halo.common.item.weapons.plasmapistol.PlasmaPistol;
 import com.gamebuster19901.halo.common.util.EasyLocalization;
 
 import net.minecraft.entity.Entity;
@@ -50,6 +52,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public abstract class Proxy {
 	
@@ -86,12 +89,15 @@ public abstract class Proxy {
 	@SubscribeEvent
 	public void registerItems(RegistryEvent.Register<Item> event) {
 		event.getRegistry().register(AssaultRifle.INSTANCE);
+		event.getRegistry().register(PlasmaPistol.INSTANCE);
 		registerAmmo(event);
 	}
 	
 	@SubscribeEvent
 	public void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
-		event.getRegistry().register(AssaultRifleBullet.TYPE = registerEntity(AssaultRifleBullet.class, AssaultRifleBullet::new));
+		IForgeRegistry<EntityType<?>> registry = event.getRegistry();
+		registry.register(AssaultRifleBullet.TYPE = registerEntity(AssaultRifleBullet.class, AssaultRifleBullet::new));
+		registry.register(PlasmaPistolBullet.TYPE = registerEntity(PlasmaPistolBullet.class, PlasmaPistolBullet::new));
 	}
 	
 	private EntityType<Entity> registerEntity(Class<? extends Entity> entityClass, Function<? super World, ? extends Entity> constructor) {
@@ -112,7 +118,8 @@ public abstract class Proxy {
 	@SubscribeEvent
 	public void registerSounds(RegistryEvent.Register<SoundEvent> e) {
 		e.getRegistry().registerAll(
-			AssaultRifleBullet.shootingSound = new SoundEvent(EasyLocalization.getResourceLocation(AssaultRifleBullet.class)).setRegistryName(EasyLocalization.getResourceLocation(AssaultRifleBullet.class))
+			AssaultRifleBullet.shootingSound = new SoundEvent(EasyLocalization.getResourceLocation(AssaultRifleBullet.class)).setRegistryName(EasyLocalization.getResourceLocation(AssaultRifleBullet.class)),
+			PlasmaPistolBullet.shootingSound = new SoundEvent(null).setRegistryName(EasyLocalization.getResourceLocation(PlasmaPistolBullet.class))
 		);
 	}
 	

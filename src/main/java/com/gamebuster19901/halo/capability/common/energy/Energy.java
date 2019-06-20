@@ -35,6 +35,9 @@ public interface Energy extends IEnergyStorage, Updateable, INBTSerializable<NBT
 	void setCanExtract(boolean canExtract);
 	
 	default double getPercentageRemaining() {
+		if(this.getEnergyStored() == 0) {
+			return (double)0;
+		}
 		return (double)this.getMaxEnergyStored() / (double)this.getEnergyStored();
 	}
 	

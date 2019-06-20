@@ -26,11 +26,11 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 
 public class WeaponShootableReloadableImpl implements Weapon, Shootable, Reloadable, Reticle, Overlay{
 	
-	private Weapon weapon = null;
-	private Shootable shootable = null;
-	private Reloadable reloadable = null;
-	private Reticle reticle;
-	private Overlay overlay;
+	protected Weapon weapon = null;
+	protected Shootable shootable = null;
+	protected Reloadable reloadable = null;
+	protected Reticle reticle;
+	protected Overlay overlay;
 	
 	{
 		if(Main.proxy instanceof ClientProxy) {
