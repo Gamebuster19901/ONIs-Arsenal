@@ -3,11 +3,8 @@ package com.gamebuster19901.halo.common.item.weapons.assaultrifle;
 import com.gamebuster19901.halo.capability.client.item.overlay.OverlayDefaultImpl;
 import com.gamebuster19901.halo.capability.client.item.reticle.ReticleDefaultImpl;
 import com.gamebuster19901.halo.capability.common.item.reloadable.ReloadableDefaultImpl;
-import com.gamebuster19901.halo.capability.common.item.reloadable.ReloadableStorage;
 import com.gamebuster19901.halo.capability.common.item.shootable.ShootableDefaultImpl;
-import com.gamebuster19901.halo.capability.common.item.shootable.ShootableStorage;
 import com.gamebuster19901.halo.capability.common.item.weapon.WeaponDefaultImpl;
-import com.gamebuster19901.halo.capability.common.item.weapon.WeaponStorage;
 import com.gamebuster19901.halo.common.item.abstracts.HeldWeapon;
 
 import net.minecraft.entity.Entity;
@@ -88,21 +85,12 @@ public class AssaultRifle extends HeldWeapon{
 
 			@Override
 			public NBTTagCompound serializeNBT() {
-				NBTTagCompound nbt = new NBTTagCompound();
-				nbt.put("weapon", WeaponStorage.INSTANCE.writeNBT(WeaponDefaultImpl.CAPABILITY, impl, null));
-				nbt.put("shootable", ShootableStorage.INSTANCE.writeNBT(ShootableDefaultImpl.CAPABILITY, impl, null));
-				nbt.put("reloadable", ReloadableStorage.INSTANCE.writeNBT(ReloadableDefaultImpl.CAPABILITY, impl, null));
-				return nbt;
+				return impl.serializeNBT();
 			}
 
 			@Override
 			public void deserializeNBT(NBTTagCompound nbt) {
-				NBTTagCompound weapon = nbt.getCompound("weapon");
-				NBTTagCompound shootable = nbt.getCompound("shootable");
-				NBTTagCompound reloadable = nbt.getCompound("reloadable");
-				WeaponStorage.INSTANCE.readNBT(WeaponDefaultImpl.CAPABILITY, impl, null, weapon);
-				ShootableStorage.INSTANCE.readNBT(ShootableDefaultImpl.CAPABILITY, impl, null, shootable);
-				ReloadableStorage.INSTANCE.readNBT(ReloadableDefaultImpl.CAPABILITY, impl, null, reloadable);
+				impl.deserializeNBT(nbt);
 			}
 		};
 	}
