@@ -4,10 +4,15 @@ import com.gamebuster19901.halo.Main;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 
 public class OverheatDefaultImpl implements Overheat{
 
+	@CapabilityInject(Overheat.class)
+	public static Capability<Overheat> CAPABILITY;
+	
 	private boolean overheating;
 	private double temp;
 	private double minTemp;
@@ -56,7 +61,7 @@ public class OverheatDefaultImpl implements Overheat{
 
 	@Override
 	public void setMinTemp(double minTemp) {
-		if(minTemp < getMaxTemp()) {
+		if(minTemp > getMaxTemp()) {
 			throw new IndexOutOfBoundsException("Temperature range less than 0");
 		}
 		this.minTemp = minTemp;

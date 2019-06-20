@@ -133,14 +133,24 @@ public class EnergyDefaultImpl implements Energy{
 
 	@Override
 	public NBTTagCompound serializeNBT() {
-		// TODO Auto-generated method stub
-		return null;
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.putInt("energy", energy);
+		nbt.putInt("capacity", capacity);
+		nbt.putInt("maxReceive", maxReceive);
+		nbt.putInt("maxExtract", maxExtract);
+		nbt.putBoolean("canReceive", canReceive);
+		nbt.putBoolean("canExtract", canExtract);
+		return nbt;
 	}
 
 	@Override
 	public void deserializeNBT(NBTTagCompound nbt) {
-		// TODO Auto-generated method stub
-		
+		energy = nbt.getInt("energy");
+		capacity = nbt.getInt("capacity");
+		maxReceive = nbt.getInt("maxReceive");
+		maxExtract = nbt.getInt("maxExtract");
+		canReceive = nbt.getBoolean("canReceive");
+		canExtract = nbt.getBoolean("canExtract");
 	}
 
 	@Override
