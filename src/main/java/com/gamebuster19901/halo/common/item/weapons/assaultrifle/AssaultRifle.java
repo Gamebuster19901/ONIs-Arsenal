@@ -8,7 +8,7 @@ import com.gamebuster19901.halo.capability.common.item.shootable.ShootableDefaul
 import com.gamebuster19901.halo.capability.common.item.shootable.ShootableStorage;
 import com.gamebuster19901.halo.capability.common.item.weapon.WeaponDefaultImpl;
 import com.gamebuster19901.halo.capability.common.item.weapon.WeaponStorage;
-import com.gamebuster19901.halo.common.item.abstracts.GunReloadable;
+import com.gamebuster19901.halo.common.item.abstracts.HeldWeapon;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -27,7 +27,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class AssaultRifle extends GunReloadable{
+public class AssaultRifle extends HeldWeapon{
 
 	public static final AssaultRifle INSTANCE = new AssaultRifle();
 	
