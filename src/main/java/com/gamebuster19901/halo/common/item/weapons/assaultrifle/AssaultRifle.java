@@ -34,16 +34,17 @@ public class AssaultRifle extends HeldWeapon{
 	@Override
 	public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
-		if(entityIn instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) entityIn;
-			if(stack.getCapability(ShootableDefaultImpl.CAPABILITY, null).isPresent()) {
-				AssaultRifleImpl impl = (AssaultRifleImpl) stack.getCapability(ShootableDefaultImpl.CAPABILITY, null).orElseThrow(AssertionError::new);
-				if(isSelected) {
-					impl.addBloom((float) MathHelper.clamp(Math.max(Math.abs(player.motionX), Math.abs(player.motionZ)) * 4, 0, impl.getMaxBloom() / 2));
-					if(!player.isCreative() && !player.onGround && (player.getLowestRidingEntity() instanceof EntityPlayer || player.getLowestRidingEntity() instanceof EntityLiving)) {
-						impl.addBloom(impl.getBloomDecreasePerTick() * 4);
+		AssaultRifleImpl impl = (AssaultRifleImpl) stack.getCapability(ShootableDefaultImpl.CAPABILITY, null).orElseThrow(AssertionError::new);
+		if(isSelected) {
+			impl.addBloom((float) MathHelper.clamp(Math.max(Math.abs(entityIn.motionX), Math.abs(entityIn.motionZ)) * 4, 0, impl.getMaxBloom() / 2));
+			if(!entityIn.onGround && (entityIn.getLowestRidingEntity() instanceof EntityPlayer || entityIn.getLowestRidingEntity() instanceof EntityLiving)) {
+				if(entityIn instanceof EntityPlayer) {
+					EntityPlayer player = (EntityPlayer) entityIn;
+					if(!player.isCreative()) {
+						return;
 					}
 				}
+				impl.addBloom(impl.getBloomDecreasePerTick() * 4);
 			}
 		}
 	}
