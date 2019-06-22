@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class PlasmaPistolBullet extends ProjectileEntity implements EasyLocalization{
+public class PlasmaPistolBullet extends EnergyProjectile implements EasyLocalization{
 	public static EntityType TYPE;
 	
 	public static SoundEvent shootingSound;
