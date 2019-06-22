@@ -119,7 +119,7 @@ public abstract class Proxy {
 	public void registerSounds(RegistryEvent.Register<SoundEvent> e) {
 		e.getRegistry().registerAll(
 			AssaultRifleBullet.shootingSound = new SoundEvent(EasyLocalization.getResourceLocation(AssaultRifleBullet.class)).setRegistryName(EasyLocalization.getResourceLocation(AssaultRifleBullet.class)),
-			PlasmaPistolBullet.shootingSound = new SoundEvent(null).setRegistryName(EasyLocalization.getResourceLocation(PlasmaPistolBullet.class))
+			PlasmaPistolBullet.shootingSound = new SoundEvent(EasyLocalization.getResourceLocation(PlasmaPistolBullet.class)).setRegistryName(EasyLocalization.getResourceLocation(PlasmaPistolBullet.class))
 		);
 	}
 	
