@@ -6,7 +6,8 @@ import com.gamebuster19901.halo.capability.common.item.combined.WeaponShootableE
 import com.gamebuster19901.halo.capability.common.item.shootable.ShootableDefaultImpl;
 import com.gamebuster19901.halo.capability.common.item.weapon.Weapon;
 import com.gamebuster19901.halo.capability.common.item.weapon.WeaponDefaultImpl;
-import com.gamebuster19901.halo.common.item.NullAmmo;
+import com.gamebuster19901.halo.common.entity.PlasmaPistolBullet;
+import com.gamebuster19901.halo.common.item.abstracts.Projectile;
 
 public class PlasmaPistolImpl extends WeaponShootableEnergyOverheatImpl {
 	
@@ -20,11 +21,12 @@ public class PlasmaPistolImpl extends WeaponShootableEnergyOverheatImpl {
 	private static final float maxVerticalRecoil = 1f;
 	private static final float minHorizontalRecoil = 0f;
 	private static final float maxHorizontalRecoil = 0f;
+	private static final Projectile projectile = new Projectile(new PlasmaPistolBullet(null));
 	
 	public PlasmaPistolImpl() {
 		super(
 			new WeaponDefaultImpl(firingRate, isAutomatic),
-			new ShootableDefaultImpl(maxBloom, bloomIncrease, bloomDecrease, muzzleVelocity, minVerticalRecoil, maxVerticalRecoil, minHorizontalRecoil, maxHorizontalRecoil, NullAmmo.INSTANCE.getProjectile()),
+			new ShootableDefaultImpl(maxBloom, bloomIncrease, bloomDecrease, muzzleVelocity, minVerticalRecoil, maxVerticalRecoil, minHorizontalRecoil, maxHorizontalRecoil, projectile.getProjectileNBT()),
 			new EnergyDefaultImpl(1000, 10, 50, 0),
 			new OverheatDefaultImpl(0, 100, 1, 14)
 		);
