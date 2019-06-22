@@ -39,6 +39,13 @@ public final class Projectile implements IProjectile, EasyLocalization{
 	}
 	
 	/**
+	 * @param projectile the projectile to shoot
+	 */
+	public Projectile(Entity projectile) {
+		this(projectile.serializeNBT());
+	}
+	
+	/**
 	 * Makes the entity shoot the projectile from their eye position
 	 * 
 	 * @param shooter

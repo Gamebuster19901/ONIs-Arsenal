@@ -9,7 +9,7 @@ public class AssaultRifleAmmo extends Ammo{
 	public static final AssaultRifleAmmo INSTANCE = new AssaultRifleAmmo();
 	
 	public AssaultRifleAmmo() {
-		super(new Projectile(new AssaultRifleBullet(null).serializeNBT()), 36);
+		super(new Projectile(new AssaultRifleBullet(null)), 36);
 	}
 
 }
