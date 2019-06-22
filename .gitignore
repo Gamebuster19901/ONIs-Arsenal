@@ -23,3 +23,6 @@ run
 
 # Files from Forge MDK
 forge*changelog.txt
+
+# 343 Industries reference images (so we don't do copyright infringement)
+*\343Industries
