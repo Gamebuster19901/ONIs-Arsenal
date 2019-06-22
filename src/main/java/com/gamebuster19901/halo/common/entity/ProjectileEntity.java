@@ -137,7 +137,7 @@ public abstract class ProjectileEntity extends HaloEntity implements ShooterOwne
 	}
 	
 	public void hitBlock(RayTraceResult rayTrace) {
-		this.world.playSound(null, posX, posY, posZ, getShootingSound(), SoundCategory.NEUTRAL, 1f, getNextSoundPitch());
+		this.world.playSound(null, posX, posY, posZ, getImpactSound(), SoundCategory.NEUTRAL, 1f, getNextSoundPitch());
 		SoundType blockSound = world.getBlockState(rayTrace.getBlockPos()).getSoundType(world, rayTrace.getBlockPos(), this);
 		this.world.playSound(null, posX, posY, posZ, blockSound.getBreakSound(), SoundCategory.NEUTRAL, blockSound.volume, blockSound.pitch);
 		onHit();
