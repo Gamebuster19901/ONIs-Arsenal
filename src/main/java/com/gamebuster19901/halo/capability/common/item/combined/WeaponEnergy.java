@@ -214,7 +214,13 @@ public class WeaponEnergy implements Weapon, Energy, Reticle, Overlay{
 
 	@Override
 	public boolean canFire(Entity shooter) {
-		return weapon.canFire(shooter) && this.getEnergyStored() > 0 && this.getTimeUntilNextFire() <= 0;
+		if (weapon.canFire(shooter)) {
+			if(shooter instanceof EntityPlayer && ((EntityPlayer) shooter).isCreative()) {
+				return this.getTimeUntilNextFire() <= 0;
+			}
+			return this.getEnergyStored() > 0 && this.getTimeUntilNextFire() <= 0;
+		}
+		return false;
 	}
 
 	@Override
