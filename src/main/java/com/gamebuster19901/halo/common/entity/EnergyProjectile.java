@@ -5,7 +5,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public abstract class EnergyProjectile extends ProjectileEntity{
+public abstract class EnergyProjectile extends HaloProjectile{
 
 	public EnergyProjectile(EntityType type, World worldIn) {
 		super(type, worldIn);

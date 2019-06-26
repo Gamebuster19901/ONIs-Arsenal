@@ -2,15 +2,14 @@ package com.gamebuster19901.halo.common.entity;
 
 import java.util.UUID;
 
-import com.gamebuster19901.halo.capability.common.item.shootable.Shootable;
-import com.gamebuster19901.halo.common.util.EasyLocalization;
+import com.gamebuster19901.guncore.capability.common.item.shootable.Shootable;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class AssaultRifleBullet extends ProjectileEntity implements EasyLocalization{
+public class AssaultRifleBullet extends HaloProjectile{
 	public static EntityType TYPE;
 	
 	public static SoundEvent shootingSound;

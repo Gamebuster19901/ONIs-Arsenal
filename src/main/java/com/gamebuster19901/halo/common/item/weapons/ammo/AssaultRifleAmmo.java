@@ -1,10 +1,9 @@
 package com.gamebuster19901.halo.common.item.weapons.ammo;
 
+import com.gamebuster19901.guncore.common.item.abstracts.Projectile;
 import com.gamebuster19901.halo.common.entity.AssaultRifleBullet;
-import com.gamebuster19901.halo.common.item.abstracts.Ammo;
-import com.gamebuster19901.halo.common.item.abstracts.Projectile;
 
-public class AssaultRifleAmmo extends Ammo{
+public class AssaultRifleAmmo extends HaloAmmo{
 	
 	public static final AssaultRifleAmmo INSTANCE = new AssaultRifleAmmo();
 	

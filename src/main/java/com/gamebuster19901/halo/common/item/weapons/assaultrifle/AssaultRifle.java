@@ -1,11 +1,12 @@
 package com.gamebuster19901.halo.common.item.weapons.assaultrifle;
 
-import com.gamebuster19901.halo.capability.client.item.overlay.OverlayDefaultImpl;
-import com.gamebuster19901.halo.capability.client.item.reticle.ReticleDefaultImpl;
-import com.gamebuster19901.halo.capability.common.item.reloadable.ReloadableDefaultImpl;
-import com.gamebuster19901.halo.capability.common.item.shootable.ShootableDefaultImpl;
-import com.gamebuster19901.halo.capability.common.item.weapon.WeaponDefaultImpl;
-import com.gamebuster19901.halo.common.item.abstracts.HeldWeapon;
+import com.gamebuster19901.guncore.capability.client.item.overlay.OverlayDefaultImpl;
+import com.gamebuster19901.guncore.capability.client.item.reticle.ReticleDefaultImpl;
+import com.gamebuster19901.guncore.capability.common.item.reloadable.ReloadableDefaultImpl;
+import com.gamebuster19901.guncore.capability.common.item.shootable.ShootableDefaultImpl;
+import com.gamebuster19901.guncore.capability.common.item.weapon.WeaponDefaultImpl;
+
+import com.gamebuster19901.halo.common.item.HaloWeapon;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -24,7 +25,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class AssaultRifle extends HeldWeapon{
+public class AssaultRifle extends HaloWeapon{
 
 	public static final AssaultRifle INSTANCE = new AssaultRifle();
 	

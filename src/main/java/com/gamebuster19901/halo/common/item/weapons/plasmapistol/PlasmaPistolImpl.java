@@ -1,13 +1,13 @@
 package com.gamebuster19901.halo.common.item.weapons.plasmapistol;
 
-import com.gamebuster19901.halo.capability.common.energy.EnergyDefaultImpl;
-import com.gamebuster19901.halo.capability.common.heat.OverheatDefaultImpl;
-import com.gamebuster19901.halo.capability.common.item.combined.WeaponShootableEnergyOverheatImpl;
-import com.gamebuster19901.halo.capability.common.item.shootable.ShootableDefaultImpl;
-import com.gamebuster19901.halo.capability.common.item.weapon.Weapon;
-import com.gamebuster19901.halo.capability.common.item.weapon.WeaponDefaultImpl;
+import com.gamebuster19901.guncore.capability.common.energy.EnergyDefaultImpl;
+import com.gamebuster19901.guncore.capability.common.heat.OverheatDefaultImpl;
+import com.gamebuster19901.guncore.capability.common.item.combined.WeaponShootableEnergyOverheatImpl;
+import com.gamebuster19901.guncore.capability.common.item.shootable.ShootableDefaultImpl;
+import com.gamebuster19901.guncore.capability.common.item.weapon.Weapon;
+import com.gamebuster19901.guncore.capability.common.item.weapon.WeaponDefaultImpl;
+import com.gamebuster19901.guncore.common.item.abstracts.Projectile;
 import com.gamebuster19901.halo.common.entity.PlasmaPistolBullet;
-import com.gamebuster19901.halo.common.item.abstracts.Projectile;
 
 public class PlasmaPistolImpl extends WeaponShootableEnergyOverheatImpl {
 	
