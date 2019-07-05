@@ -1,0 +1,4 @@
+include ':guncore'
+File f = new File(new File(new File(".").getAbsolutePath()).getParentFile().getParentFile().getAbsolutePath() + "/GunCore")
+println "Searching for guncore in: " + f.getAbsolutePath()
+project(':guncore').projectDir = f

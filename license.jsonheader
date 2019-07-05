@@ -15,15 +15,3 @@
 		"https: //www.xbox.com/en-us/developers/rules"
 
 	],
-
-	"assault_rifle_bullet": { 
-		"category": "neutral",
-		"sounds": [
-			{
-				"name": "remember:assault_rifle/assault_rifle_shot",
-				"stream": false
-			}
-		],
-		"subtitle": "subtitle.halo.assault_rifle.shoot"
-	}
-}
