@@ -20,10 +20,10 @@
 		"category": "neutral",
 		"sounds": [
 			{
-				"name": "remember:assault_rifle/assault_rifle_shot",
+				"name": "oni:assault_rifle/assault_rifle_shot",
 				"stream": false
 			}
 		],
-		"subtitle": "subtitle.halo.assault_rifle.shoot"
+		"subtitle": "subtitle.oni.assault_rifle.shoot"
 	}
 }
