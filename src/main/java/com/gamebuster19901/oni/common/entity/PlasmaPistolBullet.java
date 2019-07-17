@@ -23,7 +23,7 @@ import com.gamebuster19901.guncore.capability.common.item.shootable.Shootable;
 import com.gamebuster19901.guncore.common.util.EasyLocalization;
 
 import net.minecraft.entity.EntityType;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
@@ -54,7 +54,7 @@ public class PlasmaPistolBullet extends EnergyProjectile implements EasyLocaliza
 	}
 
 	@Override
-	public NBTTagCompound getGun() {
+	public CompoundNBT getGun() {
 		return gun;
 	}
 

@@ -22,8 +22,9 @@ import java.util.UUID;
 import com.gamebuster19901.guncore.capability.common.item.shootable.Shootable;
 
 import net.minecraft.entity.EntityType;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class AssaultRifleBullet extends HaloProjectile{
@@ -48,11 +49,11 @@ public class AssaultRifleBullet extends HaloProjectile{
 
 	@Override
 	public void setGun(Shootable shootable) {
-		this.gun = (NBTTagCompound) shootable.serializeNBT();
+		this.gun = (CompoundNBT) shootable.serializeNBT();
 	}
 
 	@Override
-	public NBTTagCompound getGun() {
+	public CompoundNBT getGun() {
 		return gun;
 	}
 

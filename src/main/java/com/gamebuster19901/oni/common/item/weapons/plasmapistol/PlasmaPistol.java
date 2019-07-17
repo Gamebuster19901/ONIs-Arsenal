@@ -26,15 +26,16 @@ import com.gamebuster19901.guncore.capability.common.item.weapon.WeaponDefaultIm
 import com.gamebuster19901.oni.common.item.HaloWeapon;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -50,10 +51,11 @@ public class PlasmaPistol extends HaloWeapon{
 		super.inventoryTick(stack, world, entityIn, itemSlot, isSelected);
 		PlasmaPistolImpl impl = (PlasmaPistolImpl) stack.getCapability(WeaponDefaultImpl.CAPABILITY, null).orElseThrow(AssertionError::new);
 		if(isSelected) {
-			impl.addBloom((float) MathHelper.clamp(Math.max(Math.abs(entityIn.motionX), Math.abs(entityIn.motionZ)) * 4, 0, impl.getMaxBloom() / 2));
-			if(!entityIn.onGround && (entityIn.getLowestRidingEntity() instanceof EntityPlayer || entityIn.getLowestRidingEntity() instanceof EntityLiving)) {
-				if(entityIn instanceof EntityPlayer) {
-					EntityPlayer player = (EntityPlayer) entityIn;
+			Vec3d motion = entityIn.getMotion();
+			impl.addBloom((float) MathHelper.clamp(Math.max(Math.abs(motion.getX()), Math.abs(motion.getZ())) * 4, 0, impl.getMaxBloom() / 2));
+			if(!entityIn.onGround && (entityIn.getLowestRidingEntity() instanceof PlayerEntity || entityIn.getLowestRidingEntity() instanceof LivingEntity)) {
+				if(entityIn instanceof PlayerEntity) {
+					PlayerEntity player = (PlayerEntity) entityIn;
 					if(!player.isCreative()) {
 						return;
 					}
@@ -65,26 +67,26 @@ public class PlasmaPistol extends HaloWeapon{
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn){
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn){
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		if(stack.getCapability(WeaponDefaultImpl.CAPABILITY, null).isPresent()) {
 			PlasmaPistolImpl impl = (PlasmaPistolImpl) stack.getCapability(WeaponDefaultImpl.CAPABILITY, null).orElseThrow(AssertionError::new);
 			if(impl.canFire(playerIn)) {
 				impl.fire(playerIn);
 			}
-			return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
+			return new ActionResult<ItemStack>(ActionResultType.SUCCESS, stack);
 		}
-		return ActionResult.newResult(EnumActionResult.FAIL, stack);
+		return new ActionResult<ItemStack>(ActionResultType.FAIL, stack);
 	}
 	
 	@Override
-	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
-		return new ICapabilitySerializable<NBTTagCompound>() {
+	public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT nbt) {
+		return new ICapabilitySerializable<CompoundNBT>() {
 
 			public final PlasmaPistolImpl impl = (PlasmaPistolImpl) getCapability(WeaponDefaultImpl.CAPABILITY, null).orElseThrow(AssertionError::new);
 			
 			@Override
-			public <T> LazyOptional<T> getCapability(Capability<T> capability, EnumFacing side) {
+			public <T> LazyOptional<T> getCapability(Capability<T> capability, Direction side) {
 				if(capability == WeaponDefaultImpl.CAPABILITY || capability == ShootableDefaultImpl.CAPABILITY || capability == EnergyDefaultImpl.CAPABILITY || capability == OverheatDefaultImpl.CAPABILITY || capability == ReticleDefaultImpl.CAPABILITY || capability == OverlayDefaultImpl.CAPABILITY) {
 					return (LazyOptional<T>) LazyOptional.of(this::getImpl);
 				}
@@ -99,12 +101,12 @@ public class PlasmaPistol extends HaloWeapon{
 			}
 
 			@Override
-			public NBTTagCompound serializeNBT() {
+			public CompoundNBT serializeNBT() {
 				return impl.serializeNBT();
 			}
 
 			@Override
-			public void deserializeNBT(NBTTagCompound nbt) {
+			public void deserializeNBT(CompoundNBT nbt) {
 				impl.deserializeNBT(nbt);
 			}
 			

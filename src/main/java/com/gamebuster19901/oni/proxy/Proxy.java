@@ -32,6 +32,7 @@ import com.gamebuster19901.oni.common.item.weapons.assaultrifle.AssaultRifle;
 import com.gamebuster19901.oni.common.item.weapons.plasmapistol.PlasmaPistol;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -82,9 +83,9 @@ public abstract class Proxy extends com.gamebuster19901.guncore.proxy.Proxy{
 		registry.register(PlasmaPistolBullet.TYPE = registerEntity(PlasmaPistolBullet.class, PlasmaPistolBullet::new));
 	}
 	
-	private EntityType<Entity> registerEntity(Class<? extends Entity> entityClass, Function<? super World, ? extends Entity> constructor) {
+	private EntityType<Entity> registerEntity(Class<? extends Entity> entityClass, EntityType.IFactory factory, EntityClassification classification) {
 		ResourceLocation location = EasyLocalization.getResourceLocation(MODID, entityClass);
-		return (EntityType<Entity>) EntityType.Builder.create(entityClass, constructor).tracker(200, 1, false).build(location.toString()).setRegistryName(location);
+		return (EntityType<Entity>) EntityType.Builder.create(factory, classification).setTrackingRange(200).setUpdateInterval(1).setShouldReceiveVelocityUpdates(false).build(location.toString()).setRegistryName(location);
 	}
 	
 	private void registerAmmo(RegistryEvent.Register<Item> event) {
