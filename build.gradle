@@ -18,7 +18,7 @@ apply plugin: 'maven-publish'
 
 version = "0.0.0.0-1.14.3"
 group = "com.gamebuster19901" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "halo"
+archivesBaseName = "oni"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
@@ -50,7 +50,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                halo {
+                oni {
                     source sourceSets.main
                 }
             }
@@ -66,7 +66,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                halo {
+                oni {
                     source sourceSets.main
                 }
             }
