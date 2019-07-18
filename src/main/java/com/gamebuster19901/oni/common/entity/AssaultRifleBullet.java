@@ -24,17 +24,13 @@ import com.gamebuster19901.guncore.capability.common.item.shootable.Shootable;
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class AssaultRifleBullet extends HaloProjectile{
-	public static EntityType TYPE;
-	
 	public static SoundEvent shootingSound;
 	
-	public AssaultRifleBullet(World worldIn) {
-		super(TYPE, worldIn);
-		this.setSize(1f / 16, 1f / 16);
+	public AssaultRifleBullet(EntityType type, World worldIn) {
+		super(type, worldIn);
 	}
 
 	@Override

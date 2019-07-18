@@ -24,7 +24,10 @@ import com.gamebuster19901.guncore.capability.common.item.shootable.ShootableDef
 import com.gamebuster19901.guncore.capability.common.item.weapon.Weapon;
 import com.gamebuster19901.guncore.capability.common.item.weapon.WeaponDefaultImpl;
 import com.gamebuster19901.guncore.common.item.abstracts.Projectile;
+import com.gamebuster19901.guncore.common.util.EasyLocalization;
 import com.gamebuster19901.oni.common.entity.PlasmaPistolBullet;
+
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class PlasmaPistolImpl extends WeaponShootableEnergyOverheatImpl {
 	
@@ -38,7 +41,7 @@ public class PlasmaPistolImpl extends WeaponShootableEnergyOverheatImpl {
 	private static final float maxVerticalRecoil = 1f;
 	private static final float minHorizontalRecoil = 0f;
 	private static final float maxHorizontalRecoil = 0f;
-	private static final Projectile projectile = new Projectile(new PlasmaPistolBullet(null));
+	private static final Projectile projectile = new Projectile(new PlasmaPistolBullet(ForgeRegistries.ENTITIES.getValue(EasyLocalization.getResourceLocation("oni", PlasmaPistolBullet.class)),null));
 	
 	public PlasmaPistolImpl() {
 		super(

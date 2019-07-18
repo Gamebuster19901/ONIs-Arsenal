@@ -21,8 +21,8 @@ import static com.gamebuster19901.oni.Main.MODID;
 
 import java.util.HashSet;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
+import com.gamebuster19901.guncore.Main;
 import com.gamebuster19901.guncore.common.item.abstracts.Ammo;
 import com.gamebuster19901.guncore.common.util.EasyLocalization;
 import com.gamebuster19901.oni.common.entity.AssaultRifleBullet;
@@ -37,7 +37,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.world.World;
+
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -46,6 +46,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
+import net.minecraftforge.registries.ObjectHolder;
 
 public abstract class Proxy extends com.gamebuster19901.guncore.proxy.Proxy{
 	
@@ -76,16 +78,39 @@ public abstract class Proxy extends com.gamebuster19901.guncore.proxy.Proxy{
 		registerAmmo(event);
 	}
 	
+	@ObjectHolder("oni:assault_rifle_bullet")
+	public static EntityType<AssaultRifleBullet> assaultRifleBullet;
+	@ObjectHolder("oni:plasma_rifle_bullet")
+	public static EntityType<PlasmaPistolBullet> plasmaPistolBullet;
+	
 	@SubscribeEvent
 	public void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
-		IForgeRegistry<EntityType<?>> registry = event.getRegistry();
-		registry.register(AssaultRifleBullet.TYPE = registerEntity(AssaultRifleBullet.class, AssaultRifleBullet::new));
-		registry.register(PlasmaPistolBullet.TYPE = registerEntity(PlasmaPistolBullet.class, PlasmaPistolBullet::new));
-	}
-	
-	private EntityType<Entity> registerEntity(Class<? extends Entity> entityClass, EntityType.IFactory factory, EntityClassification classification) {
-		ResourceLocation location = EasyLocalization.getResourceLocation(MODID, entityClass);
-		return (EntityType<Entity>) EntityType.Builder.create(factory, classification).setTrackingRange(200).setUpdateInterval(1).setShouldReceiveVelocityUpdates(false).build(location.toString()).setRegistryName(location);
+		IForgeRegistry registry = event.getRegistry();
+		HashSet<IForgeRegistryEntry> entries = new HashSet<IForgeRegistryEntry>();
+		
+		ResourceLocation ar = EasyLocalization.getResourceLocation(MODID, AssaultRifleBullet.class);
+		registry.register(EntityType.Builder
+			.create(AssaultRifleBullet::new, EntityClassification.MISC)
+			.size(1f / 16,  1f / 16)
+			.setTrackingRange(200)
+			.setUpdateInterval(1)
+			.setShouldReceiveVelocityUpdates(false)
+			.setCustomClientFactory((spawnEntity, world) -> new AssaultRifleBullet(assaultRifleBullet, world))
+			.build(ar.toString())
+			.setRegistryName(ar));
+		Main.LOGGER.fatal(ar);
+		
+		ResourceLocation pp = EasyLocalization.getResourceLocation(MODID, PlasmaPistolBullet.class);
+		registry.register(EntityType.Builder
+			.create(PlasmaPistolBullet::new, EntityClassification.MISC)
+			.size(2f / 16, 1f / 16)
+			.setTrackingRange(200)
+			.setUpdateInterval(1)
+			.setShouldReceiveVelocityUpdates(false)
+			.build(pp.toString())
+			.setRegistryName(pp));
+		
+		registry.registerAll(entries.toArray(new IForgeRegistryEntry[]{}));
 	}
 	
 	private void registerAmmo(RegistryEvent.Register<Item> event) {

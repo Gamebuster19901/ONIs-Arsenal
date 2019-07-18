@@ -28,14 +28,11 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public class PlasmaPistolBullet extends EnergyProjectile implements EasyLocalization{
-	public static EntityType TYPE;
-	
 	public static SoundEvent shootingSound;
 	
 	
-	public PlasmaPistolBullet(World worldIn) {
-		super(TYPE, worldIn);
-		this.setSize(2f / 16, 1f / 16);
+	public PlasmaPistolBullet(EntityType type, World worldIn) {
+		super(type, worldIn);
 	}
 
 	@Override
