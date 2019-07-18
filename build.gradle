@@ -2,7 +2,6 @@ buildscript {
     repositories {
         jcenter()
         mavenCentral()
-        mavenLocal()
         maven { url "https://files.minecraftforge.net/maven" }
         maven { url "https://jitpack.io" }   
     }
@@ -75,6 +74,9 @@ minecraft {
     }
 }
 
+repositories{
+    maven { url "https://jitpack.io" }
+}
 dependencies {
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
