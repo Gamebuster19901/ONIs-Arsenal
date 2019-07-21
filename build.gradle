@@ -82,7 +82,7 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.14.3-27.0.51'
-    implementation group: 'com.github.Gamebuster19901', name: 'GunCore', version: '1.14.3-SNAPSHOT', changing: true;
+    implementation fg.deobf("com.github.Gamebuster19901:GunCore:1.14.3-SNAPSHOT")
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
