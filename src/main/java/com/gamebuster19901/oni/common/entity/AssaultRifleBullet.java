@@ -26,7 +26,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class AssaultRifleBullet extends HaloProjectile{
+public class AssaultRifleBullet extends OniProjectile{
 	public static SoundEvent shootingSound;
 	
 	public AssaultRifleBullet(EntityType type, World worldIn) {

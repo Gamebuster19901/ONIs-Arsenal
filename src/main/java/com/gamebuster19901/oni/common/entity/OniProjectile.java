@@ -24,9 +24,9 @@ import com.gamebuster19901.guncore.common.entity.ProjectileEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.World;
 
-public abstract class HaloProjectile extends ProjectileEntity{
+public abstract class OniProjectile extends ProjectileEntity{
 
-	public HaloProjectile(EntityType type, World worldIn) {
+	public OniProjectile(EntityType type, World worldIn) {
 		super(type, worldIn);
 	}
 
