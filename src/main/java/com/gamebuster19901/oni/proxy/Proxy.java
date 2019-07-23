@@ -22,7 +22,6 @@ import static com.gamebuster19901.oni.Main.MODID;
 import java.util.HashSet;
 import java.util.function.Consumer;
 
-import com.gamebuster19901.guncore.Main;
 import com.gamebuster19901.guncore.common.item.abstracts.Ammo;
 import com.gamebuster19901.guncore.common.util.EasyLocalization;
 import com.gamebuster19901.oni.common.entity.AssaultRifleBullet;
@@ -98,7 +97,6 @@ public abstract class Proxy extends com.gamebuster19901.guncore.proxy.Proxy{
 			.setCustomClientFactory((spawnEntity, world) -> new AssaultRifleBullet(assaultRifleBullet, world))
 			.build(ar.toString())
 			.setRegistryName(ar));
-		Main.LOGGER.fatal(ar);
 		
 		ResourceLocation pp = EasyLocalization.getResourceLocation(MODID, PlasmaPistolBullet.class);
 		registry.register(EntityType.Builder
