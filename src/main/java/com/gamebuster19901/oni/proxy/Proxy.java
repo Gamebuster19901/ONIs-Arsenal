@@ -79,7 +79,7 @@ public abstract class Proxy extends com.gamebuster19901.guncore.proxy.Proxy{
 	
 	@ObjectHolder("oni:assault_rifle_bullet")
 	public static EntityType<AssaultRifleBullet> assaultRifleBullet;
-	@ObjectHolder("oni:plasma_rifle_bullet")
+	@ObjectHolder("oni:plasma_pistol_bullet")
 	public static EntityType<PlasmaPistolBullet> plasmaPistolBullet;
 	
 	@SubscribeEvent
