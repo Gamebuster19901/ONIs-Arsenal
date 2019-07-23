@@ -25,8 +25,6 @@ import com.gamebuster19901.guncore.capability.common.item.weapon.WeaponDefaultIm
 
 import com.gamebuster19901.oni.common.item.OniWeapon;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -34,8 +32,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import net.minecraftforge.common.capabilities.Capability;
@@ -46,25 +42,6 @@ import net.minecraftforge.common.util.LazyOptional;
 public class AssaultRifle extends OniWeapon{
 
 	public static final AssaultRifle INSTANCE = new AssaultRifle();
-	
-	@Override
-	public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-		super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
-		AssaultRifleImpl impl = (AssaultRifleImpl) stack.getCapability(ShootableDefaultImpl.CAPABILITY, null).orElseThrow(AssertionError::new);
-		if(isSelected) {
-			Vec3d motion = entityIn.getMotion();
-			impl.addBloom((float) MathHelper.clamp(Math.max(Math.abs(motion.getX()), Math.abs(motion.getZ())) * 4, 0, impl.getMaxBloom() / 2));
-			if(!entityIn.onGround && (entityIn.getLowestRidingEntity() instanceof PlayerEntity || entityIn.getLowestRidingEntity() instanceof LivingEntity)) {
-				if(entityIn instanceof PlayerEntity) {
-					PlayerEntity player = (PlayerEntity) entityIn;
-					if(!player.isCreative()) {
-						return;
-					}
-				}
-				impl.addBloom(impl.getBloomDecreasePerTick() * 4);
-			}
-		}
-	}
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn){
@@ -79,7 +56,7 @@ public class AssaultRifle extends OniWeapon{
 			}
 			return new ActionResult<ItemStack>(ActionResultType.SUCCESS, stack);
 		}
-		return new ActionResult<ItemStack>(ActionResultType.FAIL.PASS, stack);
+		return new ActionResult<ItemStack>(ActionResultType.FAIL, stack);
 	}
 	
 	@Override

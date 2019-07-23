@@ -25,8 +25,6 @@ import com.gamebuster19901.guncore.capability.common.item.shootable.ShootableDef
 import com.gamebuster19901.guncore.capability.common.item.weapon.WeaponDefaultImpl;
 import com.gamebuster19901.oni.common.item.OniWeapon;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -34,8 +32,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -45,26 +41,6 @@ import net.minecraftforge.common.util.LazyOptional;
 public class PlasmaPistol extends OniWeapon{
 
 	public static final PlasmaPistol INSTANCE = new PlasmaPistol();
-	
-	@Override
-	public void inventoryTick(ItemStack stack, World world, Entity entityIn, int itemSlot, boolean isSelected) {
-		super.inventoryTick(stack, world, entityIn, itemSlot, isSelected);
-		PlasmaPistolImpl impl = (PlasmaPistolImpl) stack.getCapability(WeaponDefaultImpl.CAPABILITY, null).orElseThrow(AssertionError::new);
-		if(isSelected) {
-			Vec3d motion = entityIn.getMotion();
-			impl.addBloom((float) MathHelper.clamp(Math.max(Math.abs(motion.getX()), Math.abs(motion.getZ())) * 4, 0, impl.getMaxBloom() / 2));
-			if(!entityIn.onGround && (entityIn.getLowestRidingEntity() instanceof PlayerEntity || entityIn.getLowestRidingEntity() instanceof LivingEntity)) {
-				if(entityIn instanceof PlayerEntity) {
-					PlayerEntity player = (PlayerEntity) entityIn;
-					if(!player.isCreative()) {
-						return;
-					}
-				}
-				impl.addBloom(impl.getBloomDecreasePerTick() * 4);
-			}
-			impl.addTemp(-impl.getTempDecrease());
-		}
-	}
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn){
