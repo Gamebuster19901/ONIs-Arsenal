@@ -107,6 +107,7 @@ public abstract class Proxy extends com.gamebuster19901.guncore.proxy.Proxy{
 			.setTrackingRange(200)
 			.setUpdateInterval(1)
 			.setShouldReceiveVelocityUpdates(false)
+			.setCustomClientFactory((spawnEntity, world) -> new PlasmaPistolBullet(plasmaPistolBullet, world))
 			.build(pp.toString())
 			.setRegistryName(pp));
 		
