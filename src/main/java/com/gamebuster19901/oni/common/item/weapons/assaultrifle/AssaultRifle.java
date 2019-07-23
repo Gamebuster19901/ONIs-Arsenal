@@ -23,7 +23,7 @@ import com.gamebuster19901.guncore.capability.common.item.reloadable.ReloadableD
 import com.gamebuster19901.guncore.capability.common.item.shootable.ShootableDefaultImpl;
 import com.gamebuster19901.guncore.capability.common.item.weapon.WeaponDefaultImpl;
 
-import com.gamebuster19901.oni.common.item.HaloWeapon;
+import com.gamebuster19901.oni.common.item.OniWeapon;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -43,7 +43,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class AssaultRifle extends HaloWeapon{
+public class AssaultRifle extends OniWeapon{
 
 	public static final AssaultRifle INSTANCE = new AssaultRifle();
 	
