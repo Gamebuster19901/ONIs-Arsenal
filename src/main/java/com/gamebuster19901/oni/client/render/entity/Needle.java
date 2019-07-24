@@ -2,13 +2,12 @@
 
 package com.gamebuster19901.oni.client.render.entity;
 
-import org.lwjgl.opengl.GL11;
+import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.client.renderer.model.Model;
 import net.minecraft.client.renderer.model.ModelBox;
 import net.minecraft.entity.Entity;
 
-public class Needle extends Model {
+public class Needle extends EntityModel {
 	private final RendererModel bottomSouth;
 	private final RendererModel bottomNorth;
 	private final RendererModel bottomEast;
