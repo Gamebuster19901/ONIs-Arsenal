@@ -23,6 +23,13 @@ public class Needle extends Model {
 	public Needle() {
 		textureWidth = 16;
 		textureHeight = 16;
+		
+		bottom = new RendererModel(this);
+		bottom.setRotationPoint(0.0F, 24.0F, 0.0F);
+
+		top = new RendererModel(this);
+		top.setRotationPoint(0.0F, 24.0F, 0.0F);
+		setRotationAngle(top, 3.1416F, 0.0F, 0.0F);
 
 		bottomSouth = new RendererModel(this);
 		bottomSouth.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -47,13 +54,6 @@ public class Needle extends Model {
 		setRotationAngle(bottomWest, 0.0F, 0.0F, 0.0873F);
 		bottom.addChild(bottomWest);
 		bottomWest.cubeList.add(new ModelBox(bottomWest, 0, 0, -0.1F, -1.0F, -0.1F, 0, 1, 0, 0.0F, false));
-
-		bottom = new RendererModel(this);
-		bottom.setRotationPoint(0.0F, 24.0F, 0.0F);
-
-		top = new RendererModel(this);
-		top.setRotationPoint(0.0F, 24.0F, 0.0F);
-		setRotationAngle(top, 3.1416F, 0.0F, 0.0F);
 
 		topWest = new RendererModel(this);
 		topWest.setRotationPoint(0.0F, 0.0F, 0.0F);
