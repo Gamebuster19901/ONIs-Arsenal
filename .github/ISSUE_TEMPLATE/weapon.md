@@ -14,7 +14,10 @@ Add WEAPON to the game.
 ### Model
 - [ ] Texture
 - [ ] Model
+
+### UI
 - [ ] Reticle Texture
+- [ ] Ammo Count Texture
 
 ### Ammo
 - [ ] Texture
@@ -23,3 +26,6 @@ Add WEAPON to the game.
 - [ ] Firing
 - [ ] Reloading
 - [ ] Impact
+
+### Capabilities
+- [ ] List any extra capabilities the weapon requires here
