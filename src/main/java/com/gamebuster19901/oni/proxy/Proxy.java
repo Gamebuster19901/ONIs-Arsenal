@@ -20,8 +20,6 @@ package com.gamebuster19901.oni.proxy;
 import static com.gamebuster19901.oni.Main.MODID;
 
 import java.util.HashSet;
-import java.util.function.Consumer;
-
 import com.gamebuster19901.guncore.common.item.abstracts.Ammo;
 import com.gamebuster19901.guncore.common.util.EasyLocalization;
 import com.gamebuster19901.oni.common.entity.AssaultRifleBullet;
@@ -39,7 +37,6 @@ import net.minecraft.util.SoundEvent;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -54,7 +51,7 @@ public abstract class Proxy extends com.gamebuster19901.guncore.proxy.Proxy{
 	HashSet<Class<? extends Entity>> registeredProjectile = new HashSet<Class<? extends Entity>>();
 	
 	public Proxy() {
-		getBus().register(this);
+
 	}
 	
 	@SubscribeEvent
@@ -64,10 +61,6 @@ public abstract class Proxy extends com.gamebuster19901.guncore.proxy.Proxy{
 	
 	protected static IEventBus getBus() {
 		return FMLJavaModLoadingContext.get().getModEventBus();
-	}
-	
-	protected <T extends Event> void addListener(Consumer<T> consumer) {
-		getBus().addListener(consumer);
 	}
 	
 	@SubscribeEvent
