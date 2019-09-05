@@ -25,7 +25,7 @@ public class ClientProxy extends Proxy{
 
 	public ClientProxy() {
 		super();
-		addListener(this::clientSetup);
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 	
 	@SubscribeEvent
