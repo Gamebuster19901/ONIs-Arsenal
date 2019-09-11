@@ -22,7 +22,7 @@ import com.gamebuster19901.guncore.capability.client.item.reticle.ReticleDefault
 import com.gamebuster19901.guncore.capability.common.item.reloadable.ReloadableDefaultImpl;
 import com.gamebuster19901.guncore.capability.common.item.shootable.ShootableDefaultImpl;
 import com.gamebuster19901.guncore.capability.common.item.weapon.WeaponDefaultImpl;
-
+import com.gamebuster19901.oni.Main;
 import com.gamebuster19901.oni.common.item.OniWeapon;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -77,7 +77,7 @@ public class AssaultRifle extends OniWeapon{
 				if(impl != null) {
 					return impl;
 				}
-				return new AssaultRifleImpl();
+				return new AssaultRifleImpl(Main.proxy);
 			}
 
 			@Override

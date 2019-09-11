@@ -23,6 +23,8 @@ import com.gamebuster19901.guncore.capability.common.item.shootable.ShootableDef
 import com.gamebuster19901.guncore.capability.common.item.weapon.Weapon;
 import com.gamebuster19901.guncore.capability.common.item.weapon.WeaponDefaultImpl;
 import com.gamebuster19901.guncore.common.item.NullAmmo;
+import com.gamebuster19901.oni.proxy.Proxy;
+import com.gamebuster19901.oni.proxy.ServerProxy;
 
 public class AssaultRifleImpl extends WeaponShootableReloadableImpl{
 
@@ -39,10 +41,25 @@ public class AssaultRifleImpl extends WeaponShootableReloadableImpl{
 	private static final int magSize = 36;
 	private static final int reloadTime = 20;
 	
-	public AssaultRifleImpl() {
-		super(new WeaponDefaultImpl(firingRate, isAutomatic), 
-			  new ShootableDefaultImpl(maxBloom, bloomIncrease, bloomDecrease, muzzleVelocity, minVerticalRecoil, maxVerticalRecoil, minHorizontalRecoil, maxHorizontalRecoil, NullAmmo.INSTANCE.getProjectile()),
-			  new ReloadableDefaultImpl(magSize, reloadTime));
+	public AssaultRifleImpl(Proxy side) {
+		super(side instanceof ServerProxy ? getServerImpl() : getClientImpl());
+	}
+	
+	private static Object[] getServerImpl() {
+		return new Object[] {
+			new WeaponDefaultImpl(firingRate, isAutomatic), 
+			new ShootableDefaultImpl(maxBloom, bloomIncrease, bloomDecrease, muzzleVelocity, minVerticalRecoil, maxVerticalRecoil, minHorizontalRecoil, maxHorizontalRecoil, NullAmmo.INSTANCE.getProjectile()),
+			new ReloadableDefaultImpl(magSize, reloadTime)
+		};
+	}
+	
+	private static Object[] getClientImpl() {
+		return new Object[] {
+				new WeaponDefaultImpl(firingRate, isAutomatic), 
+				new ShootableDefaultImpl(maxBloom, bloomIncrease, bloomDecrease, muzzleVelocity, minVerticalRecoil, maxVerticalRecoil, minHorizontalRecoil, maxHorizontalRecoil, NullAmmo.INSTANCE.getProjectile()),
+				new ReloadableDefaultImpl(magSize, reloadTime),
+				new AssaultRifleReticleImpl()
+		};
 	}
 	
 }
