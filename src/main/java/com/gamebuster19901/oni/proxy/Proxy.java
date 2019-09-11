@@ -20,6 +20,7 @@ package com.gamebuster19901.oni.proxy;
 import static com.gamebuster19901.oni.Main.MODID;
 
 import java.util.HashSet;
+
 import com.gamebuster19901.guncore.common.item.abstracts.Ammo;
 import com.gamebuster19901.guncore.common.util.EasyLocalization;
 import com.gamebuster19901.oni.common.entity.AssaultRifleBullet;
@@ -45,7 +46,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.ObjectHolder;
 
-public abstract class Proxy extends com.gamebuster19901.guncore.proxy.Proxy{
+public abstract class Proxy {
 	
 	HashSet<Ammo> registeredAmmo = new HashSet<Ammo>();
 	HashSet<Class<? extends Entity>> registeredProjectile = new HashSet<Class<? extends Entity>>();
@@ -54,6 +55,7 @@ public abstract class Proxy extends com.gamebuster19901.guncore.proxy.Proxy{
 
 	}
 	
+	@SuppressWarnings("unused")
 	@SubscribeEvent
 	public void setup(FMLCommonSetupEvent e) {
 		MinecraftForge.EVENT_BUS.register(this);

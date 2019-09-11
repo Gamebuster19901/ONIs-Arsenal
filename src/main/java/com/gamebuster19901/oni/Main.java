@@ -22,10 +22,13 @@ import static com.gamebuster19901.oni.Main.MODID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.gamebuster19901.oni.proxy.*;
+import com.gamebuster19901.oni.proxy.ClientProxy;
+import com.gamebuster19901.oni.proxy.Proxy;
+import com.gamebuster19901.oni.proxy.ServerProxy;
 
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(value = MODID)
 public class Main {
@@ -36,13 +39,9 @@ public class Main {
 	
 	public static Proxy proxy;
 	
-	private static Main instance;
-	
 	{
 		proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
+		FMLJavaModLoadingContext.get().getModEventBus().register(proxy);
 	}
-	
-	public static Main getInstance(){
-		return instance;
-	}
+
 }
