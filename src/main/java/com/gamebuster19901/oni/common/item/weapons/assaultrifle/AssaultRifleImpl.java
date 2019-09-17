@@ -58,7 +58,8 @@ public class AssaultRifleImpl extends WeaponShootableReloadableImpl{
 				new WeaponDefaultImpl(firingRate, isAutomatic), 
 				new ShootableDefaultImpl(maxBloom, bloomIncrease, bloomDecrease, muzzleVelocity, minVerticalRecoil, maxVerticalRecoil, minHorizontalRecoil, maxHorizontalRecoil, NullAmmo.INSTANCE.getProjectile()),
 				new ReloadableDefaultImpl(magSize, reloadTime),
-				new AssaultRifleReticleImpl()
+				new AssaultRifleReticleImpl(),
+				new AssaultRifleOverlayImpl()
 		};
 	}
 	
