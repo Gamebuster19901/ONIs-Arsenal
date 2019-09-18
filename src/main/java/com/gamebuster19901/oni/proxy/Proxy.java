@@ -22,7 +22,7 @@ import static com.gamebuster19901.oni.Main.MODID;
 import java.util.HashSet;
 
 import com.gamebuster19901.guncore.common.item.abstracts.Ammo;
-import com.gamebuster19901.guncore.common.util.EasyLocalization;
+import com.gamebuster19901.guncore.common.util.Resourced;
 import com.gamebuster19901.oni.common.entity.AssaultRifleBullet;
 import com.gamebuster19901.oni.common.entity.PlasmaPistolBullet;
 import com.gamebuster19901.oni.common.item.weapons.ammo.AssaultRifleAmmo;
@@ -82,7 +82,7 @@ public abstract class Proxy {
 		IForgeRegistry registry = event.getRegistry();
 		HashSet<IForgeRegistryEntry> entries = new HashSet<IForgeRegistryEntry>();
 		
-		ResourceLocation ar = EasyLocalization.getResourceLocation(MODID, AssaultRifleBullet.class);
+		ResourceLocation ar = Resourced.getResourceLocation(MODID, AssaultRifleBullet.class);
 		registry.register(EntityType.Builder
 			.create(AssaultRifleBullet::new, EntityClassification.MISC)
 			.size(1f / 16,  1f / 16)
@@ -93,7 +93,7 @@ public abstract class Proxy {
 			.build(ar.toString())
 			.setRegistryName(ar));
 		
-		ResourceLocation pp = EasyLocalization.getResourceLocation(MODID, PlasmaPistolBullet.class);
+		ResourceLocation pp = Resourced.getResourceLocation(MODID, PlasmaPistolBullet.class);
 		registry.register(EntityType.Builder
 			.create(PlasmaPistolBullet::new, EntityClassification.MISC)
 			.size(2f / 16, 1f / 16)
@@ -119,8 +119,8 @@ public abstract class Proxy {
 	@SubscribeEvent
 	public void registerSounds(RegistryEvent.Register<SoundEvent> e) {
 		e.getRegistry().registerAll(
-			AssaultRifleBullet.shootingSound = new SoundEvent(EasyLocalization.getResourceLocation(MODID, AssaultRifleBullet.class)).setRegistryName(EasyLocalization.getResourceLocation(MODID, AssaultRifleBullet.class)),
-			PlasmaPistolBullet.shootingSound = new SoundEvent(EasyLocalization.getResourceLocation(MODID, PlasmaPistolBullet.class)).setRegistryName(EasyLocalization.getResourceLocation(MODID, PlasmaPistolBullet.class))
+			AssaultRifleBullet.shootingSound = new SoundEvent(Resourced.getResourceLocation(MODID, AssaultRifleBullet.class)).setRegistryName(Resourced.getResourceLocation(MODID, AssaultRifleBullet.class)),
+			PlasmaPistolBullet.shootingSound = new SoundEvent(Resourced.getResourceLocation(MODID, PlasmaPistolBullet.class)).setRegistryName(Resourced.getResourceLocation(MODID, PlasmaPistolBullet.class))
 		);
 	}
 	

@@ -18,7 +18,7 @@
 package com.gamebuster19901.oni.common.item.weapons.ammo;
 
 import com.gamebuster19901.guncore.common.item.abstracts.Projectile;
-import com.gamebuster19901.guncore.common.util.EasyLocalization;
+import com.gamebuster19901.guncore.common.util.Resourced;
 import com.gamebuster19901.oni.common.entity.AssaultRifleBullet;
 
 import net.minecraftforge.registries.ForgeRegistries;
@@ -28,7 +28,7 @@ public class AssaultRifleAmmo extends HaloAmmo{
 	public static final AssaultRifleAmmo INSTANCE = new AssaultRifleAmmo();
 	
 	public AssaultRifleAmmo() {
-		super(new Projectile(new AssaultRifleBullet(ForgeRegistries.ENTITIES.getValue(EasyLocalization.getResourceLocation("oni", AssaultRifleBullet.class)), null)), 36);
+		super(new Projectile(new AssaultRifleBullet(ForgeRegistries.ENTITIES.getValue(Resourced.getResourceLocation("oni", AssaultRifleBullet.class)), null)), 36);
 	}
 
 }

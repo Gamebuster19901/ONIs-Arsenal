@@ -20,14 +20,12 @@ package com.gamebuster19901.oni.common.entity;
 import java.util.UUID;
 
 import com.gamebuster19901.guncore.capability.common.item.shootable.Shootable;
-import com.gamebuster19901.guncore.common.util.EasyLocalization;
-
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class PlasmaPistolBullet extends EnergyProjectile implements EasyLocalization{
+public class PlasmaPistolBullet extends EnergyProjectile{
 	public static SoundEvent shootingSound;
 	
 	
