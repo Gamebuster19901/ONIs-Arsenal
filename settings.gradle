@@ -1,0 +1,8 @@
+sourceControl {
+    gitRepository("https://github.com/Gamebuster19901/LicenseChecker.git") {
+        producesModule("com.gamebuster19901:LicenseChecker")
+    }
+    gitRepository("https://github.com/Gamebuster19901/GunCore.git") {
+        producesModule("com.gamebuster19901:GunCore")
+    }
+}
