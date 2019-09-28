@@ -3,10 +3,10 @@ gradle.ext.mappingChannel = "snapshot"
 gradle.ext.mappingVersion = "20190812-1.14.3"
 
 sourceControl {
-    gitRepository("https://github.com/Gamebuster19901/LicenseChecker.git") {
+    gitRepository("https://gamebuster19901.com/LicenseChecker.git") {
         producesModule("com.gamebuster19901:LicenseChecker")
     }
-    gitRepository("https://github.com/Gamebuster19901/GunCore.git") {
-        producesModule("com.gamebuster19901:GunCore")
+    gitRepository("https://gamebuster19901.com/GunCore.git") {
+    	producesModule("com.gamebuster19901:GunCore")
     }
 }
