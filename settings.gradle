@@ -1,0 +1,12 @@
+gradle.ext.forgeVersion = "net.minecraftforge:forge:1.14.4-28.0.104"
+gradle.ext.mappingChannel = "snapshot"
+gradle.ext.mappingVersion = "20190812-1.14.3"
+
+sourceControl {
+	gitRepository("https://gamebuster19901.com/LicenseChecker.git") {
+		producesModule("com.gamebuster19901:LicenseChecker")
+	}
+	gitRepository("https://gamebuster19901.com/GunCore.git") {
+		producesModule("com.gamebuster19901:GunCore")
+	}
+}
