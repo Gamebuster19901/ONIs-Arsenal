@@ -29,6 +29,10 @@ public abstract class OniProjectile extends ProjectileEntity{
 	public OniProjectile(EntityType type, World worldIn) {
 		super(type, worldIn);
 	}
+	
+	public OniProjectile(EntityType type, World world, float damage) {
+		super(type, world, damage);
+	}
 
 	@Override
 	public String getModId() {

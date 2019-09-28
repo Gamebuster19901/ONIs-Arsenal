@@ -25,10 +25,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class AssaultRifleAmmo extends HaloAmmo{
 	
-	public static final AssaultRifleAmmo INSTANCE = new AssaultRifleAmmo();
+	public static final AssaultRifleBullet BULLET = new AssaultRifleBullet(ForgeRegistries.ENTITIES.getValue(Resourced.getResourceLocation("oni", AssaultRifleBullet.class)), null);
+	public static final AssaultRifleAmmo INSTANCE = new AssaultRifleAmmo(3f + 1f/3f);
 	
-	public AssaultRifleAmmo() {
-		super(new Projectile(new AssaultRifleBullet(ForgeRegistries.ENTITIES.getValue(Resourced.getResourceLocation("oni", AssaultRifleBullet.class)), null)), 36);
+	public AssaultRifleAmmo(float additionalDamage) {
+		super(new Projectile(BULLET), 36, additionalDamage);
 	}
 
 }

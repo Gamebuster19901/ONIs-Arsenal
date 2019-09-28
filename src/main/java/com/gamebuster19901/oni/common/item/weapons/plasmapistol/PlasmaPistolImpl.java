@@ -45,7 +45,7 @@ public class PlasmaPistolImpl extends WeaponShootableEnergyOverheatImpl {
 	
 	public PlasmaPistolImpl() {
 		super(
-			new WeaponDefaultImpl(firingRate, isAutomatic),
+			new WeaponDefaultImpl(3, firingRate, isAutomatic),
 			new ShootableDefaultImpl(maxBloom, bloomIncrease, bloomDecrease, muzzleVelocity, minVerticalRecoil, maxVerticalRecoil, minHorizontalRecoil, maxHorizontalRecoil, projectile.getProjectileNBT()),
 			new EnergyDefaultImpl(1000, 10, 50, 0),
 			new OverheatDefaultImpl(0, 100, 1, 14)

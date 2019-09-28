@@ -24,8 +24,8 @@ import com.gamebuster19901.guncore.common.item.abstracts.Projectile;
 
 public class HaloAmmo extends Ammo{
 
-	public HaloAmmo(Projectile projectile, int maxStackSize) {
-		super(projectile, maxStackSize);
+	public HaloAmmo(Projectile projectile, int maxStackSize, float additionalDamage) {
+		super(projectile, maxStackSize, additionalDamage);
 	}
 
 	@Override
