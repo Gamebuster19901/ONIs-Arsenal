@@ -28,6 +28,10 @@ labels:
         color: "05a5a8"
         description: "This is a MinecraftForge issue or an issue caused by MinecraftForge"
     -
+        name: "Other - Sparkle"
+        color: "89caff"
+        description: "This is a Sparkle issue or an issue caused by Sparkle"
+    -
         name: "Other - Vanilla"
         color: "fef2c0"
         description: "This is a Minecraft issue or an issue caused by Minecraft"

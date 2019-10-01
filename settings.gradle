@@ -1,12 +1,16 @@
+//Forge
 gradle.ext.forgeVersion = "net.minecraftforge:forge:1.14.4-28.0.104"
 gradle.ext.mappingChannel = "snapshot"
 gradle.ext.mappingVersion = "20190812-1.14.3"
 
-sourceControl {
-	gitRepository("https://gamebuster19901.com/LicenseChecker.git") {
-		producesModule("com.gamebuster19901:LicenseChecker")
-	}
-	gitRepository("https://gamebuster19901.com/GunCore.git") {
-		producesModule("com.gamebuster19901:GunCore")
-	}
-}
+//GunCore
+gradle.ext.gunCoreBranch = "1.14.4"
+gradle.ext.gunCoreModule = "com.gamebuster19901:GunCore"
+gradle.ext.gunCoreURL = "https://gamebuster19901.com/GunCore.git"
+gradle.ext.gunCoreVersion = "1.4.0.1-" + gradle.ext.gunCoreBranch
+
+//LicenseChecker
+gradle.ext.licenseCheckerBranch = "master"
+gradle.ext.licenseCheckerModule = "com.gamebuster19901:LicenseChecker"
+gradle.ext.licenseCheckerURL = "https://gamebuster19901.com/LicenseChecker.git"
+gradle.ext.licenseCheckerVersion = "1.0.0.0"
