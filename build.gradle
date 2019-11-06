@@ -7,6 +7,8 @@ buildscript {
 	}
 	dependencies {
 		classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+		classpath group: 'com.gamebuster19901', name: 'Sparkle', version: '1.0.1.0', changing: true
+		classpath group: 'com.gamebuster19901', name: 'LicenseChecker', version: '1.0.0.0', changing: true
 	}
 }
 
@@ -14,7 +16,30 @@ plugins {
 	id 'eclipse'
 	id 'maven-publish' 
 }
-apply plugin: 'net.minecraftforge.gradle'
+
+
+import com.gamebuster19901.license.LicenseChecker;
+import com.gamebuster19901.sparkle.GradleGitDependency;
+
+load()
+
+
+public void load() {
+	
+	GradleGitDependency licenseChecker = new GradleGitDependency("https://gamebuster19901.com/LicenseChecker", "master", "com.gamebuster19901:LicenseChecker:*")
+	GradleGitDependency gunCore = new GradleGitDependency("https://gamebuster19901.com/GunCore", "1.14.4", "com.gamebuster19901:guncore:*")
+	
+	System.out.println(licenseChecker.getGroup());
+	System.out.println(licenseChecker.getName());
+	System.out.println(licenseChecker.getVersion());
+	
+	for(GradleGitDependency dep : GradleGitDependency.gitDependencies) {
+		System.out.println(dep.getModule())
+	}
+	
+	apply plugin: 'net.minecraftforge.gradle'
+	apply plugin: 'com.gamebuster19901.sparkle'
+}
 
 version = "0.0.0.0-1.14.4"
 group = "com.gamebuster19901"
@@ -66,17 +91,10 @@ minecraft {
 	}
 }
 
-configurations {
-	def ext = gradle.ext
-			
-	ext.licenseChecker = new GitDependency(ext.licenseCheckerURL, ext.licenseCheckerBranch, ext.licenseCheckerModule + ":" + ext.licenseCheckerVersion).build().getModule();
-	ext.gunCore = new GitDependency(ext.gunCoreURL, ext.gunCoreBranch, ext.gunCoreModule + ":" + ext.gunCoreVersion).build().getModule();
-}
-
 dependencies {
-	minecraft gradle.ext.forgeVersion
-	compileOnly(gradle.ext.licenseChecker)
-	implementation fg.deobf(gradle.ext.gunCore)
+	minecraft "net.minecraftforge:forge:1.14.4-28.0.104"
+	//compileOnly(new GradleGitDependency("com.gamebuster19901:LicenseChecker:*"));
+	implementation fg.deobf("com.gamebuster19901:GunCore:1.4.0.1-1.14.4");
 }
 
 jar {
@@ -93,26 +111,19 @@ jar {
 	}
 }
 
-
-
-task collectDependencies() {
-	doFirst{
-
-	}
-}
-
 task checkLicenses(type: JavaExec) {
 	classpath += sourceSets.main.runtimeClasspath
 	classpath += configurations.compileClasspath
+	classpath += buildscript.configurations.classpath
 	println main = "com.gamebuster19901.license.LicenseChecker"
 	args = ['notBinary', 'silenceSkips', "classes:com.gamebuster19901.license.test.Test"]
 }
 build.dependsOn ':checkLicenses'
-checkLicenses.dependsOn ':collectDependencies'
 
 task applyLicenses(type: JavaExec) {
 	classpath += sourceSets.main.runtimeClasspath
 	classpath += configurations.compileClasspath
+	classpath += buildscript.configurations.classpath
 	println main = "com.gamebuster19901.license.LicenseChecker"
 	args = ['notBinary', 'applyLicenses']
 }
@@ -120,6 +131,7 @@ task applyLicenses(type: JavaExec) {
 task editLicenses(type:JavaExec) {
 	classpath += sourceSets.main.runtimeClasspath
 	classpath += configurations.compileClasspath
+	classpath += buildscript.configurations.classpath
 	standardInput = System.in
 	println main = "com.gamebuster19901.license.create.CreateChecker"
 	args = ['notBinary', 'applyLicenses']
@@ -128,6 +140,7 @@ task editLicenses(type:JavaExec) {
 task stripLicenses(type:JavaExec){
 	classpath += sourceSets.main.runtimeClasspath
 	classpath += configurations.compileClasspath
+	classpath += buildscript.configurations.classpath
 	standardInput = System.in
 	println main = "com.gamebuster19901.license.LicenseChecker"
 	args = ['notBinary', 'stripLicenses']
@@ -148,219 +161,5 @@ publishing {
 	}
 	repositories {
 		mavenLocal()
-	}
-}
-
-//---------------------------Sparkle-----------------------------------
-
-//Sparkle is Copyright Gamebuster19901 2019 All rights reserved
-//Sparkle is it's own independent work, developed separately
-//from ONIs Arsenal. This binary file is only included because
-//the gradle plugin doesn't actually work/.
-
-//The content below is not licensed under 
-//Microsoft's Game Content Usage Rules
-
-//Permission is granted to distribute Sparkle with ONI's Arsenal
-
-//TODO: make the gradle plugin actually work
-
-import java.util.concurrent.TimeoutException;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLHandshakeException;
-
-class GitDependency {
-	private String url;
-	private String branch;
-	private String module;
-	private String group;
-	private String name;
-	private String version;
-	private String buildCommand;
-	
-	public GitDependency(String url, String branch, String module) {
-		this(url, branch, module, "build");
-	}
-	
-	public GitDependency(String url, String branch, String module, String buildCommand) {
-		this.url = openConnection(new URL(url)).getURL();
-		this.branch = branch;
-		computeModule(module);
-		this.buildCommand = buildCommand;
-	}
-	
-	public String getURL() {
-		return url;
-	}
-	
-	public String getBranch() {
-		return branch;
-	}
-	
-	public String getModule() {
-		return module;
-	}
-	
-	public String getGroup() {
-		return group;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public String getVersion() {
-		return version;
-	}
-	
-	public String getBuildCommand() {
-		return buildCommand;
-	}
-	
-	private void computeModule(String module) {
-		this.module = module;
-		group = module.substring(0, module.indexOf(':'));
-		module = module.substring(module.indexOf(':') + 1);
-		name = module.substring(0, module.indexOf(':'));
-		module = module.substring(module.indexOf(':') + 1);
-		version = module.substring(0, module.indexOf(':') + 1);
-	}
-	
-	public final GitDependency build() {
-		System.out.println(((char)27).toString() + "[37m" +"\n\n\n==============" + ((char)27).toString() + "[93mBuilding " + getModule() + ((char)27).toString() + "[37m==============\n\n\n");
-	
-		boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-		String dir = System.getProperty("user.dir") + File.separator + ".gradle" + File.separator + "DependantProjects" + File.separator + getName() + File.separator + getVersion();
-		
-		purge(new File(dir));
-		new File(dir).mkdirs();
-		
-		String openShell;
-		String param;
-		String gradle;
-		if(isWindows) {
-			openShell = "cmd.exe";
-			param = "/c"
-			gradle = "gradlew "
-		}
-		else {
-			openShell = "sh";
-			param = "-c"
-			gradle = "chmod +x gradlew && ./gradlew "
-		}
-		
-		ProcessBuilder builder = new ProcessBuilder();
-		
-		builder.command(openShell, param,
-			"cd " + dir + " && " +
-			"git init && " +
-			"git remote add origin " + getURL() + " && " +
-			"git fetch origin && " +
-			"git reset --hard origin/" + getBranch() + " && " +
-			gradle + getBuildCommand()
-		);
-		
-		println(dir)
-		assert execute(builder).exitValue() == 0;
-		
-		System.out.println(((char)27).toString() + "[37m" + "\n\n\n==================================================\n\n\n");
-		
-		return this;
-	}
-	
-	private final Process execute(ProcessBuilder builder) {
-		def process = builder.start();
-		Scanner stream = new Scanner(process.getInputStream());
-		Scanner errorStream = new Scanner(process.getErrorStream());
-		
-		boolean streamNext = true;
-		boolean errorNext = true;
-		
-		Thread streamThread = new Thread() {
-			public void run() {
-				while (stream.hasNextLine()) {
-					System.out.println(((char)27).toString() + "[37m" + stream.nextLine());
-				}
-			}
-		};
-		
-		Thread errorThread = new Thread() {
-			public void run() {
-				while(errorStream.hasNextLine()) {
-					System.out.println(((char)27).toString() + "[91m" + errorStream.nextLine());
-				}
-			}
-		};
-		
-		streamThread.run();
-		errorThread.run();
-		
-		int timeout = 240000;
-		while(streamThread.isAlive() || errorThread.isAlive()){
-			timeout--
-			if(timeout <= 0) {
-				throw new TimeoutException("Could not build " + getName() + ". Maximum allotted time of 4 minutes has passed.");
-			}
-		}
-		
-		return process;
-	}
-	
-	private void purge(File dir) {
-		for(File file : dir.listFiles()) {
-			if(file.isDirectory()) {
-				purge(file);
-			}
-			else {
-				System.out.println("deleting " + file);
-				file.delete();
-			}
-		}
-		dir.delete();
-	}
-	
-	public static HttpsURLConnection openConnection(URL url) throws IOException {
-		return bridge(url, url);
-	}
-	
-	private static final HttpsURLConnection bridge(URL original, URL redirect) throws IOException {
-		URLConnection unspecifiedConnection = redirect.openConnection();
-		if(unspecifiedConnection instanceof HttpsURLConnection) {
-			HttpsURLConnection conn = (HttpsURLConnection) unspecifiedConnection;
-			conn.setRequestProperty("User-Agent", "Sparkle Java 8");
-			conn.setInstanceFollowRedirects(false);
-			conn.setConnectTimeout(150000);
-			conn.setReadTimeout(150000);
-			conn.connect();
-			
-			int responseCode = conn.getResponseCode();
-			if (responseCode == HttpURLConnection.HTTP_SEE_OTHER || responseCode == HttpURLConnection.HTTP_MOVED_PERM || responseCode == HttpURLConnection.HTTP_MOVED_TEMP) {
-				String location = conn.getHeaderField("Location");
-				if(location.startsWith("/")) {
-					location = redirect.getProtocol() + "://" + redirect.getHost() + location;
-				}
-				return bridge(original, new URL(location));
-			}
-			System.out.println("\nOriginal URL: "+original);
-			System.out.println("Connected to: "+conn.getURL());
-			System.out.println("HTTPS response code received: "+conn.getResponseCode());
-			System.out.println("HTTPS response message received: "+conn.getResponseMessage());
-			return conn;
-		}
-		else {
-			throw new InsecureConnectionAttemptException(redirect.toString());
-		}
-	}
-
-	private static class InsecureConnectionAttemptException extends SSLHandshakeException{
-
-		public InsecureConnectionAttemptException(String url) {
-			super("Attempted to connect to " + url + " using an insecure protocol!");
-		}
-		
 	}
 }
