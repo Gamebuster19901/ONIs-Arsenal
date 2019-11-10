@@ -13,6 +13,6 @@ jobs:
       with:
         java-version: 1.8
     - name: Install Sparkle
-      run: mkdir sparkle && cd sparkle && git init && git remote add origin "https://gamebuster19901.com/sparkle" && git fetch origin && git reset --hard origin/master && chmod +x gradlew && ./gradlew build && ./gradlew publish && cd ..
+      run: mkdir sparkle && cd sparkle && git init && git remote add origin "https://gamebuster19901.com/sparkle" && git fetch origin && git reset --hard origin/master && chmod +x gradlew && ./gradlew build && ./gradlew publish && cd .. && pwd && ls
     - name: Build
       run: chmod +x gradlew && ./gradlew build
