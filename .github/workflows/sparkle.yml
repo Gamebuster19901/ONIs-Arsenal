@@ -1,8 +1,6 @@
 name: CI
 
-on: 
-  check_suite:
-    types: [requested, rerequested]
+on: [push]
 jobs:
   setup_sparkle_ubuntu:
 
