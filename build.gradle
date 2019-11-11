@@ -7,8 +7,7 @@ buildscript {
 	}
 	dependencies {
 		classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-		classpath group: 'com.gamebuster19901', name: 'Sparkle', version: '1.0.1.0', changing: true
-		classpath group: 'com.gamebuster19901', name: 'LicenseChecker', version: '1.0.0.0', changing: true
+		classpath group: 'com.gamebuster19901', name: 'Sparkle', version: '1.0.2.0', changing: true
 	}
 }
 
@@ -17,12 +16,9 @@ plugins {
 	id 'maven-publish' 
 }
 
+load();
 
-import com.gamebuster19901.license.LicenseChecker;
 import com.gamebuster19901.sparkle.GradleGitDependency;
-
-load()
-
 
 public void load() {
 	
@@ -36,10 +32,10 @@ public void load() {
 	for(GradleGitDependency dep : GradleGitDependency.gitDependencies) {
 		System.out.println(dep.getModule())
 	}
-	
-	apply plugin: 'net.minecraftforge.gradle'
-	apply plugin: 'com.gamebuster19901.sparkle'
 }
+
+apply plugin: 'com.gamebuster19901.sparkle'
+apply plugin: 'net.minecraftforge.gradle'
 
 version = "0.0.0.0-1.14.4"
 group = "com.gamebuster19901"
@@ -93,7 +89,7 @@ minecraft {
 
 dependencies {
 	minecraft "net.minecraftforge:forge:1.14.4-28.0.104"
-	//compileOnly(new GradleGitDependency("com.gamebuster19901:LicenseChecker:*"));
+	compileOnly("com.gamebuster19901:LicenseChecker:1.0.0.0");
 	implementation fg.deobf("com.gamebuster19901:GunCore:1.4.0.1-1.14.4");
 }
 
@@ -110,6 +106,8 @@ jar {
 		])
 	}
 }
+
+compileJava.dependsOn ':sparkle'
 
 task checkLicenses(type: JavaExec) {
 	classpath += sourceSets.main.runtimeClasspath
