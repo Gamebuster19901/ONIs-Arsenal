@@ -22,8 +22,8 @@ import com.gamebuster19901.sparkle.GradleGitDependency;
 
 public void load() {
 	
-	GradleGitDependency licenseChecker = new GradleGitDependency("https://gamebuster19901.com/LicenseChecker", "master", "com.gamebuster19901:LicenseChecker:*")
-	GradleGitDependency gunCore = new GradleGitDependency("https://gamebuster19901.com/GunCore", "1.14.4", "com.gamebuster19901:guncore:*")
+	GradleGitDependency licenseChecker = new GradleGitDependency("https://gamebuster19901.com/LicenseChecker", "master", "com.gamebuster19901:LicenseChecker:1.0.0.0")
+	GradleGitDependency gunCore = new GradleGitDependency("https://gamebuster19901.com/GunCore", "1.14.4", "com.gamebuster19901:guncore:1.4.0.1-1.14.4")
 	
 	System.out.println(licenseChecker.getGroup());
 	System.out.println(licenseChecker.getName());
