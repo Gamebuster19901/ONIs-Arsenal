@@ -16,7 +16,11 @@ plugins {
 	id 'maven-publish' 
 }
 
+
 load();
+
+apply plugin: 'com.gamebuster19901.sparkle'
+apply plugin: 'net.minecraftforge.gradle'
 
 import com.gamebuster19901.sparkle.GradleGitDependency;
 
@@ -34,9 +38,6 @@ public void load() {
 	}
 }
 
-apply plugin: 'com.gamebuster19901.sparkle'
-apply plugin: 'net.minecraftforge.gradle'
-
 version = "0.0.0.0-1.14.4"
 group = "com.gamebuster19901"
 archivesBaseName = "oni"
@@ -51,7 +52,7 @@ repositories {
 }
 
 minecraft {
-	mappings channel: gradle.ext.mappingChannel, version: gradle.ext.mappingVersion
+	mappings channel: 'snapshot', version: '20190812-1.14.3'
 	// makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 	
 	accessTransformer = file('src/main/resources/main/META-INF/accesstransformer.cfg')
