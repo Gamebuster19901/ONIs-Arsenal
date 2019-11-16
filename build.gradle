@@ -7,8 +7,7 @@ buildscript {
 	}
 	dependencies {
 		classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-		classpath group: 'com.gamebuster19901', name: 'Sparkle', version: '1.0.1.0', changing: true
-		classpath group: 'com.gamebuster19901', name: 'LicenseChecker', version: '1.0.0.0', changing: true
+		classpath group: 'com.gamebuster19901', name: 'sparkle', version: '1.0.4.2', changing: true
 	}
 }
 
@@ -18,16 +17,17 @@ plugins {
 }
 
 
-import com.gamebuster19901.license.LicenseChecker;
+load();
+
+apply plugin: 'com.gamebuster19901.sparkle'
+apply plugin: 'net.minecraftforge.gradle'
+
 import com.gamebuster19901.sparkle.GradleGitDependency;
-
-load()
-
 
 public void load() {
 	
-	GradleGitDependency licenseChecker = new GradleGitDependency("https://gamebuster19901.com/LicenseChecker", "master", "com.gamebuster19901:LicenseChecker:*")
-	GradleGitDependency gunCore = new GradleGitDependency("https://gamebuster19901.com/GunCore", "1.14.4", "com.gamebuster19901:guncore:*")
+	GradleGitDependency licenseChecker = new GradleGitDependency("https://gamebuster19901.com/LicenseChecker", "master", "com.gamebuster19901:LicenseChecker:1.0.0.0")
+	GradleGitDependency gunCore = new GradleGitDependency("https://gamebuster19901.com/GunCore", "1.14.4", "com.gamebuster19901:guncore:1.4.0.1-1.14.4")
 	
 	System.out.println(licenseChecker.getGroup());
 	System.out.println(licenseChecker.getName());
@@ -36,9 +36,6 @@ public void load() {
 	for(GradleGitDependency dep : GradleGitDependency.gitDependencies) {
 		System.out.println(dep.getModule())
 	}
-	
-	apply plugin: 'net.minecraftforge.gradle'
-	apply plugin: 'com.gamebuster19901.sparkle'
 }
 
 version = "0.0.0.0-1.14.4"
@@ -55,7 +52,7 @@ repositories {
 }
 
 minecraft {
-	mappings channel: gradle.ext.mappingChannel, version: gradle.ext.mappingVersion
+	mappings channel: 'snapshot', version: '20190812-1.14.3'
 	// makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 	
 	accessTransformer = file('src/main/resources/main/META-INF/accesstransformer.cfg')
@@ -93,7 +90,7 @@ minecraft {
 
 dependencies {
 	minecraft "net.minecraftforge:forge:1.14.4-28.0.104"
-	//compileOnly(new GradleGitDependency("com.gamebuster19901:LicenseChecker:*"));
+	compileOnly("com.gamebuster19901:LicenseChecker:1.0.0.0");
 	implementation fg.deobf("com.gamebuster19901:GunCore:1.4.0.1-1.14.4");
 }
 
@@ -110,6 +107,8 @@ jar {
 		])
 	}
 }
+
+compileJava.dependsOn ':sparkle'
 
 task checkLicenses(type: JavaExec) {
 	classpath += sourceSets.main.runtimeClasspath
