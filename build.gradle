@@ -7,7 +7,7 @@ buildscript {
 	}
 	dependencies {
 		classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-		classpath group: 'com.gamebuster19901', name: 'sparkle', version: '1.0.4.2', changing: true
+		classpath group: 'com.gamebuster19901', name: 'sparkle', version: '1.0.4.3', changing: true
 	}
 }
 
