@@ -24,7 +24,9 @@ jobs:
       with:
         java-version: 1.8
     - name: Install Sparkle
-      run: pushd .; cd ..; mkdir sparkle; cd sparkle; git init; git remote add origin "https://gamebuster19901.com/sparkle"; git fetch origin; git reset --hard origin/master; ./gradlew build --stacktrace; ./gradlew publish --stacktrace; popd
+      run: pushd . && cd .. && mkdir sparkle && cd sparkle && git init && git remote add origin "https://gamebuster19901.com/sparkle" && git fetch origin && git reset --hard origin/master && gradlew build --stacktrace && gradlew publish --stacktrace && popd
+      shell: cmd
     - name: Build
-      run: pushd .; cd ~/.m2/repository/com/gamebuster19901/sparkle; pwd; ls; popd; ./gradlew build --stacktrace
+      run: gradlew build --stacktrace
+      shell: cmd
       
