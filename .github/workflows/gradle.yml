@@ -3,7 +3,7 @@ name: Java CI
 on: [push]
 
 jobs:
-  build linux:
+  build-linux:
     runs-on: [ubuntu-latest]
     steps:
     - uses: actions/checkout@v1
@@ -15,7 +15,7 @@ jobs:
       run: cd .. && mkdir sparkle && cd sparkle && git init && git remote add origin "https://gamebuster19901.com/sparkle" && git fetch origin && git reset --hard origin/master && chmod +x gradlew && ./gradlew build --stacktrace && ./gradlew publish --stacktrace && cd -
     - name: Build
       run: cd ~/.m2/repository/com/gamebuster19901/sparkle && pwd && ls && cd - && chmod +x gradlew && ./gradlew build --stacktrace
-  build windows:
+  build-windows:
     runs-on: [windows-latest]
     steps:
     - uses: actions/checkout@v1
