@@ -31,7 +31,7 @@ compileJava {
 }
 
 minecraft {
-	mappings channel: "snapshot", version: "20190812-1.14.3"
+	mappings channel: "snapshot", version: "20191125-1.14.3"
 	// makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 	
 	accessTransformer = file('src/main/resources/main/META-INF/accesstransformer.cfg')
@@ -68,7 +68,7 @@ minecraft {
 }
 
 dependencies {
-	minecraft 'net.minecraftforge:forge:1.14.4-28.0.104'
+	minecraft 'net.minecraftforge:forge:1.14.4-28.1.96'
 	implementation("com.gamebuster19901:GunCore") {
 		version {
 			branch = "1.14.4"
