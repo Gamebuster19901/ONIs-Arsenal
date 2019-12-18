@@ -6,7 +6,15 @@ modId="oni" #mandatory
 version="0.0.0.0 - 1.14.4" #mandatory
 displayName="Oni's Arsenal" #mandatory
 logoFile="examplemod.png" #optional
-credits="" #optional
+credits='''
+Programming: Gamebuster19901
+Textures: Gamebuster19901
+
+Special Thanks:
+The folks over at the Minecraft Mod Development Discord for their help
+JannisX11 for making the awesome modeling tool called Blockbench
+'''
+
 authors="Gamebuster19901" #optional
 
 description='''
