@@ -27,7 +27,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public class AssaultRifleBullet extends OniProjectile{
-	public static SoundEvent shootingSound;
+	public static SoundEvent dischargeSound;
 	
 	public AssaultRifleBullet(EntityType type, World worldIn) {
 		super(type, worldIn);
@@ -57,12 +57,17 @@ public class AssaultRifleBullet extends OniProjectile{
 	protected void registerData() {}
 
 	@Override
-	public SoundEvent getShootingSound() {
-		return shootingSound;
+	public SoundEvent getDischargeSound() {
+		return dischargeSound;
 	}
 
 	@Override
 	public SoundEvent getImpactSound() {
+		return null;
+	}
+
+	@Override
+	public SoundEvent getIdleSound() {
 		return null;
 	}
 
