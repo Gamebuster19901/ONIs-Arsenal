@@ -1,5 +1,5 @@
 /*
- * Oni's Arsenal Copyright 2019 Gamebuster19901
+ * Oni's Arsenal Copyright 2019 - 2020 Gamebuster19901
  * 
  * Halo Copyright Microsoft Corporation
  *
