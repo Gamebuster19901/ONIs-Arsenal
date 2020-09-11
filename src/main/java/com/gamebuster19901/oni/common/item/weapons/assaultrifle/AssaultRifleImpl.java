@@ -48,7 +48,7 @@ public class AssaultRifleImpl extends WeaponShootableReloadableImpl{
 	private static Object[] getServerImpl() {
 		return new Object[] {
 			new WeaponDefaultImpl(3, firingRate, isAutomatic), 
-			new ShootableDefaultImpl(maxBloom, bloomIncrease, bloomDecrease, muzzleVelocity, minVerticalRecoil, maxVerticalRecoil, minHorizontalRecoil, maxHorizontalRecoil, NullAmmo.INSTANCE.getProjectile()),
+			new ShootableDefaultImpl(3 + 1f / 3f, maxBloom, bloomIncrease, bloomDecrease, muzzleVelocity, minVerticalRecoil, maxVerticalRecoil, minHorizontalRecoil, maxHorizontalRecoil, NullAmmo.INSTANCE.getProjectile()),
 			new ReloadableDefaultImpl(magSize, reloadTime)
 		};
 	}
@@ -56,7 +56,7 @@ public class AssaultRifleImpl extends WeaponShootableReloadableImpl{
 	private static Object[] getClientImpl() {
 		return new Object[] {
 				new WeaponDefaultImpl(3, firingRate, isAutomatic), 
-				new ShootableDefaultImpl(maxBloom, bloomIncrease, bloomDecrease, muzzleVelocity, minVerticalRecoil, maxVerticalRecoil, minHorizontalRecoil, maxHorizontalRecoil, NullAmmo.INSTANCE.getProjectile()),
+				new ShootableDefaultImpl(3 + 1f / 3f, maxBloom, bloomIncrease, bloomDecrease, muzzleVelocity, minVerticalRecoil, maxVerticalRecoil, minHorizontalRecoil, maxHorizontalRecoil, NullAmmo.INSTANCE.getProjectile()),
 				new ReloadableDefaultImpl(magSize, reloadTime),
 				new AssaultRifleReticleImpl(),
 				new AssaultRifleOverlayImpl()
