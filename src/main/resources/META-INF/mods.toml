@@ -44,6 +44,6 @@ Add descripion later!
 [[dependencies.oni]]
     modId="guncore"
     mandatory=true
-    versionRange="[1.6.0.0-1.14.4]"
+    versionRange="[1.7.0.0-1.14.4]"
     ordering="NONE"
     side="BOTH"
