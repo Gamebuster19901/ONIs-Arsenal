@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "oni",
+  "version": "${version}",
+
+  "name": "ONI's Arsenal",
+  "description": "Halo mod.\n\nAdd description later!",
+  "authors": [
+    "Gamebuster19901"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Gamebuster19901/ONIs-Arsenal",
+    "sources": "https://github.com/Gamebuster19901/ONIs-Arsenal",
+    "issues": "https://github.com/Gamebuster19901/ONIs-Arsenal/issues"
+  },
+
+  "license": "https://www.xbox.com/en-US/developers/rules",
+  "icon": "assets/oni/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.gamebuster19901.oni.ONI"
+    ]
+  },
+  "mixins": [
+    "oni.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
