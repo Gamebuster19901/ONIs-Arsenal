@@ -1,0 +1,15 @@
+{
+	"entity.oni.assault_rifle_bullet": "Assault Rifle Bullet",
+	"entity.oni.plasma_pistol_bullet": "Plasma Pistol Shot",
+	
+	"item.oni.assault_rifle": "Assault Rifle",
+	"item.oni.plasma_pistol": "Plasma Pistol",
+	
+	"item.oni.assault_rifle_ammo": "Assault Rifle Ammo",
+	
+	"subtitle.oni.assault_rifle.shoot": "Assault Rifle fires",
+	"subtitle.oni.plasma_pistol.shoot": "Plasma Pistol fires",
+	
+	"item.oni.assault_rifle.icon": "[AR]",
+	"item.oni.plasma_pistol.icon": "[PP]"
+}

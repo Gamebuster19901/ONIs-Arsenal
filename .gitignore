@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # gradle
 
 .gradle/
@@ -7,10 +8,15 @@ classes/
 
 # eclipse
 
+bin
 *.launch
+.settings
+.metadata
+.classpath
+.project
 
 # idea
-
+out
 .idea/
 *.iml
 *.ipr
@@ -30,4 +36,13 @@ bin/
 
 # fabric
 
-run/
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+
+# 343 Industries reference images (so we don't do copyright infringement)
+*\microsoft

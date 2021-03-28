@@ -7,3 +7,12 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+sourceControl {
+	gitRepository("https://gamebuster19901.com/LicenseChecker.git") {
+		producesModule("com.gamebuster19901:LicenseChecker")
+	}
+	gitRepository("https://gamebuster19901.com/GunCore.git") {
+		producesModule("com.gamebuster19901:GunCore")
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"assault_rifle_bullet": { 
+		"category": "neutral",
+		"sounds": [
+			{
+				"name": "oni:assault_rifle/assault_rifle_shot",
+				"stream": false
+			}
+		],
+		"subtitle": "subtitle.oni.assault_rifle.shoot"
+	}
+}
